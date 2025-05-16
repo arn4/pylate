@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Neural Search">
+        <meta name="description" content="PyLate 🐶">
       
       
         <meta name="author" content="Raphael Sourty">
@@ -22,11 +22,11 @@
       
       
       <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
     
     
       
-        <title>Evaluation - pylate</title>
+        <title>Evaluation - PyLate</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="pylate" class="md-header__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../.." title="PyLate" class="md-header__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../img/favicon.png" alt="logo">
 
@@ -109,7 +109,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            pylate
+            PyLate
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -301,12 +301,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="pylate" class="md-nav__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../.." title="PyLate" class="md-nav__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../img/favicon.png" alt="logo">
 
     </a>
-    pylate
+    PyLate
   </label>
   
     <div class="md-nav__source">
@@ -784,13 +784,13 @@
 <h2 id="retrieval-evaluation">Retrieval evaluation<a class="headerlink" href="#retrieval-evaluation" title="Permanent link">&para;</a></h2>
 <p>This guide demonstrates an end-to-end pipeline to evaluate the performance of the ColBERT model on retrieval tasks. The pipeline involves three key steps: indexing documents, retrieving top-k documents for a given set of queries, and evaluating the retrieval results using standard metrics.</p>
 <h3 id="beir-retrieval-evaluation-pipeline">BEIR Retrieval Evaluation Pipeline<a class="headerlink" href="#beir-retrieval-evaluation-pipeline" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">evaluation</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">retrieve</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluation</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">retrieve</span>
 
 <span class="c1"># Step 1: Initialize the ColBERT model</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;scifact&quot;</span> <span class="c1"># Choose the dataset you want to evaluate</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span>
-    <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;lightonai/colbertv2.0&quot;</span><span class="p">,</span>
+    <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;lightonai/GTE-ModernColBERT-v1&quot;</span><span class="p">,</span>
     <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cuda&quot;</span> <span class="c1"># &quot;cpu&quot; or &quot;cuda&quot; or &quot;mps&quot;</span>
 <span class="p">)</span>
 

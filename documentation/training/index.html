@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Neural Search">
+        <meta name="description" content="PyLate 🐶">
       
       
         <meta name="author" content="Raphael Sourty">
@@ -20,11 +20,11 @@
       
       
       <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
     
     
       
-        <title>Training - pylate</title>
+        <title>Training - PyLate</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="pylate" class="md-header__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../.." title="PyLate" class="md-header__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../img/favicon.png" alt="logo">
 
@@ -107,7 +107,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            pylate
+            PyLate
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -299,12 +299,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="pylate" class="md-nav__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../.." title="PyLate" class="md-nav__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../img/favicon.png" alt="logo">
 
     </a>
-    pylate
+    PyLate
   </label>
   
     <div class="md-nav__source">
@@ -445,6 +445,21 @@
       Knowledge Distillation Training
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Knowledge Distillation Training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nanobeir-evaluator" class="md-nav__link">
+    <span class="md-ellipsis">
+      NanoBEIR evaluator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -727,6 +742,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Knowledge Distillation Training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nanobeir-evaluator" class="md-nav__link">
+    <span class="md-ellipsis">
+      NanoBEIR evaluator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -772,7 +802,7 @@
 
 
 <h1 id="colbert-training">ColBERT Training<a class="headerlink" href="#colbert-training" title="Permanent link">&para;</a></h1>
-<p>PyLate training is based on Sentence Transformer (and thus transformers) trainer, enabling a lot of functionality such multi-GPU and FP16/BF16 training as well as logging to Weights &amp; Biases out-of-the-box. This allows efficient, and scalable training. </p>
+<p>PyLate training is based on Sentence Transformer (and thus transformers) trainer, enabling a lot of functionality such multi-GPU and FP16/BF16 training as well as logging to Weights &amp; Biases out-of-the-box. This allows efficient, and scalable training.</p>
 <details class="info" open="open">
 <summary>Info</summary>
 <p>There are two primary ways to train ColBERT models using PyLate:</p>
@@ -790,14 +820,14 @@
 <p>PyLate uses contrastive learning with a triplet dataset, where each query is paired with one positive and one negative example. <strong>This makes it fully compatible with any triplet datasets from the sentence-transformers library</strong>.</p>
 <p>During training, the model is optimized to maximize the similarity between the query and its positive example while minimizing the similarity with all negative examples and the positives from other queries in the batch. This approach leverages in-batch negatives for more effective learning.</p>
 <p>Here is an example of code to run contrastive training with PyLate:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
-<span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="p">(</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sentence_transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">SentenceTransformerTrainer</span><span class="p">,</span>
     <span class="n">SentenceTransformerTrainingArguments</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">evaluation</span><span class="p">,</span> <span class="n">losses</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluation</span><span class="p">,</span> <span class="n">losses</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">utils</span>
 
 <span class="c1"># Define model parameters for contrastive training</span>
 <span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;bert-base-uncased&quot;</span>  <span class="c1"># Choose the pre-trained model you want to use as base</span>
@@ -858,25 +888,40 @@
 </code></pre></div>
 <details class="tip" open="open">
 <summary>Tip</summary>
-<p>Please note that for multi-GPU training, running <code>python training.py</code> <strong>will use Data Parallel (DP) by default</strong>. We strongly suggest using using Distributed Data Parallelism (DDP) using accelerate or torchrun: <code>accelerate launch --num_processes num_gpu training.py</code>.</p>
-<p>Refer to this <a href="https://sbert.net/docs/sentence_transformer/training/distributed.html">documentation</a> for more information.</p>
+<p>Please note that temperature parameter has a <a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Wang_Understanding_the_Behaviour_of_Contrastive_Loss_CVPR_2021_paper.pdf">very high importance in contrastive learning</a>. A low temperature allows to focus more on the hardest elements in the batch, creating more discriminative representations but is more sensible to false negative. A temperature around 0.02 is often used in the literature:
+<div class="language-python highlight"><pre><span></span><code><span class="n">train_loss</span> <span class="o">=</span> <span class="n">losses</span><span class="o">.</span><span class="n">Contrastive</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+</code></pre></div></p>
 </details>
 <details class="tip" open="open">
 <summary>Tip</summary>
-<p>PyLate now features <a href="https://x.com/tomaarsen/status/1857434642569138243">NanoBEIREvaluator</a>, an evaluator that allows to run small versions of the BEIR datasets to get an idea of the performance on BEIR without taking too long to run.</p>
-<p>To use NanoBEIREvaluator, you can simply use <code>evaluator=evaluation.NanoBEIREvaluator()</code> as an argument of the <code>SentenceTransformerTrainer</code>. You can select to run only a subset of the evaluations by specifying <code>dataset_names</code>, e.g, <code>evaluation.NanoBEIREvaluator(dataset_names=["SciFact", NFCorpus])</code></p>
+<p>As contrastive learning is not compatible with gradient accumulation, you can leverage <a href="https://arxiv.org/abs/2101.06983">GradCache</a> to emulate bigger batch sizes without requiring more memory by using the <code>CachedContrastiveLoss</code> to define a mini_batch_size while increasing the <code>per_device_train_batch_size</code>:
+<div class="language-python highlight"><pre><span></span><code><span class="n">train_loss</span> <span class="o">=</span> <span class="n">losses</span><span class="o">.</span><span class="n">CachedContrastive</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">mini_batch_size</span><span class="o">=</span><span class="n">mini_batch_size</span>
+<span class="p">)</span>
+</code></pre></div></p>
+</details>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>Finally, if you are in a multi-GPU setting, you can gather all the elements from the different GPUs to create even bigger batch sizes by setting <code>gather_across_devices</code> to <code>True</code> (for both <code>Contrastive</code> and <code>CachedContrastive</code> losses):
+<div class="language-python highlight"><pre><span></span><code><span class="n">train_loss</span> <span class="o">=</span> <span class="n">losses</span><span class="o">.</span><span class="n">Contrastive</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">gather_across_devices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></p>
+</details>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>Please note that for multi-GPU training, running <code>python training.py</code> <strong>will use Data Parallel (DP) by default</strong>. We strongly suggest using using Distributed Data Parallelism (DDP) using accelerate or torchrun: <code>accelerate launch --num_processes num_gpu training.py</code>.</p>
+<p>Refer to this <a href="https://sbert.net/docs/sentence_transformer/training/distributed.html">documentation</a> for more information.</p>
 </details>
 <h2 id="knowledge-distillation-training">Knowledge Distillation Training<a class="headerlink" href="#knowledge-distillation-training" title="Permanent link">&para;</a></h2>
 <p>Training late-interaction models, such as ColBERT, has been shown to benefit from knowledge distillation compared to simpler contrastive learning approaches. Knowledge distillation training focuses on teaching ColBERT models to replicate the outputs of a more capable teacher model (e.g., a cross-encoder). This is achieved using a dataset that includes queries, documents, and the scores assigned by the teacher model to each query/document pair.</p>
 <p>Below is an example of code to run knowledge distillation training using PyLate:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
-<span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="p">(</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sentence_transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">SentenceTransformerTrainer</span><span class="p">,</span>
     <span class="n">SentenceTransformerTrainingArguments</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">losses</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">losses</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">utils</span>
 
 <span class="c1"># Load the datasets required for knowledge distillation (train, queries, documents)</span>
 <span class="n">train</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span>
@@ -944,6 +989,11 @@
 <p>Please note that for multi-GPU training, running <code>python training.py</code> <strong>will use Data Parallel (DP) by default</strong>. We strongly suggest using using Distributed Data Parallelism (DDP) using accelerate or torchrun: <code>accelerate launch --num_processes num_gpu training.py</code>.</p>
 <p>Refer to this <a href="https://sbert.net/docs/sentence_transformer/training/distributed.html">documentation</a> for more information.</p>
 </details>
+<h3 id="nanobeir-evaluator">NanoBEIR evaluator<a class="headerlink" href="#nanobeir-evaluator" title="Permanent link">&para;</a></h3>
+<p>If you are training an English retrieval model, PyLate now features <a href="https://x.com/tomaarsen/status/1857434642569138243">NanoBEIREvaluator</a>, an evaluator that allows to run small versions of the BEIR datasets to get an idea of the performance on BEIR without taking too long to run.
+<div class="language-python highlight"><pre><span></span><code><span class="n">evaluator</span><span class="o">=</span><span class="n">evaluation</span><span class="o">.</span><span class="n">NanoBEIREvaluator</span><span class="p">(),</span>
+</code></pre></div>
+You can select a subset of all the sets to run by adding the dataset names: <code>evaluation.NanoBEIREvaluator(dataset_names=["SciFact"])</code></p>
 <h2 id="colbert-parameters">ColBERT parameters<a class="headerlink" href="#colbert-parameters" title="Permanent link">&para;</a></h2>
 <p>All the parameters of the ColBERT modeling can be found <a href="https://lightonai.github.io/pylate/api/models/ColBERT/#parameters">here</a>. Important parameters to consider are:</p>
 <details class="info" open="open">

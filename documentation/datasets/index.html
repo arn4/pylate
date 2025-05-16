@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Neural Search">
+        <meta name="description" content="PyLate 🐶">
       
       
         <meta name="author" content="Raphael Sourty">
@@ -22,11 +22,11 @@
       
       
       <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
     
     
       
-        <title>Datasets - pylate</title>
+        <title>Datasets - PyLate</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="pylate" class="md-header__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../.." title="PyLate" class="md-header__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../img/favicon.png" alt="logo">
 
@@ -109,7 +109,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            pylate
+            PyLate
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -301,12 +301,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="pylate" class="md-nav__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../.." title="PyLate" class="md-nav__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../img/favicon.png" alt="logo">
 
     </a>
-    pylate
+    PyLate
   </label>
   
     <div class="md-nav__source">
@@ -888,7 +888,7 @@
 <p>Contrastive training requires datasets that include a query, a positive document (relevant to the query), and a negative document (irrelevant to the query). This is the standard triplet format used by Sentence Transformers, making PyLate's contrastive training <strong>compatible with all existing triplet datasets</strong>.</p>
 <h3 id="loading-a-pre-built-contrastive-dataset">Loading a pre-built contrastive dataset<a class="headerlink" href="#loading-a-pre-built-contrastive-dataset" title="Permanent link">&para;</a></h3>
 <p>You can directly download an existing contrastive dataset from Hugging Face's hub, such as the <a href="https://huggingface.co/datasets/sentence-transformers/msmarco-bm25">msmarco-bm25 triplet dataset</a>.</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;sentence-transformers/msmarco-bm25&quot;</span><span class="p">,</span> <span class="s2">&quot;triplet&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
 
@@ -902,7 +902,7 @@
 </code></pre></div>
 <h3 id="creating-a-contrastive-dataset-from-list">Creating a contrastive dataset from list<a class="headerlink" href="#creating-a-contrastive-dataset-from-list" title="Permanent link">&para;</a></h3>
 <p>If you want to create a custom contrastive dataset, you can do so by manually specifying the query, positive, and negative samples.</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -926,20 +926,31 @@
 
 <span class="n">train_dataset</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 </code></pre></div>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>Note that PyLate supports more than one negative per query, simply add the additional negatives after the first one in the row.
+<div class="language-python highlight"><pre><span></span><code><span class="p">{</span>
+        <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;example query 1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;positive&quot;</span><span class="p">:</span> <span class="s2">&quot;example positive document 1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;negative_1&quot;</span><span class="p">:</span> <span class="s2">&quot;example negative document 1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;negative_2&quot;</span><span class="p">:</span> <span class="s2">&quot;example negative document 2&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</details>
 <h3 id="loading-a-contrastive-dataset-from-a-local-parquet-file">Loading a contrastive dataset from a local parquet file<a class="headerlink" href="#loading-a-contrastive-dataset-from-a-local-parquet-file" title="Permanent link">&para;</a></h3>
 <p>To load a local dataset stored in a Parquet file:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span>
-    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;parquet&quot;</span><span class="p">,</span> 
-    <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;dataset.parquet&quot;</span><span class="p">,</span> 
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;parquet&quot;</span><span class="p">,</span>
+    <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;dataset.parquet&quot;</span><span class="p">,</span>
     <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span>
 <span class="p">)</span>
 
 <span class="n">train_dataset</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="knowledge-distillation-dataset">Knowledge distillation dataset<a class="headerlink" href="#knowledge-distillation-dataset" title="Permanent link">&para;</a></h2>
-<p>For fine-tuning a model using knowledge distillation loss, three distinct dataset files are required: train, queries, and documents. </p>
+<p>For fine-tuning a model using knowledge distillation loss, three distinct dataset files are required: train, queries, and documents.</p>
 <details class="info" open="open">
 <summary>Info</summary>
 <p>Each file contains unique and complementary information necessary for the distillation process:</p>
@@ -1002,7 +1013,7 @@
 <h3 id="loading-a-pre-built-knowledge-distillation-dataset">Loading a pre-built knowledge distillation dataset<a class="headerlink" href="#loading-a-pre-built-knowledge-distillation-dataset" title="Permanent link">&para;</a></h3>
 <p>You can directly download an existing knowledge distillation dataset from Hugging Face's hub, such as the English <a href="https://huggingface.co/datasets/lightonai/ms-marco-en-bge">MS MARCO dataset with BGE M3 scores</a> or the <a href="https://huggingface.co/datasets/lightonai/ms-marco-fr-bge">French version</a>.
 Simply load the different files by giving the respective names to the <code>load_dataset</code> function:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
 <span class="n">train</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span>
     <span class="s2">&quot;lightonai/ms-marco-en-bge&quot;</span><span class="p">,</span>
@@ -1024,7 +1035,7 @@ Simply load the different files by giving the respective names to the <code>load
 </code></pre></div>
 <h3 id="knowledge-distillation-dataset-from-list">Knowledge distillation dataset from list<a class="headerlink" href="#knowledge-distillation-dataset-from-list" title="Permanent link">&para;</a></h3>
 <p>You can also create custom datasets from list in Python. This example demonstrates how to build the <code>train</code>, <code>queries</code>, and <code>documents</code> datasets</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>

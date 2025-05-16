@@ -12,13 +12,13 @@
         <meta name="author" content="Raphael Sourty">
       
       
-        <link rel="canonical" href="https://lightonai.github.io/pylate/api/scores/SimilarityFunction/">
+        <link rel="canonical" href="https://lightonai.github.io/pylate/api/utils/all-gather/">
       
       
-        <link rel="prev" href="../../retrieve/ColBERT/">
+        <link rel="prev" href="../all-gather-with-gradients/">
       
       
-        <link rel="next" href="../colbert-kd-scores/">
+        <link rel="next" href="../convert-to-tensor/">
       
       
       <link rel="icon" href="../../../img/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>SimilarityFunction - PyLate</title>
+        <title>all_gather - PyLate</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#similarityfunction" class="md-skip">
+        <a href="#all_gather" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SimilarityFunction
+              all_gather
             
           </span>
         </div>
@@ -866,12 +866,73 @@
                 
   
   
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../scores/SimilarityFunction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    scores
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -893,26 +954,89 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    scores
+    utils
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_10">
             <span class="md-nav__icon md-icon"></span>
-            scores
+            utils
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ColBERTCollator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ColBERTCollator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KDProcessing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KDProcessing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../all-gather-with-gradients/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    all_gather_with_gradients
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -934,7 +1058,7 @@
           
   
   <span class="md-ellipsis">
-    SimilarityFunction
+    all_gather
   </span>
   
 
@@ -945,7 +1069,7 @@
         
   
   <span class="md-ellipsis">
-    SimilarityFunction
+    all_gather
   </span>
   
 
@@ -991,11 +1115,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../colbert-kd-scores/" class="md-nav__link">
+      <a href="../convert-to-tensor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    colbert_kd_scores
+    convert_to_tensor
   </span>
   
 
@@ -1012,11 +1136,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../colbert-scores-pairwise/" class="md-nav__link">
+      <a href="../get-rank/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    colbert_scores_pairwise
+    get_rank
   </span>
   
 
@@ -1033,11 +1157,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../colbert-scores/" class="md-nav__link">
+      <a href="../get-world-size/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    colbert_scores
+    get_world_size
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iter-batch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iter_batch
   </span>
   
 
@@ -1049,67 +1194,6 @@
             
           </ul>
         </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../utils/ColBERTCollator/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    utils
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
       
     </li>
   
@@ -1173,11 +1257,19 @@
                   
 
 
-<h1 id="similarityfunction">SimilarityFunction<a class="headerlink" href="#similarityfunction" title="Permanent link">&para;</a></h1>
-<p>Enum class for supported score functions. The following functions are supported: - <code>SimilarityFunction.MAXSIM</code> (<code>"MaxSim"</code>): Max similarity</p>
+<h1 id="all_gather">all_gather<a class="headerlink" href="#all_gather" title="Permanent link">&para;</a></h1>
+<p>Gathers a tensor from each distributed rank into a list. The tensor for the local rank is the original one, with the gradients while the others have no gradients.</p>
+<ul>
+<li>
+<p>If torch.distributed is available and initialized:   1. Creates a list of tensors (each sized like the input <code>tensor</code>).   2. Gathers tensors from each rank into that list.   3. Replaces the local tensor in the list with the original tensor that retains gradients. </p>
+</li>
+<li>
+<p>If torch.distributed is either unavailable, uninitialized, or   <code>world_size == 1</code>, it returns a list containing only the   original tensor and throws a warning to notify the user (helpful when using a single GPU setup).</p>
+</li>
+</ul>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>values</strong></li>
+<li><strong>tensor</strong> (<em>'torch.Tensor'</em>)</li>
 </ul>
 
 

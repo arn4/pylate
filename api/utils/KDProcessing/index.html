@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Neural Search">
+        <meta name="description" content="PyLate 🐶">
       
       
         <meta name="author" content="Raphael Sourty">
@@ -18,15 +18,15 @@
         <link rel="prev" href="../ColBERTCollator/">
       
       
-        <link rel="next" href="../convert-to-tensor/">
+        <link rel="next" href="../all-gather-with-gradients/">
       
       
       <link rel="icon" href="../../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
     
     
       
-        <title>KDProcessing - pylate</title>
+        <title>KDProcessing - PyLate</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="pylate" class="md-header__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../../.." title="PyLate" class="md-header__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../../img/favicon.png" alt="logo">
 
@@ -109,7 +109,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            pylate
+            PyLate
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -301,12 +301,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="pylate" class="md-nav__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../../.." title="PyLate" class="md-nav__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../../img/favicon.png" alt="logo">
 
     </a>
-    pylate
+    PyLate
   </label>
   
     <div class="md-nav__source">
@@ -630,6 +630,8 @@
       
         
       
+        
+      
     
     
       
@@ -646,7 +648,7 @@
         
   
   
-    <a href="../../indexes/Voyager/" class="md-nav__link">
+    <a href="../../indexes/PLAID/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -679,6 +681,8 @@
       
         
       
+        
+      
     
     
       
@@ -695,7 +699,7 @@
         
   
   
-    <a href="../../losses/Contrastive/" class="md-nav__link">
+    <a href="../../losses/CachedContrastive/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -930,6 +934,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1079,11 +1091,95 @@
   
   
     <li class="md-nav__item">
+      <a href="../all-gather-with-gradients/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    all_gather_with_gradients
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../all-gather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    all_gather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../convert-to-tensor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     convert_to_tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get-rank/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    get_rank
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get-world-size/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    get_world_size
   </span>
   
 
@@ -1219,8 +1315,8 @@
 </li>
 </ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">utils</span>
+<div class="language-python highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">utils</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">train</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span>
 <span class="o">...</span>    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;lightonai/lighton-ms-marco-mini&quot;</span><span class="p">,</span>

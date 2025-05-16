@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Neural Search">
+        <meta name="description" content="PyLate 🐶">
       
       
         <meta name="author" content="Raphael Sourty">
@@ -22,11 +22,11 @@
       
       
       <link rel="icon" href="../../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
     
     
       
-        <title>NanoBEIREvaluator - pylate</title>
+        <title>NanoBEIREvaluator - PyLate</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="pylate" class="md-header__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../../.." title="PyLate" class="md-header__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../../img/favicon.png" alt="logo">
 
@@ -109,7 +109,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            pylate
+            PyLate
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -301,12 +301,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="pylate" class="md-nav__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../../.." title="PyLate" class="md-nav__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../../img/favicon.png" alt="logo">
 
     </a>
-    pylate
+    PyLate
   </label>
   
     <div class="md-nav__source">
@@ -684,9 +684,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
       Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
     </span>
   </a>
   
@@ -872,6 +890,8 @@
       
         
       
+        
+      
     
     
       
@@ -888,7 +908,7 @@
         
   
   
-    <a href="../../indexes/Voyager/" class="md-nav__link">
+    <a href="../../indexes/PLAID/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -921,6 +941,8 @@
       
         
       
+        
+      
     
     
       
@@ -937,7 +959,7 @@
         
   
   
-    <a href="../../losses/Contrastive/" class="md-nav__link">
+    <a href="../../losses/CachedContrastive/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1170,6 +1192,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1258,9 +1288,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
       Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
     </span>
   </a>
   
@@ -1282,8 +1330,8 @@
 
 
 <h1 id="nanobeirevaluator">NanoBEIREvaluator<a class="headerlink" href="#nanobeirevaluator" title="Permanent link">&para;</a></h1>
-<p>This class evaluates the performance of a PyLate Model on the NanoBEIR collection of datasets. This is a direct extension of the NanoBEIREvaluator from the sentence-transformers library, leveraging the PyLateInformationRetrievalEvaluator class.</p>
-<p>The collection is a set of datasets based on the BEIR collection, but with a significantly smaller size, so it can be used for quickly evaluating the retrieval performance of a model before commiting to a full evaluation. The datasets are available on HuggingFace at https://huggingface.co/collections/zeta-alpha-ai/nanobeir-66e1a0af21dfd93e620cd9f6 The Evaluator will return the same metrics as the InformationRetrievalEvaluator (i.e., MRR, nDCG, Recall@k), for each dataset and on average. Examples -------- &gt;&gt;&gt; from pylate import models, evaluation &gt;&gt;&gt; model = models.ColBERT(model_name_or_path="lightonai/colbertv2.0") &gt;&gt;&gt; datasets = ["SciFact"] &gt;&gt;&gt; evaluator = evaluation.NanoBEIREvaluator(dataset_names=datasets) &gt;&gt;&gt; results = evaluator(model) &gt;&gt;&gt; results {'NanoSciFact_MaxSim_accuracy@1': 0.62, 'NanoSciFact_MaxSim_accuracy@3': 0.74, 'NanoSciFact_MaxSim_accuracy@5': 0.8, 'NanoSciFact_MaxSim_accuracy@10': 0.86, 'NanoSciFact_MaxSim_precision@1': 0.62, 'NanoSciFact_MaxSim_precision@3': 0.26666666666666666, 'NanoSciFact_MaxSim_precision@5': 0.18, 'NanoSciFact_MaxSim_precision@10': 0.096, 'NanoSciFact_MaxSim_recall@1': 0.595, 'NanoSciFact_MaxSim_recall@3': 0.715, 'NanoSciFact_MaxSim_recall@5': 0.79, 'NanoSciFact_MaxSim_recall@10': 0.85, 'NanoSciFact_MaxSim_ndcg@10': 0.7279903941189909, 'NanoSciFact_MaxSim_mrr@10': 0.6912222222222222, 'NanoSciFact_MaxSim_map@100': 0.6903374780806633, 'NanoBEIR_mean_MaxSim_accuracy@1': 0.62, 'NanoBEIR_mean_MaxSim_accuracy@3': 0.74, 'NanoBEIR_mean_MaxSim_accuracy@5': 0.8, 'NanoBEIR_mean_MaxSim_accuracy@10': 0.86, 'NanoBEIR_mean_MaxSim_precision@1': 0.62, 'NanoBEIR_mean_MaxSim_precision@3': 0.26666666666666666, 'NanoBEIR_mean_MaxSim_precision@5': 0.18, 'NanoBEIR_mean_MaxSim_precision@10': 0.096, 'NanoBEIR_mean_MaxSim_recall@1': 0.595, 'NanoBEIR_mean_MaxSim_recall@3': 0.715, 'NanoBEIR_mean_MaxSim_recall@5': 0.79, 'NanoBEIR_mean_MaxSim_recall@10': 0.85, 'NanoBEIR_mean_MaxSim_ndcg@10': 0.7279903941189909, 'NanoBEIR_mean_MaxSim_mrr@10': 0.6912222222222222, 'NanoBEIR_mean_MaxSim_map@100': 0.6903374780806633}</p>
+<p>Evaluate the performance of a PyLate Model on the NanoBEIR collection.</p>
+<p>This is a direct extension of the NanoBEIREvaluator from the sentence-transformers library, leveraging the PyLateInformationRetrievalEvaluator class. The collection is a set of datasets based on the BEIR collection, but with a significantly smaller size, so it can be used for quickly evaluating the retrieval performance of a model before commiting to a full evaluation. The Evaluator will return the same metrics as the InformationRetrievalEvaluator (i.e., MRR, nDCG, Recall@k), for each dataset and on average.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -1323,7 +1371,7 @@
 <p><strong>main_score_function</strong> (<em>'str | SimilarityFunction | None'</em>) – defaults to <code>None</code></p>
 </li>
 <li>
-<p><strong>aggregate_fn</strong> (<em>'Callable[[list[float]], float]'</em>) – defaults to <code>&lt;function mean at 0x10570feb0&gt;</code></p>
+<p><strong>aggregate_fn</strong> (<em>'Callable[[list[float]], float]'</em>) – defaults to <code>&lt;function mean at 0x108c1dbc0&gt;</code></p>
 </li>
 <li>
 <p><strong>aggregate_key</strong> (<em>'str'</em>) – defaults to <code>mean</code></p>
@@ -1339,9 +1387,27 @@
 <ul>
 <li>
 <p><strong>description</strong></p>
-<p>Returns a human-readable description of the evaluator: BinaryClassificationEvaluator -&gt; Binary Classification  1. Remove "Evaluator" from the class name 2. Add a space before every capital letter</p>
+<p>Returns a human-readable description of the evaluator: BinaryClassificationEvaluator -&gt; Binary Classification  1. Replace "CE" prefix with "CrossEncoder" 2. Remove "Evaluator" from the class name 3. Add a space before every capital letter</p>
 </li>
 </ul>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">evaluation</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span>
+<span class="o">...</span>     <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;lightonai/colbertv2.0&quot;</span>
+<span class="o">...</span> <span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SciFact&quot;</span><span class="p">]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="k">try</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">evaluator</span> <span class="o">=</span> <span class="n">evaluation</span><span class="o">.</span><span class="n">NanoBEIREvaluator</span><span class="p">(</span>
+<span class="o">...</span>         <span class="n">dataset_names</span><span class="o">=</span><span class="n">datasets</span>
+<span class="o">...</span>     <span class="p">)</span>
+<span class="o">...</span>     <span class="n">results</span> <span class="o">=</span> <span class="n">evaluator</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="o">...</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">pass</span>
+</code></pre></div>
+<p>{'NanoSciFact_MaxSim_accuracy@1': 0.62, 'NanoSciFact_MaxSim_accuracy@3': 0.74, 'NanoSciFact_MaxSim_accuracy@5': 0.8, 'NanoSciFact_MaxSim_accuracy@10': 0.86, 'NanoSciFact_MaxSim_precision@1': 0.62, 'NanoSciFact_MaxSim_precision@3': 0.26666666666666666, 'NanoSciFact_MaxSim_precision@5': 0.18, 'NanoSciFact_MaxSim_precision@10': 0.096, 'NanoSciFact_MaxSim_recall@1': 0.595, 'NanoSciFact_MaxSim_recall@3': 0.715, 'NanoSciFact_MaxSim_recall@5': 0.79, 'NanoSciFact_MaxSim_recall@10': 0.85, 'NanoSciFact_MaxSim_ndcg@10': 0.7279903941189909, 'NanoSciFact_MaxSim_mrr@10': 0.6912222222222222, 'NanoSciFact_MaxSim_map@100': 0.6903374780806633, 'NanoBEIR_mean_MaxSim_accuracy@1': 0.62, 'NanoBEIR_mean_MaxSim_accuracy@3': 0.74, 'NanoBEIR_mean_MaxSim_accuracy@5': 0.8, 'NanoBEIR_mean_MaxSim_accuracy@10': 0.86, 'NanoBEIR_mean_MaxSim_precision@1': 0.62, 'NanoBEIR_mean_MaxSim_precision@3': 0.26666666666666666, 'NanoBEIR_mean_MaxSim_precision@5': 0.18, 'NanoBEIR_mean_MaxSim_precision@10': 0.096, 'NanoBEIR_mean_MaxSim_recall@1': 0.595, 'NanoBEIR_mean_MaxSim_recall@3': 0.715, 'NanoBEIR_mean_MaxSim_recall@5': 0.79, 'NanoBEIR_mean_MaxSim_recall@10': 0.85, 'NanoBEIR_mean_MaxSim_ndcg@10': 0.7279903941189909, 'NanoBEIR_mean_MaxSim_mrr@10': 0.6912222222222222, 'NanoBEIR_mean_MaxSim_map@100': 0.6903374780806633}</p>
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
 <details class="- note">
 <summary><strong>call</strong></summary>
@@ -1358,11 +1424,19 @@
 </ul>
 </details>
 <details class="- note">
+<summary>get_config_dict</summary>
+<p>Return a dictionary with all meaningful configuration values of the evaluator to store in the model card.</p>
+</details>
+<details class="- note">
 <summary>prefix_name_to_metrics</summary>
 </details>
 <details class="- note">
 <summary>store_metrics_in_model_card_data</summary>
 </details>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://huggingface.co/collections/zeta-alpha-ai/nanobeir-66e1a0af21dfd93e620cd9f6">NanoBEIR</a></li>
+</ul>
 
 
 

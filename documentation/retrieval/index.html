@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Neural Search">
+        <meta name="description" content="PyLate 🐶">
       
       
         <meta name="author" content="Raphael Sourty">
@@ -22,11 +22,11 @@
       
       
       <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
     
     
       
-        <title>Retrieval - pylate</title>
+        <title>Retrieval - PyLate</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="pylate" class="md-header__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../.." title="PyLate" class="md-header__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../img/favicon.png" alt="logo">
 
@@ -109,7 +109,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            pylate
+            PyLate
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -301,12 +301,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="pylate" class="md-nav__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../.." title="PyLate" class="md-nav__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../img/favicon.png" alt="logo">
 
     </a>
-    pylate
+    PyLate
   </label>
   
     <div class="md-nav__source">
@@ -481,36 +481,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#indexing-documents" class="md-nav__link">
+  <a href="#plaid" class="md-nav__link">
     <span class="md-ellipsis">
-      Indexing documents
+      PLAID
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#retrieving-top-k-documents-for-queries" class="md-nav__link">
+  <a href="#voyager-index" class="md-nav__link">
     <span class="md-ellipsis">
-      Retrieving top-k documents for queries
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parameters-affecting-the-retrieval-performance" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters affecting the retrieval performance
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#remove-documents-from-the-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Remove documents from the index
+      Voyager index
     </span>
   </a>
   
@@ -733,36 +715,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#indexing-documents" class="md-nav__link">
+  <a href="#plaid" class="md-nav__link">
     <span class="md-ellipsis">
-      Indexing documents
+      PLAID
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#retrieving-top-k-documents-for-queries" class="md-nav__link">
+  <a href="#voyager-index" class="md-nav__link">
     <span class="md-ellipsis">
-      Retrieving top-k documents for queries
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parameters-affecting-the-retrieval-performance" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters affecting the retrieval performance
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#remove-documents-from-the-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Remove documents from the index
+      Voyager index
     </span>
   </a>
   
@@ -800,18 +764,20 @@
   <h1>Retrieval</h1>
 
 <h2 id="colbert-retrieval">ColBERT Retrieval<a class="headerlink" href="#colbert-retrieval" title="Permanent link">&para;</a></h2>
-<p>PyLate provides a streamlined interface to index and retrieve documents using ColBERT models. The index leverages the Voyager HNSW index to efficiently handle document embeddings and enable fast retrieval.</p>
-<h3 id="indexing-documents">Indexing documents<a class="headerlink" href="#indexing-documents" title="Permanent link">&para;</a></h3>
-<p>First, load the ColBERT model and initialize the Voyager index, then encode and index your documents:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">retrieve</span>
+<p>PyLate provides a streamlined interface to index and retrieve documents using ColBERT models.</p>
+<h3 id="plaid">PLAID<a class="headerlink" href="#plaid" title="Permanent link">&para;</a></h3>
+<p>This index leverages <a href="https://arxiv.org/abs/2205.09707">PLAID</a> to reduce storage cost and increase speed of retrieval.</p>
+<h4 id="indexing-documents">Indexing documents<a class="headerlink" href="#indexing-documents" title="Permanent link">&para;</a></h4>
+<p>First, load the ColBERT model and initialize the PLAID index, then encode and index your documents:</p>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">retrieve</span>
 
 <span class="c1"># Step 1: Load the ColBERT model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span>
-    <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;lightonai/colbertv2.0&quot;</span><span class="p">,</span>
+    <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;lightonai/GTE-ModernColBERT-v1&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># Step 2: Initialize the Voyager index</span>
-<span class="n">index</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">Voyager</span><span class="p">(</span>
+<span class="c1"># Step 2: Initialize the PLAID index</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">PLAID</span><span class="p">(</span>
     <span class="n">index_folder</span><span class="o">=</span><span class="s2">&quot;pylate-index&quot;</span><span class="p">,</span>
     <span class="n">index_name</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
     <span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># This overwrites the existing index if any</span>
@@ -834,9 +800,14 @@
     <span class="n">documents_embeddings</span><span class="o">=</span><span class="n">documents_embeddings</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>Note that PLAID benefits from indexing all the documents during the creation of the index (allowing to get the most accurate kmeans computation).
+Subsequent addition of documents are supported as an experimental feature.</p>
+</details>
 <p>Note that you do not have to recreate the index and encode the documents every time. Once you have created an index and added the documents, you can re-use the index later by loading it:</p>
 <div class="language-python highlight"><pre><span></span><code><span class="c1"># To load an index, simply instantiate it with the correct folder/name and without overriding it</span>
-<span class="n">index</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">Voyager</span><span class="p">(</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">PLAID</span><span class="p">(</span>
     <span class="n">index_folder</span><span class="o">=</span><span class="s2">&quot;pylate-index&quot;</span><span class="p">,</span>
     <span class="n">index_name</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -844,8 +815,8 @@
 <details class="tip" open="open">
 <summary>Tip</summary>
 <h4 id="pooling-document-embeddings">Pooling document embeddings<a class="headerlink" href="#pooling-document-embeddings" title="Permanent link">&para;</a></h4>
-<p><a href="https://www.answer.ai/posts/colbert-pooling.html">In this blog post</a>, we showed that similar tokens in document embeddings can be pooled together to reduce the overall cost of ColBERT indexing without without losing much performance. </p>
-<p>You can use this feature by setting the <code>pool_factor</code> parameter when encoding the documents to only keep 1 / <code>pool_factor</code> tokens. </p>
+<p><a href="https://www.answer.ai/posts/colbert-pooling.html">In this blog post</a>, we showed that similar tokens in document embeddings can be pooled together to reduce the overall cost of ColBERT indexing without without losing much performance.</p>
+<p>You can use this feature by setting the <code>pool_factor</code> parameter when encoding the documents to only keep 1 / <code>pool_factor</code> tokens.</p>
 <p>The results show that using a <code>pool_factor</code> of 2 cut the memory requirement of the index in half with virtually 0 performance drop. Higher compression can be achieved at the cost of some performance, please refer to the blog post for all the details and results.</p>
 <p>This simple modification to the encoding call thus save a lot of space with a very contained impact on the performances:</p>
 <div class="language-python highlight"><pre><span></span><code><span class="n">documents_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
@@ -857,7 +828,7 @@
 <span class="p">)</span>
 </code></pre></div>
 </details>
-<h3 id="retrieving-top-k-documents-for-queries">Retrieving top-k documents for queries<a class="headerlink" href="#retrieving-top-k-documents-for-queries" title="Permanent link">&para;</a></h3>
+<h4 id="retrieving-top-k-documents-for-queries">Retrieving top-k documents for queries<a class="headerlink" href="#retrieving-top-k-documents-for-queries" title="Permanent link">&para;</a></h4>
 <p>Once the documents are indexed, you can retrieve the top-k most relevant documents for a given set of queries.
 To do so, initialize the ColBERT retriever with the index you want to search in, encode the queries and then retrieve the top-k documents to get the top matches ids and relevance scores:</p>
 <div class="language-python highlight"><pre><span></span><code><span class="c1"># Step 1: Initialize the ColBERT retriever</span>
@@ -873,7 +844,7 @@ To do so, initialize the ColBERT retriever with the index you want to search in,
 
 <span class="c1"># Step 3: Retrieve top-k documents</span>
 <span class="n">scores</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
-    <span class="n">queries_embeddings</span><span class="o">=</span><span class="n">queries_embeddings</span><span class="p">,</span> 
+    <span class="n">queries_embeddings</span><span class="o">=</span><span class="n">queries_embeddings</span><span class="p">,</span>
     <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  <span class="c1"># Retrieve the top 10 matches for each query</span>
 <span class="p">)</span>
 
@@ -893,14 +864,36 @@ To do so, initialize the ColBERT retriever with the index you want to search in,
     <span class="p">],</span>
 <span class="p">]</span>
 </code></pre></div>
-<h3 id="parameters-affecting-the-retrieval-performance">Parameters affecting the retrieval performance<a class="headerlink" href="#parameters-affecting-the-retrieval-performance" title="Permanent link">&para;</a></h3>
+<h4 id="remove-documents-from-the-index">Remove documents from the index<a class="headerlink" href="#remove-documents-from-the-index" title="Permanent link">&para;</a></h4>
+<p>To remove documents from the index, use the <code>remove_documents</code> method. Provide the document IDs you want to remove from the index:</p>
+<div class="language-python highlight"><pre><span></span><code><span class="n">index</span><span class="o">.</span><span class="n">remove_documents</span><span class="p">([</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">])</span>
+</code></pre></div>
+<h4 id="parameters-affecting-the-retrieval-performance">Parameters affecting the retrieval performance<a class="headerlink" href="#parameters-affecting-the-retrieval-performance" title="Permanent link">&para;</a></h4>
+<p>The retrieval is not an exact search, which mean that certain parameters can affect the quality of the approximate search:</p>
+<ul>
+<li><code>nbits</code>: the number of bits to use for the quantization of the residual. Usually set to 2, larger values (4-8) will decrease the quantization errors but create larger indexes.</li>
+<li><code>kmeans_niters</code>: the number of iterations to use for the k-means clustering. Larger values will create better centroids but takes longer to create (and default value is often more than enough to converge)</li>
+<li><code>ndocs</code>: the number of candidate documents to score. Larger values will make querying slower and use more memory, but might results in better results.</li>
+<li><code>centroid_score_threshold</code>: the threshold scores for centroid pruning. Larger values will consider more candidate centroids and so can find better neighbors but will be slower.</li>
+<li><code>ncells</code>: the maximum numbers of cells to keep during search. Larger values will consider more centroids and more candidate but will be slower.</li>
+</ul>
+<h3 id="voyager-index">Voyager index<a class="headerlink" href="#voyager-index" title="Permanent link">&para;</a></h3>
+<p>We also provide an index leveraging the Voyager HNSW index to efficiently handle document embeddings and enable fast retrieval. This was the default index before we implemented PLAID and suggest using PLAID if possible.
+To use it, simply replace <code>PLAID</code> by <code>Voyager</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span class="n">index</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">Voyager</span><span class="p">(</span>
+    <span class="n">index_folder</span><span class="o">=</span><span class="s2">&quot;pylate-index&quot;</span><span class="p">,</span>
+    <span class="n">index_name</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
+    <span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># This overwrites the existing index if any</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="parameters-affecting-the-retrieval-performance_1">Parameters affecting the retrieval performance<a class="headerlink" href="#parameters-affecting-the-retrieval-performance_1" title="Permanent link">&para;</a></h4>
 <p>The retrieval is not an exact search, which mean that certain parameters can affect the quality of the approximate search:</p>
 <ul>
 <li><code>M</code>: the maximum number of connections of a node in the graph. Higher values will improve recall and reduce retrieval time but will increase memory usage and the creation time of the index.</li>
 <li><code>ef_construction</code>: the maximum number of neighbors for a node during the creation of the index. Higher values increase the quality of the index but increase the creation time of the index.</li>
 <li><code>ef_search</code>: the maximum number of neighbors for a node during the search. Higher values increase the quality of the search but also the search time.</li>
 </ul>
-<p>Refer to <a href="https://www.pinecone.io/learn/series/faiss/hnsw/">HNSW documentation for more details</a>. </p>
+<p>Refer to <a href="https://www.pinecone.io/learn/series/faiss/hnsw/">HNSW documentation for more details</a>.</p>
 <details class="info" open="open">
 <summary>Info</summary>
 <p>Another parameter that significantly influences search quality is <strong>k_token</strong>. This parameter determines the <strong>number of neighbors retrieved for each query token</strong>. Higher values of k_token will consider more candidates, leading to better results but at the cost of slower search performance.</p>
@@ -914,19 +907,15 @@ To do so, initialize the ColBERT retriever with the index you want to search in,
 <span class="p">)</span>
 
 <span class="n">scores</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
-    <span class="n">queries_embeddings</span><span class="o">=</span><span class="n">queries_embeddings</span><span class="p">,</span> 
+    <span class="n">queries_embeddings</span><span class="o">=</span><span class="n">queries_embeddings</span><span class="p">,</span>
     <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  <span class="c1"># Retrieve the top 10 matches for each query</span>
     <span class="n">k_token</span><span class="o">=</span><span class="mi">200</span> <span class="c1"># retrieve 200 candidates per query token</span>
 <span class="p">)</span>
 </code></pre></div>
 </details>
-<h3 id="remove-documents-from-the-index">Remove documents from the index<a class="headerlink" href="#remove-documents-from-the-index" title="Permanent link">&para;</a></h3>
-<p>To remove documents from the index, use the <code>remove_documents</code> method. Provide the document IDs you want to remove from the index:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="n">index</span><span class="o">.</span><span class="n">remove_documents</span><span class="p">([</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">])</span>
-</code></pre></div>
 <h2 id="colbert-reranking">ColBERT reranking<a class="headerlink" href="#colbert-reranking" title="Permanent link">&para;</a></h2>
 <p>If you only want to use the ColBERT model to perform reranking on top of your first-stage retrieval pipeline without building an index, you can simply use rank function and pass the queries and documents to rerank:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">rank</span><span class="p">,</span> <span class="n">models</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">rank</span><span class="p">,</span> <span class="n">models</span>
 
 <span class="n">queries</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;query A&quot;</span><span class="p">,</span>
@@ -944,7 +933,7 @@ To do so, initialize the ColBERT retriever with the index you want to search in,
 <span class="p">]</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span>
-    <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;lightonai/colbertv2.0&quot;</span><span class="p">,</span>
+    <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;lightonai/GTE-ModernColBERT-v1&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">queries_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
@@ -966,7 +955,7 @@ To do so, initialize the ColBERT retriever with the index you want to search in,
 <p>Sample output:</p>
 <div class="language-text highlight"><pre><span></span><code>[
     [
-        {&quot;id&quot;: 1, &quot;score&quot;: 13.866096496582031}, 
+        {&quot;id&quot;: 1, &quot;score&quot;: 13.866096496582031},
         {&quot;id&quot;: 2, &quot;score&quot;: 7.363473415374756}
     ],
     [

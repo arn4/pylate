@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Neural Search">
+        <meta name="description" content="PyLate 🐶">
       
       
         <meta name="author" content="Raphael Sourty">
@@ -15,18 +15,18 @@
         <link rel="canonical" href="https://lightonai.github.io/pylate/api/losses/Contrastive/">
       
       
-        <link rel="prev" href="../../indexes/Voyager/">
+        <link rel="prev" href="../CachedContrastive/">
       
       
         <link rel="next" href="../Distillation/">
       
       
       <link rel="icon" href="../../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
     
     
       
-        <title>Contrastive - pylate</title>
+        <title>Contrastive - PyLate</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="pylate" class="md-header__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../../.." title="PyLate" class="md-header__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../../img/favicon.png" alt="logo">
 
@@ -109,7 +109,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            pylate
+            PyLate
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -301,12 +301,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="pylate" class="md-nav__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="../../.." title="PyLate" class="md-nav__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="../../../img/favicon.png" alt="logo">
 
     </a>
-    pylate
+    PyLate
   </label>
   
     <div class="md-nav__source">
@@ -630,6 +630,8 @@
       
         
       
+        
+      
     
     
       
@@ -646,7 +648,7 @@
         
   
   
-    <a href="../../indexes/Voyager/" class="md-nav__link">
+    <a href="../../indexes/PLAID/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -676,6 +678,8 @@
   
     
     
+      
+        
       
         
       
@@ -713,6 +717,27 @@
             losses
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CachedContrastive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CachedContrastive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1044,6 +1069,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1164,16 +1197,23 @@
 <p>ColBERT model.</p>
 </li>
 <li>
-<p><strong>score_metric</strong> – defaults to <code>&lt;function colbert_scores at 0x1302a3880&gt;</code></p>
+<p><strong>score_metric</strong> – defaults to <code>&lt;function colbert_scores at 0x139de9580&gt;</code></p>
 <p>ColBERT scoring function. Defaults to colbert_scores.</p>
 </li>
 <li>
 <p><strong>size_average</strong> (<em>'bool'</em>) – defaults to <code>True</code></p>
 <p>Average by the size of the mini-batch.</p>
 </li>
+<li>
+<p><strong>gather_across_devices</strong> (<em>'bool'</em>) – defaults to <code>False</code></p>
+<p>Whether to gather the embeddings across devices to have more in batch negatives. We recommand making sure the sampling across GPUs use the same dataset in case of multi-dataset training to make sure the negatives are plausible.</p>
+</li>
+<li>
+<p><strong>temperature</strong> (<em>'float'</em>) – defaults to <code>1.0</code></p>
+</li>
 </ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">losses</span>
+<div class="language-python highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">losses</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span>
 <span class="o">...</span>     <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;sentence-transformers/all-MiniLM-L6-v2&quot;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span>
@@ -1264,7 +1304,7 @@
 <details class="- note">
 <summary>cuda</summary>
 <p>Move all model parameters and buffers to the GPU.</p>
-<p>This also makes associated parameters and buffers different objects. So it should be called before constructing optimizer if the module will live on GPU while being optimized.  .. note::     This method modifies the module in-place.  Args:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
+<p>This also makes associated parameters and buffers different objects. So it should be called before constructing the optimizer if the module will live on GPU while being optimized.  .. note::     This method modifies the module in-place.  Args:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>    </li>
@@ -1278,11 +1318,11 @@
 <details class="- note">
 <summary>eval</summary>
 <p>Set the module in evaluation mode.</p>
-<p>This has any effect only on certain modules. See documentations of particular modules for details of their behaviors in training/evaluation mode, if they are affected, e.g. :class:<code>Dropout</code>, :class:<code>BatchNorm</code>, etc.  This is equivalent with :meth:<code>self.train(False) &lt;torch.nn.Module.train&gt;</code>.  See :ref:<code>locally-disable-grad-doc</code> for a comparison between <code>.eval()</code> and several similar mechanisms that may be confused with it.  Returns:     Module: self</p>
+<p>This has an effect only on certain modules. See the documentation of particular modules for details of their behaviors in training/evaluation mode, i.e. whether they are affected, e.g. :class:<code>Dropout</code>, :class:<code>BatchNorm</code>, etc.  This is equivalent with :meth:<code>self.train(False) &lt;torch.nn.Module.train&gt;</code>.  See :ref:<code>locally-disable-grad-doc</code> for a comparison between <code>.eval()</code> and several similar mechanisms that may be confused with it.  Returns:     Module: self</p>
 </details>
 <details class="- note">
 <summary>extra_repr</summary>
-<p>Set the extra representation of the module.</p>
+<p>Return the extra representation of the module.</p>
 <p>To print customized extra information, you should re-implement this method in your own modules. Both single-line and multi-line strings are acceptable.</p>
 </details>
 <details class="- note">
@@ -1311,7 +1351,7 @@
 <details class="- note">
 <summary>get_extra_state</summary>
 <p>Return any extra state to include in the module's state_dict.</p>
-<p>Implement this and a corresponding :func:<code>set_extra_state</code> for your module if you need to store extra state. This function is called when building the module's <code>state_dict()</code>.  Note that extra state should be picklable to ensure working serialization of the state_dict. We only provide provide backwards compatibility guarantees for serializing Tensors; other objects may break backwards compatibility if their serialized pickled form changes.  Returns:     object: Any extra state to store in the module's state_dict</p>
+<p>Implement this and a corresponding :func:<code>set_extra_state</code> for your module if you need to store extra state. This function is called when building the module's <code>state_dict()</code>.  Note that extra state should be picklable to ensure working serialization of the state_dict. We only provide backwards compatibility guarantees for serializing Tensors; other objects may break backwards compatibility if their serialized pickled form changes.  Returns:     object: Any extra state to store in the module's state_dict</p>
 </details>
 <details class="- note">
 <summary>get_parameter</summary>
@@ -1325,7 +1365,7 @@
 <details class="- note">
 <summary>get_submodule</summary>
 <p>Return the submodule given by <code>target</code> if it exists, otherwise throw an error.</p>
-<p>For example, let's say you have an <code>nn.Module</code> <code>A</code> that looks like this:  .. code-block:: text      A(         (net_b): Module(             (net_c): Module(                 (conv): Conv2d(16, 33, kernel_size=(3, 3), stride=(2, 2))             )             (linear): Linear(in_features=100, out_features=200, bias=True)         )     )  (The diagram shows an <code>nn.Module</code> <code>A</code>. <code>A</code> has a nested submodule <code>net_b</code>, which itself has two submodules <code>net_c</code> and <code>linear</code>. <code>net_c</code> then has a submodule <code>conv</code>.)  To check whether or not we have the <code>linear</code> submodule, we would call <code>get_submodule("net_b.linear")</code>. To check whether we have the <code>conv</code> submodule, we would call <code>get_submodule("net_b.net_c.conv")</code>.  The runtime of <code>get_submodule</code> is bounded by the degree of module nesting in <code>target</code>. A query against <code>named_modules</code> achieves the same result, but it is O(N) in the number of transitive modules. So, for a simple check to see if some submodule exists, <code>get_submodule</code> should always be used.  Args:     target: The fully-qualified string name of the submodule         to look for. (See above example for how to specify a         fully-qualified string.)  Returns:     torch.nn.Module: The submodule referenced by <code>target</code>  Raises:     AttributeError: If the target string references an invalid         path or resolves to something that is not an         <code>nn.Module</code></p>
+<p>For example, let's say you have an <code>nn.Module</code> <code>A</code> that looks like this:  .. code-block:: text      A(         (net_b): Module(             (net_c): Module(                 (conv): Conv2d(16, 33, kernel_size=(3, 3), stride=(2, 2))             )             (linear): Linear(in_features=100, out_features=200, bias=True)         )     )  (The diagram shows an <code>nn.Module</code> <code>A</code>. <code>A</code> which has a nested submodule <code>net_b</code>, which itself has two submodules <code>net_c</code> and <code>linear</code>. <code>net_c</code> then has a submodule <code>conv</code>.)  To check whether or not we have the <code>linear</code> submodule, we would call <code>get_submodule("net_b.linear")</code>. To check whether we have the <code>conv</code> submodule, we would call <code>get_submodule("net_b.net_c.conv")</code>.  The runtime of <code>get_submodule</code> is bounded by the degree of module nesting in <code>target</code>. A query against <code>named_modules</code> achieves the same result, but it is O(N) in the number of transitive modules. So, for a simple check to see if some submodule exists, <code>get_submodule</code> should always be used.  Args:     target: The fully-qualified string name of the submodule         to look for. (See above example for how to specify a         fully-qualified string.)  Returns:     torch.nn.Module: The submodule referenced by <code>target</code>  Raises:     AttributeError: If the target string references an invalid         path or resolves to something that is not an         <code>nn.Module</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>target</strong>     (<em>str</em>)    </li>
@@ -1339,7 +1379,7 @@
 <details class="- note">
 <summary>ipu</summary>
 <p>Move all model parameters and buffers to the IPU.</p>
-<p>This also makes associated parameters and buffers different objects. So it should be called before constructing optimizer if the module will live on IPU while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
+<p>This also makes associated parameters and buffers different objects. So it should be called before constructing the optimizer if the module will live on IPU while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>    </li>
@@ -1348,7 +1388,7 @@
 <details class="- note">
 <summary>load_state_dict</summary>
 <p>Copy parameters and buffers from :attr:<code>state_dict</code> into this module and its descendants.</p>
-<p>If :attr:<code>strict</code> is <code>True</code>, then the keys of :attr:<code>state_dict</code> must exactly match the keys returned by this module's :meth:<code>~torch.nn.Module.state_dict</code> function.  .. warning::     If :attr:<code>assign</code> is <code>True</code> the optimizer must be created after     the call to :attr:<code>load_state_dict</code> unless     :func:<code>~torch.__future__.get_swap_module_params_on_conversion</code> is <code>True</code>.  Args:     state_dict (dict): a dict containing parameters and         persistent buffers.     strict (bool, optional): whether to strictly enforce that the keys         in :attr:<code>state_dict</code> match the keys returned by this module's         :meth:<code>~torch.nn.Module.state_dict</code> function. Default: <code>True</code>     assign (bool, optional): When <code>False</code>, the properties of the tensors         in the current module are preserved while when <code>True</code>, the         properties of the Tensors in the state dict are preserved. The only         exception is the <code>requires_grad</code> field of :class:<code>~torch.nn.Parameter</code>s         for which the value from the module is preserved.         Default: <code>False</code>  Returns:     <code>NamedTuple</code> with <code>missing_keys</code> and <code>unexpected_keys</code> fields:         * <strong>missing_keys</strong> is a list of str containing any keys that are expected             by this module but missing from the provided <code>state_dict</code>.         * <strong>unexpected_keys</strong> is a list of str containing the keys that are not             expected by this module but present in the provided <code>state_dict</code>.  Note:     If a parameter or buffer is registered as <code>None</code> and its corresponding key     exists in :attr:<code>state_dict</code>, :meth:<code>load_state_dict</code> will raise a     <code>RuntimeError</code>.</p>
+<p>If :attr:<code>strict</code> is <code>True</code>, then the keys of :attr:<code>state_dict</code> must exactly match the keys returned by this module's :meth:<code>~torch.nn.Module.state_dict</code> function.  .. warning::     If :attr:<code>assign</code> is <code>True</code> the optimizer must be created after     the call to :attr:<code>load_state_dict</code> unless     :func:<code>~torch.__future__.get_swap_module_params_on_conversion</code> is <code>True</code>.  Args:     state_dict (dict): a dict containing parameters and         persistent buffers.     strict (bool, optional): whether to strictly enforce that the keys         in :attr:<code>state_dict</code> match the keys returned by this module's         :meth:<code>~torch.nn.Module.state_dict</code> function. Default: <code>True</code>     assign (bool, optional): When set to <code>False</code>, the properties of the tensors         in the current module are preserved whereas setting it to <code>True</code> preserves         properties of the Tensors in the state dict. The only         exception is the <code>requires_grad</code> field of :class:<code>~torch.nn.Parameter</code>s         for which the value from the module is preserved.         Default: <code>False</code>  Returns:     <code>NamedTuple</code> with <code>missing_keys</code> and <code>unexpected_keys</code> fields:         * <strong>missing_keys</strong> is a list of str containing any keys that are expected             by this module but missing from the provided <code>state_dict</code>.         * <strong>unexpected_keys</strong> is a list of str containing the keys that are not             expected by this module but present in the provided <code>state_dict</code>.  Note:     If a parameter or buffer is registered as <code>None</code> and its corresponding key     exists in :attr:<code>state_dict</code>, :meth:<code>load_state_dict</code> will raise a     <code>RuntimeError</code>.</p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>state_dict</strong>     (<em>Mapping[str, Any]</em>)    </li>
@@ -1364,7 +1404,7 @@
 <details class="- note">
 <summary>mtia</summary>
 <p>Move all model parameters and buffers to the MTIA.</p>
-<p>This also makes associated parameters and buffers different objects. So it should be called before constructing optimizer if the module will live on MTIA while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
+<p>This also makes associated parameters and buffers different objects. So it should be called before constructing the optimizer if the module will live on MTIA while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>    </li>
@@ -1602,7 +1642,7 @@
 <details class="- note">
 <summary>train</summary>
 <p>Set the module in training mode.</p>
-<p>This has any effect only on certain modules. See documentations of particular modules for details of their behaviors in training/evaluation mode, if they are affected, e.g. :class:<code>Dropout</code>, :class:<code>BatchNorm</code>, etc.  Args:     mode (bool): whether to set training mode (<code>True</code>) or evaluation                  mode (<code>False</code>). Default: <code>True</code>.  Returns:     Module: self</p>
+<p>This has an effect only on certain modules. See the documentation of particular modules for details of their behaviors in training/evaluation mode, i.e., whether they are affected, e.g. :class:<code>Dropout</code>, :class:<code>BatchNorm</code>, etc.  Args:     mode (bool): whether to set training mode (<code>True</code>) or evaluation                  mode (<code>False</code>). Default: <code>True</code>.  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>mode</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>

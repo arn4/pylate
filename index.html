@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Neural Search">
+        <meta name="description" content="PyLate 🐶">
       
       
         <meta name="author" content="Raphael Sourty">
@@ -20,11 +20,11 @@
       
       
       <link rel="icon" href="img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.32">
     
     
       
-        <title>pylate</title>
+        <title>PyLate</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="pylate" class="md-header__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="." title="PyLate" class="md-header__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="img/favicon.png" alt="logo">
 
@@ -107,7 +107,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            pylate
+            PyLate
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -297,12 +297,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="pylate" class="md-nav__button md-logo" aria-label="pylate" data-md-component="logo">
+    <a href="." title="PyLate" class="md-nav__button md-logo" aria-label="PyLate" data-md-component="logo">
       
   <img src="img/favicon.png" alt="logo">
 
     </a>
-    pylate
+    PyLate
   </label>
   
     <div class="md-nav__source">
@@ -553,6 +553,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#nanobeir-evaluator" class="md-nav__link">
+    <span class="md-ellipsis">
+      NanoBEIR evaluator
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -603,6 +612,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#deepwiki" class="md-nav__link">
+    <span class="md-ellipsis">
+      DeepWiki
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -648,14 +666,14 @@ PyLate is a library built on top of Sentence Transformers, designed to simplify 
 <h2 id="training">Training<a class="headerlink" href="#training" title="Permanent link">&para;</a></h2>
 <h3 id="contrastive-training">Contrastive training<a class="headerlink" href="#contrastive-training" title="Permanent link">&para;</a></h3>
 <p>Here’s a simple example of training a ColBERT model on the MS MARCO dataset triplet dataset using PyLate. This script demonstrates training with contrastive loss and evaluating the model on a held-out eval set:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
-<span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="p">(</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sentence_transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">SentenceTransformerTrainer</span><span class="p">,</span>
     <span class="n">SentenceTransformerTrainingArguments</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">evaluation</span><span class="p">,</span> <span class="n">losses</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluation</span><span class="p">,</span> <span class="n">losses</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">utils</span>
 
 <span class="c1"># Define model parameters for contrastive training</span>
 <span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;bert-base-uncased&quot;</span>  <span class="c1"># Choose the pre-trained model you want to use as base</span>
@@ -715,21 +733,32 @@ PyLate is a library built on top of Sentence Transformers, designed to simplify 
 <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
 </code></pre></div>
 <p>After training, the model can be loaded using the output directory path:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;contrastive-bert-base-uncased&quot;</span><span class="p">)</span>
 </code></pre></div>
+<p>Please note that temperature parameter has a <a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Wang_Understanding_the_Behaviour_of_Contrastive_Loss_CVPR_2021_paper.pdf">very high importance in contrastive learning</a>, and a temperature around 0.02 is often used in the literature:</p>
+<div class="language-python highlight"><pre><span></span><code><span class="n">train_loss</span> <span class="o">=</span> <span class="n">losses</span><span class="o">.</span><span class="n">Contrastive</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+</code></pre></div>
+<p>As contrastive learning is not compatible with gradient accumulation, you can leverage <a href="https://arxiv.org/abs/2101.06983">GradCache</a> to emulate bigger batch sizes without requiring more memory by using the <code>CachedContrastiveLoss</code> to define a mini_batch_size while increasing the <code>per_device_train_batch_size</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span class="n">train_loss</span> <span class="o">=</span> <span class="n">losses</span><span class="o">.</span><span class="n">CachedContrastive</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">mini_batch_size</span><span class="o">=</span><span class="n">mini_batch_size</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Finally, if you are in a multi-GPU setting, you can gather all the elements from the different GPUs to create even bigger batch sizes by setting <code>gather_across_devices</code> to <code>True</code> (for both <code>Contrastive</code> and <code>CachedContrastive</code> losses):</p>
+<div class="language-python highlight"><pre><span></span><code><span class="n">train_loss</span> <span class="o">=</span> <span class="n">losses</span><span class="o">.</span><span class="n">Contrastive</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">gather_across_devices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
 <h3 id="knowledge-distillation">Knowledge distillation<a class="headerlink" href="#knowledge-distillation" title="Permanent link">&para;</a></h3>
 <p>To get the best performance when training a ColBERT model, you should use knowledge distillation to train the model using the scores of a strong teacher model.
-Here's a simple example of how to train a model using knowledge distillation in PyLate on MS MARCO:
-<div class="language-python highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
-<span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="p">(</span>
+Here's a simple example of how to train a model using knowledge distillation in PyLate on MS MARCO:</p>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sentence_transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">SentenceTransformerTrainer</span><span class="p">,</span>
     <span class="n">SentenceTransformerTrainingArguments</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">losses</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">losses</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">utils</span>
 
 <span class="c1"># Load the datasets required for knowledge distillation (train, queries, documents)</span>
 <span class="n">train</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span>
@@ -791,10 +820,14 @@ Here's a simple example of how to train a model using knowledge distillation in 
 
 <span class="c1"># Start the training process</span>
 <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-</code></pre></div></p>
+</code></pre></div>
+<h3 id="nanobeir-evaluator">NanoBEIR evaluator<a class="headerlink" href="#nanobeir-evaluator" title="Permanent link">&para;</a></h3>
+<p>If you are training an English retrieval model, you can use <a href="https://huggingface.co/collections/zeta-alpha-ai/nanobeir-66e1a0af21dfd93e620cd9f6">NanoBEIR evaluator</a>, which allows to run small version of BEIR to get quick validation results.</p>
+<div class="language-python highlight"><pre><span></span><code><span class="n">evaluator</span><span class="o">=</span><span class="n">evaluation</span><span class="o">.</span><span class="n">NanoBEIREvaluator</span><span class="p">(),</span>
+</code></pre></div>
 <h2 id="datasets">Datasets<a class="headerlink" href="#datasets" title="Permanent link">&para;</a></h2>
 <p>PyLate supports Hugging Face <a href="https://huggingface.co/docs/datasets/en/index">Datasets</a>, enabling seamless triplet / knowledge distillation based training. For contrastive training, you can use any of the existing sentence transformers triplet datasets. Below is an example of creating a custom triplet dataset for training:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -818,8 +851,16 @@ Here's a simple example of how to train a model using knowledge distillation in 
 
 <span class="n">train_dataset</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 </code></pre></div>
-<p>To create a knowledge distillation dataset, you can use the following snippet:
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<p>Note that PyLate supports more than one negative per query, simply add the additional negatives after the first one in the row.</p>
+<div class="language-python highlight"><pre><span></span><code><span class="p">{</span>
+        <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;example query 1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;positive&quot;</span><span class="p">:</span> <span class="s2">&quot;example positive document 1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;negative_1&quot;</span><span class="p">:</span> <span class="s2">&quot;example negative document 1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;negative_2&quot;</span><span class="p">:</span> <span class="s2">&quot;example negative document 2&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>To create a knowledge distillation dataset, you can use the following snippet:</p>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -866,16 +907,16 @@ Here's a simple example of how to train a model using knowledge distillation in 
 <span class="n">documents</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">mapping</span><span class="o">=</span><span class="n">documents</span><span class="p">)</span>
 
 <span class="n">queries</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">mapping</span><span class="o">=</span><span class="n">queries</span><span class="p">)</span>
-</code></pre></div></p>
+</code></pre></div>
 <h2 id="retrieve">Retrieve<a class="headerlink" href="#retrieve" title="Permanent link">&para;</a></h2>
-<p>PyLate allows easy retrieval of top documents for a given query set using the trained ColBERT model and Voyager index, simply load the model and init the index:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">retrieve</span>
+<p>PyLate allows easy retrieval of top documents for a given query set using the trained ColBERT model and <a href="https://arxiv.org/abs/2205.09707">PLAID</a> index, simply load the model and init the index:</p>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">retrieve</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span>
-    <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;lightonai/colbertv2.0&quot;</span><span class="p">,</span>
+    <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;lightonai/GTE-ModernColBERT-v1&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">index</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">Voyager</span><span class="p">(</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">PLAID</span><span class="p">(</span>
     <span class="n">index_folder</span><span class="o">=</span><span class="s2">&quot;pylate-index&quot;</span><span class="p">,</span>
     <span class="n">index_name</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
     <span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -887,7 +928,11 @@ Here's a simple example of how to train a model using knowledge distillation in 
 <div class="language-python highlight"><pre><span></span><code><span class="n">documents_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">]</span>
 
 <span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;document 1 text&quot;</span><span class="p">,</span> <span class="s2">&quot;document 2 text&quot;</span><span class="p">,</span> <span class="s2">&quot;document 3 text&quot;</span>
+    <span class="s2">&quot;ColBERT’s late-interaction keeps token-level embeddings to deliver cross-encoder-quality ranking at near-bi-encoder speed, enabling fine-grained relevance, robustness across domains, and hardware-friendly scalable search.&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;PLAID compresses ColBERT token vectors via product quantization to shrink storage by 10×, uses two-stage centroid scoring for sub-200 ms latency, and plugs directly into existing ColBERT pipelines.&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;PyLate is a library built on top of Sentence Transformers, designed to simplify and optimize fine-tuning, inference, and retrieval with state-of-the-art ColBERT models. It enables easy fine-tuning on both single and multiple GPUs, providing flexibility for various hardware setups. PyLate also streamlines document retrieval and allows you to load a wide range of models, enabling you to construct ColBERT models from most pre-trained language models.&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="c1"># Encode the documents</span>
@@ -898,7 +943,7 @@ Here's a simple example of how to train a model using knowledge distillation in 
     <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># Add the documents ids and embeddings to the Voyager index</span>
+<span class="c1"># Add the documents ids and embeddings to the PLAID index</span>
 <span class="n">index</span><span class="o">.</span><span class="n">add_documents</span><span class="p">(</span>
     <span class="n">documents_ids</span><span class="o">=</span><span class="n">documents_ids</span><span class="p">,</span>
     <span class="n">documents_embeddings</span><span class="o">=</span><span class="n">documents_embeddings</span><span class="p">,</span>
@@ -913,7 +958,7 @@ Here's a simple example of how to train a model using knowledge distillation in 
 <span class="p">)</span>
 
 <span class="n">scores</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
-    <span class="n">queries_embeddings</span><span class="o">=</span><span class="n">queries_embeddings</span><span class="p">,</span> 
+    <span class="n">queries_embeddings</span><span class="o">=</span><span class="n">queries_embeddings</span><span class="p">,</span>
     <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -935,7 +980,7 @@ Here's a simple example of how to train a model using knowledge distillation in 
 </code></pre></div>
 <h2 id="rerank">Rerank<a class="headerlink" href="#rerank" title="Permanent link">&para;</a></h2>
 <p>If you only want to use the ColBERT model to perform reranking on top of your first-stage retrieval pipeline without building an index, you can simply use rank function and pass the queries and documents to rerank:</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pylate</span> <span class="kn">import</span> <span class="n">rank</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">rank</span>
 
 <span class="n">queries</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;query A&quot;</span><span class="p">,</span>
@@ -980,12 +1025,7 @@ Here's a simple example of how to train a model using knowledge distillation in 
 <ol>
 <li>Format code with Ruff:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code>make<span class="w"> </span>ruff
-</code></pre></div>
-<ol>
-<li>Build the documentation:</li>
-</ol>
-<div class="language-bash highlight"><pre><span></span><code>make<span class="w"> </span>livedoc
+<div class="language-bash highlight"><pre><span></span><code>make<span class="w"> </span>lint
 </code></pre></div>
 <h2 id="citation">Citation<a class="headerlink" href="#citation" title="Permanent link">&para;</a></h2>
 <p>You can refer to the library with this BibTeX:</p>
@@ -996,6 +1036,8 @@ Here's a simple example of how to train a model using knowledge distillation in 
 <span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2024}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="deepwiki">DeepWiki<a class="headerlink" href="#deepwiki" title="Permanent link">&para;</a></h2>
+<p>PyLate is indexed on <a href="https://deepwiki.com/lightonai/pylate">DeepWiki</a> so you can ask questions to LLMs using Deep Research to explore the codebase and get help to add new features.</p>
 
 
 

@@ -12,13 +12,13 @@
         <meta name="author" content="Raphael Sourty">
       
       
-        <link rel="canonical" href="https://lightonai.github.io/pylate/api/models/ColBERT/">
+        <link rel="canonical" href="https://lightonai.github.io/pylate/api/losses/CachedContrastive/">
       
       
-        <link rel="prev" href="../../losses/Distillation/">
+        <link rel="prev" href="../../indexes/Voyager/">
       
       
-        <link rel="next" href="../Dense/">
+        <link rel="next" href="../Contrastive/">
       
       
       <link rel="icon" href="../../../img/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>ColBERT - PyLate</title>
+        <title>CachedContrastive - PyLate</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#colbert" class="md-skip">
+        <a href="#cachedcontrastive" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ColBERT
+              CachedContrastive
             
           </span>
         </div>
@@ -672,63 +672,14 @@
                 
   
   
+    
+  
   
   
     
     
       
         
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../losses/CachedContrastive/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    losses
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
       
         
       
@@ -746,24 +697,24 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    models
+    losses
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
-            models
+            losses
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -787,7 +738,7 @@
           
   
   <span class="md-ellipsis">
-    ColBERT
+    CachedContrastive
   </span>
   
 
@@ -798,7 +749,7 @@
         
   
   <span class="md-ellipsis">
-    ColBERT
+    CachedContrastive
   </span>
   
 
@@ -871,11 +822,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../Dense/" class="md-nav__link">
+      <a href="../Contrastive/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Dense
+    Contrastive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Distillation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distillation
   </span>
   
 
@@ -887,6 +859,55 @@
             
           </ul>
         </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../models/ColBERT/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    models
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
       
     </li>
   
@@ -1185,213 +1206,72 @@
                   
 
 
-<h1 id="colbert">ColBERT<a class="headerlink" href="#colbert" title="Permanent link">&para;</a></h1>
-<p>Loads or creates a ColBERT model that can be used to map sentences / text to multi-vectors embeddings.</p>
+<h1 id="cachedcontrastive">CachedContrastive<a class="headerlink" href="#cachedcontrastive" title="Permanent link">&para;</a></h1>
+<p>A cached, in-batch negatives contrastive loss for PyLate, analogous to SentenceTransformers' CachedMultipleNegativesRankingLoss. This allows large effective batch sizes by chunking the embeddings pass and caching gradients w.r.t. those embeddings.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><strong>model_name_or_path</strong> (<em>'str | None'</em>) – defaults to <code>None</code></p>
-<p>If it is a filepath on disc, it loads the model from that path. If it is not a path, it first tries to download a pre-trained SentenceTransformer model. If that fails, tries to construct a model from the Hugging Face Hub with that name.</p>
+<p><strong>model</strong> (<em>'ColBERT'</em>)</p>
+<p>A PyLate ColBERT model</p>
 </li>
 <li>
-<p><strong>modules</strong> (<em>'Optional[Iterable[nn.Module]]'</em>) – defaults to <code>None</code></p>
-<p>A list of torch Modules that should be called sequentially, can be used to create custom SentenceTransformer models from scratch.</p>
+<p><strong>score_metric</strong> (<em>'Callable'</em>) – defaults to <code>&lt;function colbert_scores at 0x139de9580&gt;</code></p>
+<p>ColBERT scoring function. Defaults to colbert_scores.</p>
 </li>
 <li>
-<p><strong>device</strong> (<em>'str | None'</em>) – defaults to <code>None</code></p>
-<p>Device (like "cuda", "cpu", "mps", "npu") that should be used for computation. If None, checks if a GPU can be used.</p>
+<p><strong>mini_batch_size</strong> (<em>'int'</em>) – defaults to <code>32</code></p>
+<p>Chunk size for the forward pass. You can keep this small to avoid OOM on large batch sizes.</p>
 </li>
 <li>
-<p><strong>prompts</strong> (<em>'dict[str, str] | None'</em>) – defaults to <code>None</code></p>
-<p>A dictionary with prompts for the model. The key is the prompt name, the value is the prompt text. The prompt text will be prepended before any text to encode. For example: <code>{"query": "query: ", "passage": "passage: "}</code> or <code>{"clustering": "Identify the main category based on the titles in "}</code>.</p>
+<p><strong>size_average</strong> (<em>'bool'</em>) – defaults to <code>True</code></p>
+<p>Whether to average or sum the cross-entropy loss across the mini-batch.</p>
 </li>
 <li>
-<p><strong>default_prompt_name</strong> (<em>'str | None'</em>) – defaults to <code>None</code></p>
-<p>The name of the prompt that should be used by default. If not set, no prompt will be applied.</p>
+<p><strong>gather_across_devices</strong> (<em>'bool'</em>) – defaults to <code>False</code></p>
+<p>Whether to gather the embeddings across devices to have more in batch negatives. We recommand making sure the sampling across GPUs use the same dataset in case of multi-dataset training to make sure the negatives are plausible.</p>
 </li>
 <li>
-<p><strong>similarity_fn_name</strong> (<em>'Optional[str | SimilarityFunction]'</em>) – defaults to <code>None</code></p>
-<p>The name of the similarity function to use. Valid options are "cosine", "dot", "euclidean", and "manhattan". If not set, it is automatically set to "cosine" if <code>similarity</code> or <code>similarity_pairwise</code> are called while <code>model.similarity_fn_name</code> is still <code>None</code>.</p>
+<p><strong>show_progress_bar</strong> (<em>'bool'</em>) – defaults to <code>False</code></p>
+<p>Whether to show a TQDM progress bar for the embedding steps.</p>
 </li>
 <li>
-<p><strong>cache_folder</strong> (<em>'str | None'</em>) – defaults to <code>None</code></p>
-<p>Path to store models. Can also be set by the SENTENCE_TRANSFORMERS_HOME environment variable.</p>
-</li>
-<li>
-<p><strong>trust_remote_code</strong> (<em>'bool'</em>) – defaults to <code>False</code></p>
-<p>Whether or not to allow for custom models defined on the Hub in their own modeling files. This option should only be set to True for repositories you trust and in which you have read the code, as it will execute code present on the Hub on your local machine.</p>
-</li>
-<li>
-<p><strong>revision</strong> (<em>'str | None'</em>) – defaults to <code>None</code></p>
-<p>The specific model version to use. It can be a branch name, a tag name, or a commit id, for a stored model on Hugging Face.</p>
-</li>
-<li>
-<p><strong>local_files_only</strong> (<em>'bool'</em>) – defaults to <code>False</code></p>
-<p>Whether or not to only look at local files (i.e., do not try to download the model).</p>
-</li>
-<li>
-<p><strong>token</strong> (<em>'bool | str | None'</em>) – defaults to <code>None</code></p>
-<p>Hugging Face authentication token to download private models.</p>
-</li>
-<li>
-<p><strong>use_auth_token</strong> (<em>'bool | str | None'</em>) – defaults to <code>None</code></p>
-<p>Deprecated argument. Please use <code>token</code> instead.</p>
-</li>
-<li>
-<p><strong>truncate_dim</strong> (<em>'int | None'</em>) – defaults to <code>None</code></p>
-<p>The dimension to truncate sentence embeddings to. <code>None</code> does no truncation. Truncation is only applicable during inference when :meth:<code>SentenceTransformer.encode</code> is called.</p>
-</li>
-<li>
-<p><strong>embedding_size</strong> (<em>'int | None'</em>) – defaults to <code>None</code></p>
-<p>The output size of the projection layer. Default to 128.</p>
-</li>
-<li>
-<p><strong>bias</strong> (<em>'bool'</em>) – defaults to <code>False</code></p>
-</li>
-<li>
-<p><strong>query_prefix</strong> (<em>'str | None'</em>) – defaults to <code>None</code></p>
-<p>Prefix to add to the queries.</p>
-</li>
-<li>
-<p><strong>document_prefix</strong> (<em>'str | None'</em>) – defaults to <code>None</code></p>
-<p>Prefix to add to the documents.</p>
-</li>
-<li>
-<p><strong>add_special_tokens</strong> (<em>'bool'</em>) – defaults to <code>True</code></p>
-<p>Add the prefix to the inputs.</p>
-</li>
-<li>
-<p><strong>truncation</strong> (<em>'bool'</em>) – defaults to <code>True</code></p>
-<p>Truncate the inputs to the encoder max lengths or use sliding window encoding.</p>
-</li>
-<li>
-<p><strong>query_length</strong> (<em>'int | None'</em>) – defaults to <code>None</code></p>
-<p>The length of the query to truncate/pad to with mask tokens. If set, will override the config value. Default to 32.</p>
-</li>
-<li>
-<p><strong>document_length</strong> (<em>'int | None'</em>) – defaults to <code>None</code></p>
-<p>The max length of the document to truncate. If set, will override the config value. Default to 180.</p>
-</li>
-<li>
-<p><strong>attend_to_expansion_tokens</strong> (<em>'bool | None'</em>) – defaults to <code>None</code></p>
-<p>Whether to attend to the expansion tokens in the attention layers model. If False, the original tokens will not only attend to the expansion tokens, only the expansion tokens will attend to the original tokens. Default is False (as in the original ColBERT codebase).</p>
-</li>
-<li>
-<p><strong>skiplist_words</strong> (<em>'list[str] | None'</em>) – defaults to <code>None</code></p>
-<p>A list of words to skip from the documents scoring (note that these tokens are used for encoding and are only skipped during the scoring). Default is the list of string.punctuation.</p>
-</li>
-<li>
-<p><strong>model_kwargs</strong> (<em>'dict | None'</em>) – defaults to <code>None</code></p>
-<p>Additional model configuration parameters to be passed to the Huggingface Transformers model. Particularly useful options are:  - <code>torch_dtype</code>: Override the default <code>torch.dtype</code> and load the model under a specific <code>dtype</code>. The     different options are:          1. <code>torch.float16</code>, <code>torch.bfloat16</code> or <code>torch.float</code>: load in a specified <code>dtype</code>,         ignoring the model's <code>config.torch_dtype</code> if one exists. If not specified - the model will get         loaded in <code>torch.float</code> (fp32).          2. <code>"auto"</code> - A <code>torch_dtype</code> entry in the <code>config.json</code> file of the model will be attempted         to be used. If this entry isn't found then next check the <code>dtype</code> of the first weight in the         checkpoint that's of a floating point type and use that as <code>dtype</code>. This will load the model using         the <code>dtype</code> it was saved in at the end of the training. It can't be used as an indicator of how the         model was trained. Since it could be trained in one of half precision dtypes, but saved in fp32. - <code>attn_implementation</code>: The attention implementation to use in the model (if relevant). Can be any of     <code>"eager"</code> (manual implementation of the attention), <code>"sdpa"</code> (using <code>F.scaled_dot_product_attention     &lt;https://pytorch.org/docs/master/generated/torch.nn.functional.scaled_dot_product_attention.html&gt;</code><em>),     or <code>"flash_attention_2"</code> (using <code>Dao-AILab/flash-attention     &lt;https://github.com/Dao-AILab/flash-attention&gt;</code></em>). By default, if available, SDPA will be used for     torch&gt;=2.1.1. The default is otherwise the manual <code>"eager"</code> implementation.  See the <code>PreTrainedModel.from_pretrained &lt;https://huggingface.co/docs/transformers/en/main_classes/model#transformers.PreTrainedModel.from_pretrained&gt;</code>_ documentation for more details.</p>
-</li>
-<li>
-<p><strong>tokenizer_kwargs</strong> (<em>'dict | None'</em>) – defaults to <code>None</code></p>
-<p>Additional tokenizer configuration parameters to be passed to the Huggingface Transformers tokenizer. See the <code>AutoTokenizer.from_pretrained &lt;https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained&gt;</code>_ documentation for more details.</p>
-</li>
-<li>
-<p><strong>config_kwargs</strong> (<em>'dict | None'</em>) – defaults to <code>None</code></p>
-<p>Additional model configuration parameters to be passed to the Huggingface Transformers config. See the <code>AutoConfig.from_pretrained &lt;https://huggingface.co/docs/transformers/en/model_doc/auto#transformers.AutoConfig.from_pretrained&gt;</code>_ documentation for more details.</p>
-</li>
-<li>
-<p><strong>model_card_data</strong> (<em>'PylateModelCardData | None'</em>) – defaults to <code>None</code></p>
-<p>A model card data object that contains information about the model. This is used to generate a model card when saving the model. If not set, a default model card data object is created.</p>
+<p><strong>temperature</strong> (<em>'float'</em>) – defaults to <code>1.0</code></p>
 </li>
 </ul>
 <h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p><strong>device</strong></p>
-<p>Get torch.device from module, assuming that the whole module has one device. In case there are no PyTorch parameters, fall back to CPU.</p>
-</li>
-<li>
-<p><strong>max_seq_length</strong></p>
-<p>Returns the maximal input sequence length for the model. Longer inputs will be truncated.  Returns:     int: The maximal input sequence length.  Example:     ::          from sentence_transformers import SentenceTransformer          model = SentenceTransformer("all-mpnet-base-v2")         print(model.max_seq_length)         # =&gt; 384</p>
-</li>
-<li>
-<p><strong>similarity</strong></p>
-<p>Compute the similarity between two collections of embeddings. The output will be a matrix with the similarity scores between all embeddings from the first parameter and all embeddings from the second parameter. This differs from <code>similarity_pairwise</code> which computes the similarity between each pair of embeddings. This method supports only embeddings with fp32 precision and does not accommodate quantized embeddings.  Args:     embeddings1 (Union[Tensor, ndarray]): [num_embeddings_1, embedding_dim] or [embedding_dim]-shaped numpy array or torch tensor.     embeddings2 (Union[Tensor, ndarray]): [num_embeddings_2, embedding_dim] or [embedding_dim]-shaped numpy array or torch tensor.  Returns:     Tensor: A [num_embeddings_1, num_embeddings_2]-shaped torch tensor with similarity scores.  Example:     ::          &gt;&gt;&gt; model = SentenceTransformer("all-mpnet-base-v2")         &gt;&gt;&gt; sentences = [         ...     "The weather is so nice!",         ...     "It's so sunny outside.",         ...     "He's driving to the movie theater.",         ...     "She's going to the cinema.",         ... ]         &gt;&gt;&gt; embeddings = model.encode(sentences, normalize_embeddings=True)         &gt;&gt;&gt; model.similarity(embeddings, embeddings)         tensor([[1.0000, 0.7235, 0.0290, 0.1309],                 [0.7235, 1.0000, 0.0613, 0.1129],                 [0.0290, 0.0613, 1.0000, 0.5027],                 [0.1309, 0.1129, 0.5027, 1.0000]])         &gt;&gt;&gt; model.similarity_fn_name         "cosine"         &gt;&gt;&gt; model.similarity_fn_name = "euclidean"         &gt;&gt;&gt; model.similarity(embeddings, embeddings)         tensor([[-0.0000, -0.7437, -1.3935, -1.3184],                 [-0.7437, -0.0000, -1.3702, -1.3320],                 [-1.3935, -1.3702, -0.0000, -0.9973],                 [-1.3184, -1.3320, -0.9973, -0.0000]])</p>
-</li>
-<li>
-<p><strong>similarity_fn_name</strong></p>
-<p>Return the name of the similarity function used by :meth:<code>SentenceTransformer.similarity</code> and :meth:<code>SentenceTransformer.similarity_pairwise</code>.  Returns:     Optional[str]: The name of the similarity function. Can be None if not set, in which case it will         default to "cosine" when first called. Examples -------- &gt;&gt;&gt; model = ColBERT("bert-base-uncased") &gt;&gt;&gt; model.similarity_fn_name     'MaxSim'</p>
-</li>
-<li>
-<p><strong>similarity_pairwise</strong></p>
-<p>Compute the similarity between two collections of embeddings. The output will be a vector with the similarity scores between each pair of embeddings. This method supports only embeddings with fp32 precision and does not accommodate quantized embeddings.  Args:     embeddings1 (Union[Tensor, ndarray]): [num_embeddings, embedding_dim] or [embedding_dim]-shaped numpy array or torch tensor.     embeddings2 (Union[Tensor, ndarray]): [num_embeddings, embedding_dim] or [embedding_dim]-shaped numpy array or torch tensor.  Returns:     Tensor: A [num_embeddings]-shaped torch tensor with pairwise similarity scores.  Example:     ::          &gt;&gt;&gt; model = SentenceTransformer("all-mpnet-base-v2")         &gt;&gt;&gt; sentences = [         ...     "The weather is so nice!",         ...     "It's so sunny outside.",         ...     "He's driving to the movie theater.",         ...     "She's going to the cinema.",         ... ]         &gt;&gt;&gt; embeddings = model.encode(sentences, normalize_embeddings=True)         &gt;&gt;&gt; model.similarity_pairwise(embeddings[::2], embeddings[1::2])         tensor([0.7235, 0.5027])         &gt;&gt;&gt; model.similarity_fn_name         "cosine"         &gt;&gt;&gt; model.similarity_fn_name = "euclidean"         &gt;&gt;&gt; model.similarity_pairwise(embeddings[::2], embeddings[1::2])         tensor([-0.7437, -0.9973])</p>
-</li>
-<li>
-<p><strong>tokenizer</strong></p>
-<p>Property to get the tokenizer that is used by this model</p>
-</li>
+<li><strong>citation</strong></li>
 </ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
+<div class="language-python highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">losses</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span>
-<span class="o">...</span>     <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;sentence-transformers/all-MiniLM-L6-v2&quot;</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;sentence-transformers/all-MiniLM-L6-v2&quot;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span>
 <span class="o">...</span> <span class="p">)</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">loss</span> <span class="o">=</span> <span class="n">losses</span><span class="o">.</span><span class="n">CachedContrastive</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">mini_batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">([</span>
-<span class="o">...</span>     <span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">,</span>
-<span class="o">...</span>     <span class="s2">&quot;How is the weather today?&quot;</span>
-<span class="o">...</span> <span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">anchors</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenize</span><span class="p">([</span>
+<span class="o">...</span>     <span class="s2">&quot;fruits are healthy.&quot;</span><span class="p">,</span> <span class="s2">&quot;chips are not healthy.&quot;</span>
+<span class="o">...</span> <span class="p">],</span> <span class="n">is_query</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">positives</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenize</span><span class="p">([</span>
+<span class="o">...</span>     <span class="s2">&quot;fruits are good for health.&quot;</span><span class="p">,</span> <span class="s2">&quot;chips are not good for health.&quot;</span>
+<span class="o">...</span> <span class="p">],</span> <span class="n">is_query</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">([</span>
-<span class="o">...</span>     <span class="p">[</span>
-<span class="o">...</span>         <span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">,</span>
-<span class="o">...</span>         <span class="s2">&quot;How is the weather today?&quot;</span>
-<span class="o">...</span>     <span class="p">],</span>
-<span class="o">...</span>     <span class="p">[</span>
-<span class="o">...</span>         <span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">,</span>
-<span class="o">...</span>         <span class="s2">&quot;How is the weather today?&quot;</span>
-<span class="o">...</span>     <span class="p">],</span>
-<span class="o">...</span> <span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">negatives</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenize</span><span class="p">([</span>
+<span class="o">...</span>     <span class="s2">&quot;fruits are bad for health.&quot;</span><span class="p">,</span> <span class="s2">&quot;chips are good for health.&quot;</span>
+<span class="o">...</span> <span class="p">],</span> <span class="n">is_query</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sentence_features</span> <span class="o">=</span> <span class="p">[</span><span class="n">anchors</span><span class="p">,</span> <span class="n">positives</span><span class="p">,</span> <span class="n">negatives</span><span class="p">]</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">model</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s2">&quot;test-model&quot;</span><span class="p">)</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span><span class="s2">&quot;test-model&quot;</span><span class="p">)</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">([</span>
-<span class="o">...</span>     <span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">,</span>
-<span class="o">...</span>     <span class="s2">&quot;How is the weather today?&quot;</span>
-<span class="o">...</span> <span class="p">])</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">sentence_features</span><span class="o">=</span><span class="n">sentence_features</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="nb">float</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
 <details class="- note">
 <summary><strong>call</strong></summary>
 <p>Call self as a function.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>args</strong>    </li>
-<li><strong>kwargs</strong>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>active_adapter</summary>
-</details>
-<details class="- note">
-<summary>active_adapters</summary>
-<p>If you are not familiar with adapters and PEFT methods, we invite you to read more about them on the PEFT official documentation: https://huggingface.co/docs/peft</p>
-<p>Gets the current active adapters of the model. In case of multi-adapter inference (combining multiple adapters for inference) returns the list of all active adapters so that users can deal with them accordingly.  For previous PEFT versions (that does not support multi-adapter inference), <code>module.active_adapter</code> will return a single string.</p>
-</details>
-<details class="- note">
-<summary>add_adapter</summary>
-<p>Adds a fresh new adapter to the current model for training purposes. If no adapter name is passed, a default name is assigned to the adapter to follow the convention of PEFT library (in PEFT we use "default" as the default adapter name).</p>
-<p>Requires peft as a backend to load the adapter weights and the underlying model to be compatible with PEFT.  Args:     <em>args:         Positional arguments to pass to the underlying AutoModel <code>add_adapter</code> function. More information can be found in the transformers documentation         https://huggingface.co/docs/transformers/main/en/peft#transformers.integrations.PeftAdapterMixin.add_adapter     </em>*kwargs:         Keyword arguments to pass to the underlying AutoModel <code>add_adapter</code> function. More information can be found in the transformers documentation         https://huggingface.co/docs/transformers/main/en/peft#transformers.integrations.PeftAdapterMixin.add_adapter</p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>args</strong>    </li>
@@ -1406,15 +1286,6 @@
 <ul>
 <li><strong>name</strong>     (<em>str</em>)    </li>
 <li><strong>module</strong>     (<em>Optional[ForwardRef('Module')]</em>)    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>append</summary>
-<p>Append a given module to the end.</p>
-<p>Args:     module (nn.Module): module to append</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>module</strong>     (<em>torch.nn.modules.module.Module</em>)    </li>
 </ul>
 </details>
 <details class="- note">
@@ -1441,7 +1312,23 @@
 </ul>
 </details>
 <details class="- note">
-<summary>check_peft_compatible_model</summary>
+<summary>calculate_loss</summary>
+<p>Calculate the cross-entropy loss. No need to cache the gradients. Each sub-list in reps is a list of mini-batch chunk embeddings</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><strong>reps</strong>    </li>
+<li><strong>masks</strong>    </li>
+<li><strong>with_backward</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
+</ul>
+</details>
+<details class="- note">
+<summary>calculate_loss_and_cache_gradients</summary>
+<p>Calculate the cross-entropy loss and cache the gradients wrt. the embeddings.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><strong>reps</strong>    </li>
+<li><strong>masks</strong>    </li>
+</ul>
 </details>
 <details class="- note">
 <summary>children</summary>
@@ -1469,13 +1356,8 @@
 <p>This also makes associated parameters and buffers different objects. So it should be called before constructing the optimizer if the module will live on GPU while being optimized.  .. note::     This method modifies the module in-place.  Args:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>  <br />
-    Device (like "cuda", "cpu", "mps", "npu") that should be used for computation. If None, checks if a GPU can be used.</li>
+<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>    </li>
 </ul>
-</details>
-<details class="- note">
-<summary>disable_adapters</summary>
-<p>Disable all adapters that are attached to the model. This leads to inferring with the base model only.</p>
 </details>
 <details class="- note">
 <summary>double</summary>
@@ -1483,48 +1365,27 @@
 <p>.. note::     This method modifies the module in-place.  Returns:     Module: self</p>
 </details>
 <details class="- note">
-<summary>enable_adapters</summary>
-<p>Enable adapters that are attached to the model. The model will use <code>self.active_adapter()</code></p>
-</details>
-<details class="- note">
-<summary>encode</summary>
-<p>Computes sentence embeddings.</p>
+<summary>embed_minibatch</summary>
+<p>Forward pass on a slice [begin:end] of sentence_feature. If 'with_grad' is False, we run under torch.no_grad. If 'copy_random_state' is True, we create and return a RandContext so that we can exactly reproduce this forward pass later.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>sentences</strong>     (<em>'str | list[str]'</em>)    </li>
-<li><strong>prompt_name</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>prompt</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>batch_size</strong>     (<em>'int'</em>)     – defaults to <code>32</code>    </li>
-<li><strong>show_progress_bar</strong>     (<em>'bool'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>precision</strong>     (<em>"Literal['float32', 'int8', 'uint8', 'binary', 'ubinary']"</em>)     – defaults to <code>float32</code>    </li>
-<li><strong>convert_to_numpy</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>convert_to_tensor</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
-<li><strong>padding</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
-<li><strong>device</strong>     (<em>'str'</em>)     – defaults to <code>None</code>  <br />
-    Device (like "cuda", "cpu", "mps", "npu") that should be used for computation. If None, checks if a GPU can be used.</li>
-<li><strong>normalize_embeddings</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>is_query</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>pool_factor</strong>     (<em>'int'</em>)     – defaults to <code>1</code>    </li>
-<li><strong>protected_tokens</strong>     (<em>'int'</em>)     – defaults to <code>1</code>    </li>
+<li><strong>sentence_feature</strong>     (<em>'dict[str, Tensor]'</em>)    </li>
+<li><strong>begin</strong>     (<em>'int'</em>)    </li>
+<li><strong>end</strong>     (<em>'int'</em>)    </li>
+<li><strong>with_grad</strong>     (<em>'bool'</em>)    </li>
+<li><strong>copy_random_state</strong>     (<em>'bool'</em>)    </li>
+<li><strong>random_state</strong>     (<em>'RandContext | None'</em>)     – defaults to <code>None</code>    </li>
 </ul>
 </details>
 <details class="- note">
-<summary>encode_multi_process</summary>
-<p>Encodes a list of sentences using multiple processes and GPUs via :meth:<code>SentenceTransformer.encode &lt;sentence_transformers.SentenceTransformer.encode&gt;</code>. The sentences are chunked into smaller packages and sent to individual processes, which encode them on different GPUs or CPUs. This method is only suitable for encoding large sets of sentences.</p>
+<summary>embed_minibatch_iter</summary>
+<p>Yields chunks of embeddings (and corresponding RandContext) for the given sentence_feature, respecting the mini_batch_size limit.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>sentences</strong>     (<em>'list[str]'</em>)    </li>
-<li><strong>pool</strong>     (<em>'dict[str, object]'</em>)    </li>
-<li><strong>prompt_name</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>prompt</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>batch_size</strong>     (<em>'int'</em>)     – defaults to <code>32</code>    </li>
-<li><strong>chunk_size</strong>     (<em>'int'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>precision</strong>     (<em>"Literal['float32', 'int8', 'uint8', 'binary', 'ubinary']"</em>)     – defaults to <code>float32</code>    </li>
-<li><strong>normalize_embeddings</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>padding</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
-<li><strong>is_query</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>pool_factor</strong>     (<em>'int'</em>)     – defaults to <code>1</code>    </li>
-<li><strong>protected_tokens</strong>     (<em>'int'</em>)     – defaults to <code>1</code>    </li>
+<li><strong>sentence_feature</strong>     (<em>'dict[str, Tensor]'</em>)    </li>
+<li><strong>with_grad</strong>     (<em>'bool'</em>)    </li>
+<li><strong>copy_random_state</strong>     (<em>'bool'</em>)    </li>
+<li><strong>random_states</strong>     (<em>'list[RandContext] | None'</em>)     – defaults to <code>None</code>    </li>
 </ul>
 </details>
 <details class="- note">
@@ -1533,50 +1394,9 @@
 <p>This has an effect only on certain modules. See the documentation of particular modules for details of their behaviors in training/evaluation mode, i.e. whether they are affected, e.g. :class:<code>Dropout</code>, :class:<code>BatchNorm</code>, etc.  This is equivalent with :meth:<code>self.train(False) &lt;torch.nn.Module.train&gt;</code>.  See :ref:<code>locally-disable-grad-doc</code> for a comparison between <code>.eval()</code> and several similar mechanisms that may be confused with it.  Returns:     Module: self</p>
 </details>
 <details class="- note">
-<summary>evaluate</summary>
-<p>Evaluate the model based on an evaluator</p>
-<p>Args:     evaluator (SentenceEvaluator): The evaluator used to evaluate the model.     output_path (str, optional): The path where the evaluator can write the results. Defaults to None.  Returns:     The evaluation results.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>evaluator</strong>     (<em>'SentenceEvaluator'</em>)    </li>
-<li><strong>output_path</strong>     (<em>'str'</em>)     – defaults to <code>None</code>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>extend</summary>
-</details>
-<details class="- note">
 <summary>extra_repr</summary>
 <p>Return the extra representation of the module.</p>
 <p>To print customized extra information, you should re-implement this method in your own modules. Both single-line and multi-line strings are acceptable.</p>
-</details>
-<details class="- note">
-<summary>fit</summary>
-<p>Deprecated training method from before Sentence Transformers v3.0, it is recommended to use :class:<code>~sentence_transformers.trainer.SentenceTransformerTrainer</code> instead. This method uses :class:<code>~sentence_transformers.trainer.SentenceTransformerTrainer</code> behind the scenes, but does not provide as much flexibility as the Trainer itself.</p>
-<p>This training approach uses a list of DataLoaders and Loss functions to train the model. Each DataLoader is sampled in turn for one batch. We sample only as many batches from each DataLoader as there are in the smallest one to make sure of equal training with each dataset, i.e. round robin sampling.  This method should produce equivalent results in v3.0+ as before v3.0, but if you encounter any issues with your existing training scripts, then you may wish to use :meth:<code>SentenceTransformer.old_fit &lt;sentence_transformers.SentenceTransformer.old_fit&gt;</code> instead. That uses the old training method from before v3.0.  Args:     train_objectives: Tuples of (DataLoader, LossFunction). Pass         more than one for multi-task learning     evaluator: An evaluator (sentence_transformers.evaluation)         evaluates the model performance during training on held-         out dev data. It is used to determine the best model         that is saved to disk.     epochs: Number of epochs for training     steps_per_epoch: Number of training steps per epoch. If set         to None (default), one epoch is equal the DataLoader         size from train_objectives.     scheduler: Learning rate scheduler. Available schedulers:         constantlr, warmupconstant, warmuplinear, warmupcosine,         warmupcosinewithhardrestarts     warmup_steps: Behavior depends on the scheduler. For         WarmupLinear (default), the learning rate is increased         from o up to the maximal learning rate. After these many         training steps, the learning rate is decreased linearly         back to zero.     optimizer_class: Optimizer     optimizer_params: Optimizer parameters     weight_decay: Weight decay for model parameters     evaluation_steps: If &gt; 0, evaluate the model using evaluator         after each number of training steps     output_path: Storage path for the model and evaluation files     save_best_model: If true, the best model (according to         evaluator) is stored at output_path     max_grad_norm: Used for gradient normalization.     use_amp: Use Automatic Mixed Precision (AMP). Only for         Pytorch &gt;= 1.6.0     callback: Callback function that is invoked after each         evaluation. It must accept the following three         parameters in this order: <code>score</code>, <code>epoch</code>, <code>steps</code>     show_progress_bar: If True, output a tqdm progress bar     checkpoint_path: Folder to save checkpoints during training     checkpoint_save_steps: Will save a checkpoint after so many         steps     checkpoint_save_total_limit: Total number of checkpoints to         store     resume_from_checkpoint: If true, searches for checkpoints         to continue training from.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>train_objectives</strong>     (<em>'Iterable[tuple[DataLoader, nn.Module]]'</em>)    </li>
-<li><strong>evaluator</strong>     (<em>'SentenceEvaluator'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>epochs</strong>     (<em>'int'</em>)     – defaults to <code>1</code>    </li>
-<li><strong>steps_per_epoch</strong>     – defaults to <code>None</code>    </li>
-<li><strong>scheduler</strong>     (<em>'str'</em>)     – defaults to <code>WarmupLinear</code>    </li>
-<li><strong>warmup_steps</strong>     (<em>'int'</em>)     – defaults to <code>10000</code>    </li>
-<li><strong>optimizer_class</strong>     (<em>'type[Optimizer]'</em>)     – defaults to <code>&lt;class 'torch.optim.adamw.AdamW'&gt;</code>    </li>
-<li><strong>optimizer_params</strong>     (<em>'dict[str, object]'</em>)     – defaults to <code>{'lr': 2e-05}</code>    </li>
-<li><strong>weight_decay</strong>     (<em>'float'</em>)     – defaults to <code>0.01</code>    </li>
-<li><strong>evaluation_steps</strong>     (<em>'int'</em>)     – defaults to <code>0</code>    </li>
-<li><strong>output_path</strong>     (<em>'str'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>save_best_model</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>max_grad_norm</strong>     (<em>'float'</em>)     – defaults to <code>1</code>    </li>
-<li><strong>use_amp</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
-<li><strong>callback</strong>     (<em>'Callable[[float, int, int], None]'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>show_progress_bar</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>checkpoint_path</strong>     (<em>'str'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>checkpoint_save_steps</strong>     (<em>'int'</em>)     – defaults to <code>500</code>    </li>
-<li><strong>checkpoint_save_total_limit</strong>     (<em>'int'</em>)     – defaults to <code>0</code>    </li>
-<li><strong>resume_from_checkpoint</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
-</ul>
 </details>
 <details class="- note">
 <summary>float</summary>
@@ -1585,28 +1405,12 @@
 </details>
 <details class="- note">
 <summary>forward</summary>
-<p>Define the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.  .. note::     Although the recipe for forward pass needs to be defined within     this function, one should call the :class:<code>Module</code> instance afterwards     instead of this since the former takes care of running the     registered hooks while the latter silently ignores them.</p>
+<p>Compute the CachedConstrastive loss.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>input</strong>     (<em>'dict[str, Tensor]'</em>)    </li>
-<li><strong>kwargs</strong>    </li>
+<li><strong>sentence_features</strong>     (<em>'Iterable[dict[str, Tensor]]'</em>)    </li>
+<li><strong>labels</strong>     (<em>'Optional[Tensor]'</em>)     – defaults to <code>None</code>    </li>
 </ul>
-</details>
-<details class="- note">
-<summary>get_adapter_state_dict</summary>
-<p>If you are not familiar with adapters and PEFT methods, we invite you to read more about them on the PEFT official documentation: https://huggingface.co/docs/peft</p>
-<p>Gets the adapter state dict that should only contain the weights tensors of the specified adapter_name adapter. If no adapter_name is passed, the active adapter is used.  Args:     <em>args:         Positional arguments to pass to the underlying AutoModel <code>get_adapter_state_dict</code> function. More information can be found in the transformers documentation         https://huggingface.co/docs/transformers/main/en/peft#transformers.integrations.PeftAdapterMixin.get_adapter_state_dict     </em>*kwargs:         Keyword arguments to pass to the underlying AutoModel <code>get_adapter_state_dict</code> function. More information can be found in the transformers documentation         https://huggingface.co/docs/transformers/main/en/peft#transformers.integrations.PeftAdapterMixin.get_adapter_state_dict</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>args</strong>    </li>
-<li><strong>kwargs</strong>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>get_backend</summary>
-<p>Return the backend used for inference, which can be one of "torch", "onnx", or "openvino".</p>
-<p>Returns:     str: The backend used for inference.</p>
 </details>
 <details class="- note">
 <summary>get_buffer</summary>
@@ -1623,11 +1427,6 @@
 <p>Implement this and a corresponding :func:<code>set_extra_state</code> for your module if you need to store extra state. This function is called when building the module's <code>state_dict()</code>.  Note that extra state should be picklable to ensure working serialization of the state_dict. We only provide backwards compatibility guarantees for serializing Tensors; other objects may break backwards compatibility if their serialized pickled form changes.  Returns:     object: Any extra state to store in the module's state_dict</p>
 </details>
 <details class="- note">
-<summary>get_max_seq_length</summary>
-<p>Returns the maximal sequence length that the model accepts. Longer inputs will be truncated.</p>
-<p>Returns:     Optional[int]: The maximal sequence length that the model accepts, or None if it is not defined.</p>
-</details>
-<details class="- note">
 <summary>get_parameter</summary>
 <p>Return the parameter given by <code>target</code> if it exists, otherwise throw an error.</p>
 <p>See the docstring for <code>get_submodule</code> for a more detailed explanation of this method's functionality as well as how to correctly specify <code>target</code>.  Args:     target: The fully-qualified string name of the Parameter         to look for. (See <code>get_submodule</code> for how to specify a         fully-qualified string.)  Returns:     torch.nn.Parameter: The Parameter referenced by <code>target</code>  Raises:     AttributeError: If the target string references an invalid         path or resolves to something that is not an         <code>nn.Parameter</code></p>
@@ -1635,14 +1434,6 @@
 <ul>
 <li><strong>target</strong>     (<em>str</em>)    </li>
 </ul>
-</details>
-<details class="- note">
-<summary>get_sentence_embedding_dimension</summary>
-<p>Returns the number of dimensions in the output of :meth:<code>SentenceTransformer.encode &lt;sentence_transformers.SentenceTransformer.encode&gt;</code>.</p>
-<p>Returns:     Optional[int]: The number of dimensions in the output of <code>encode</code>. If it's not known, it's <code>None</code>.</p>
-</details>
-<details class="- note">
-<summary>get_sentence_features</summary>
 </details>
 <details class="- note">
 <summary>get_submodule</summary>
@@ -1654,27 +1445,9 @@
 </ul>
 </details>
 <details class="- note">
-<summary>gradient_checkpointing_enable</summary>
-</details>
-<details class="- note">
 <summary>half</summary>
 <p>Casts all floating point parameters and buffers to <code>half</code> datatype.</p>
 <p>.. note::     This method modifies the module in-place.  Returns:     Module: self</p>
-</details>
-<details class="- note">
-<summary>has_peft_compatible_model</summary>
-</details>
-<details class="- note">
-<summary>insert</summary>
-</details>
-<details class="- note">
-<summary>insert_prefix_token</summary>
-<p>Inserts a prefix token at the beginning of each sequence in the input tensor.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>input_ids</strong>     (<em>'torch.Tensor'</em>)    </li>
-<li><strong>prefix_id</strong>     (<em>'int'</em>)    </li>
-</ul>
 </details>
 <details class="- note">
 <summary>ipu</summary>
@@ -1682,21 +1455,7 @@
 <p>This also makes associated parameters and buffers different objects. So it should be called before constructing the optimizer if the module will live on IPU while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>  <br />
-    Device (like "cuda", "cpu", "mps", "npu") that should be used for computation. If None, checks if a GPU can be used.</li>
-</ul>
-</details>
-<details class="- note">
-<summary>load</summary>
-</details>
-<details class="- note">
-<summary>load_adapter</summary>
-<p>Load adapter weights from file or remote Hub folder." If you are not familiar with adapters and PEFT methods, we invite you to read more about them on PEFT official documentation: https://huggingface.co/docs/peft</p>
-<p>Requires peft as a backend to load the adapter weights and the underlying model to be compatible with PEFT.  Args:     <em>args:         Positional arguments to pass to the underlying AutoModel <code>load_adapter</code> function. More information can be found in the transformers documentation         https://huggingface.co/docs/transformers/main/en/peft#transformers.integrations.PeftAdapterMixin.load_adapter     </em>*kwargs:         Keyword arguments to pass to the underlying AutoModel <code>load_adapter</code> function. More information can be found in the transformers documentation         https://huggingface.co/docs/transformers/main/en/peft#transformers.integrations.PeftAdapterMixin.load_adapter</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>args</strong>    </li>
-<li><strong>kwargs</strong>    </li>
+<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>    </li>
 </ul>
 </details>
 <details class="- note">
@@ -1721,8 +1480,7 @@
 <p>This also makes associated parameters and buffers different objects. So it should be called before constructing the optimizer if the module will live on MTIA while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>  <br />
-    Device (like "cuda", "cpu", "mps", "npu") that should be used for computation. If None, checks if a GPU can be used.</li>
+<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>    </li>
 </ul>
 </details>
 <details class="- note">
@@ -1764,75 +1522,12 @@
 </ul>
 </details>
 <details class="- note">
-<summary>old_fit</summary>
-<p>Deprecated training method from before Sentence Transformers v3.0, it is recommended to use :class:<code>sentence_transformers.trainer.SentenceTransformerTrainer</code> instead. This method should only be used if you encounter issues with your existing training scripts after upgrading to v3.0+.</p>
-<p>This training approach uses a list of DataLoaders and Loss functions to train the model. Each DataLoader is sampled in turn for one batch. We sample only as many batches from each DataLoader as there are in the smallest one to make sure of equal training with each dataset, i.e. round robin sampling.  Args:     train_objectives: Tuples of (DataLoader, LossFunction). Pass         more than one for multi-task learning     evaluator: An evaluator (sentence_transformers.evaluation)         evaluates the model performance during training on held-         out dev data. It is used to determine the best model         that is saved to disc.     epochs: Number of epochs for training     steps_per_epoch: Number of training steps per epoch. If set         to None (default), one epoch is equal the DataLoader         size from train_objectives.     scheduler: Learning rate scheduler. Available schedulers:         constantlr, warmupconstant, warmuplinear, warmupcosine,         warmupcosinewithhardrestarts     warmup_steps: Behavior depends on the scheduler. For         WarmupLinear (default), the learning rate is increased         from o up to the maximal learning rate. After these many         training steps, the learning rate is decreased linearly         back to zero.     optimizer_class: Optimizer     optimizer_params: Optimizer parameters     weight_decay: Weight decay for model parameters     evaluation_steps: If &gt; 0, evaluate the model using evaluator         after each number of training steps     output_path: Storage path for the model and evaluation files     save_best_model: If true, the best model (according to         evaluator) is stored at output_path     max_grad_norm: Used for gradient normalization.     use_amp: Use Automatic Mixed Precision (AMP). Only for         Pytorch &gt;= 1.6.0     callback: Callback function that is invoked after each         evaluation. It must accept the following three         parameters in this order: <code>score</code>, <code>epoch</code>, <code>steps</code>     show_progress_bar: If True, output a tqdm progress bar     checkpoint_path: Folder to save checkpoints during training     checkpoint_save_steps: Will save a checkpoint after so many         steps     checkpoint_save_total_limit: Total number of checkpoints to         store</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>train_objectives</strong>     (<em>'Iterable[tuple[DataLoader, nn.Module]]'</em>)    </li>
-<li><strong>evaluator</strong>     (<em>'SentenceEvaluator'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>epochs</strong>     (<em>'int'</em>)     – defaults to <code>1</code>    </li>
-<li><strong>steps_per_epoch</strong>     – defaults to <code>None</code>    </li>
-<li><strong>scheduler</strong>     (<em>'str'</em>)     – defaults to <code>WarmupLinear</code>    </li>
-<li><strong>warmup_steps</strong>     (<em>'int'</em>)     – defaults to <code>10000</code>    </li>
-<li><strong>optimizer_class</strong>     (<em>'type[Optimizer]'</em>)     – defaults to <code>&lt;class 'torch.optim.adamw.AdamW'&gt;</code>    </li>
-<li><strong>optimizer_params</strong>     (<em>'dict[str, object]'</em>)     – defaults to <code>{'lr': 2e-05}</code>    </li>
-<li><strong>weight_decay</strong>     (<em>'float'</em>)     – defaults to <code>0.01</code>    </li>
-<li><strong>evaluation_steps</strong>     (<em>'int'</em>)     – defaults to <code>0</code>    </li>
-<li><strong>output_path</strong>     (<em>'str'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>save_best_model</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>max_grad_norm</strong>     (<em>'float'</em>)     – defaults to <code>1</code>    </li>
-<li><strong>use_amp</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
-<li><strong>callback</strong>     (<em>'Callable[[float, int, int], None]'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>show_progress_bar</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>checkpoint_path</strong>     (<em>'str'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>checkpoint_save_steps</strong>     (<em>'int'</em>)     – defaults to <code>500</code>    </li>
-<li><strong>checkpoint_save_total_limit</strong>     (<em>'int'</em>)     – defaults to <code>0</code>    </li>
-</ul>
-</details>
-<details class="- note">
 <summary>parameters</summary>
 <p>Return an iterator over module parameters.</p>
 <p>This is typically passed to an optimizer.  Args:     recurse (bool): if True, then yields parameters of this module         and all submodules. Otherwise, yields only parameters that         are direct members of this module.  Yields:     Parameter: module parameter  Example::      &gt;&gt;&gt; # xdoctest: +SKIP("undefined vars")     &gt;&gt;&gt; for param in model.parameters():     &gt;&gt;&gt;     print(type(param), param.size())     <class 'torch.Tensor'> (20L,)     <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>pool_embeddings_hierarchical</summary>
-<p>Pools the embeddings hierarchically by clustering and averaging them.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>documents_embeddings</strong>     (<em>'list[torch.Tensor]'</em>)    </li>
-<li><strong>pool_factor</strong>     (<em>'int'</em>)     – defaults to <code>1</code>    </li>
-<li><strong>protected_tokens</strong>     (<em>'int'</em>)     – defaults to <code>1</code>    </li>
-</ul>
-<p><strong>Returns</strong></p>
-<p><em>list[torch.Tensor]</em>:     A list of pooled embeddings for each document.</p>
-</details>
-<details class="- note">
-<summary>pop</summary>
-</details>
-<details class="- note">
-<summary>push_to_hub</summary>
-<p>Uploads all elements of this Sentence Transformer to a new HuggingFace Hub repository.</p>
-<p>Args:     repo_id (str): Repository name for your model in the Hub, including the user or organization.     token (str, optional): An authentication token (See https://huggingface.co/settings/token)     private (bool, optional): Set to true, for hosting a private model     safe_serialization (bool, optional): If true, save the model using safetensors. If false, save the model the traditional PyTorch way     commit_message (str, optional): Message to commit while pushing.     local_model_path (str, optional): Path of the model locally. If set, this file path will be uploaded. Otherwise, the current model will be uploaded     exist_ok (bool, optional): If true, saving to an existing repository is OK. If false, saving only to a new repository is possible     replace_model_card (bool, optional): If true, replace an existing model card in the hub with the automatically created model card     train_datasets (List[str], optional): Datasets used to train the model. If set, the datasets will be added to the model card in the Hub.     revision (str, optional): Branch to push the uploaded files to     create_pr (bool, optional): If True, create a pull request instead of pushing directly to the main branch  Returns:     str: The url of the commit of your model in the repository on the Hugging Face Hub.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>repo_id</strong>     (<em>'str'</em>)    </li>
-<li><strong>token</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>  <br />
-    Hugging Face authentication token to download private models.</li>
-<li><strong>private</strong>     (<em>'bool | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>safe_serialization</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>commit_message</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>local_model_path</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>exist_ok</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
-<li><strong>replace_model_card</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
-<li><strong>train_datasets</strong>     (<em>'list[str] | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>revision</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>  <br />
-    The specific model version to use. It can be a branch name, a tag name, or a commit id, for a stored model on Hugging Face.</li>
-<li><strong>create_pr</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
 </ul>
 </details>
 <details class="- note">
@@ -1963,76 +1658,12 @@
 </ul>
 </details>
 <details class="- note">
-<summary>save</summary>
-<p>Saves a model and its configuration files to a directory, so that it can be loaded with <code>SentenceTransformer(path)</code> again.</p>
-<p>Args:     path (str): Path on disc where the model will be saved.     model_name (str, optional): Optional model name.     create_model_card (bool, optional): If True, create a README.md with basic information about this model.     train_datasets (list[str], optional): Optional list with the names of the datasets used to train the model.     safe_serialization (bool, optional): If True, save the model using safetensors. If False, save the model         the traditional (but unsafe) PyTorch way.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>path</strong>     (<em>'str'</em>)    </li>
-<li><strong>model_name</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>create_model_card</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>train_datasets</strong>     (<em>'list[str] | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>safe_serialization</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>save_pretrained</summary>
-<p>Saves a model and its configuration files to a directory, so that it can be loaded with <code>SentenceTransformer(path)</code> again.</p>
-<p>Args:     path (str): Path on disc where the model will be saved.     model_name (str, optional): Optional model name.     create_model_card (bool, optional): If True, create a README.md with basic information about this model.     train_datasets (List[str], optional): Optional list with the names of the datasets used to train the model.     safe_serialization (bool, optional): If True, save the model using safetensors. If False, save the model         the traditional (but unsafe) PyTorch way.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>path</strong>     (<em>'str'</em>)    </li>
-<li><strong>model_name</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>create_model_card</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>train_datasets</strong>     (<em>'list[str] | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>safe_serialization</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>save_to_hub</summary>
-<p>DEPRECATED, use <code>push_to_hub</code> instead.</p>
-<p>Uploads all elements of this Sentence Transformer to a new HuggingFace Hub repository.  Args:     repo_id (str): Repository name for your model in the Hub, including the user or organization.     token (str, optional): An authentication token (See https://huggingface.co/settings/token)     private (bool, optional): Set to true, for hosting a private model     safe_serialization (bool, optional): If true, save the model using safetensors. If false, save the model the traditional PyTorch way     commit_message (str, optional): Message to commit while pushing.     local_model_path (str, optional): Path of the model locally. If set, this file path will be uploaded. Otherwise, the current model will be uploaded     exist_ok (bool, optional): If true, saving to an existing repository is OK. If false, saving only to a new repository is possible     replace_model_card (bool, optional): If true, replace an existing model card in the hub with the automatically created model card     train_datasets (List[str], optional): Datasets used to train the model. If set, the datasets will be added to the model card in the Hub.  Returns:     str: The url of the commit of your model in the repository on the Hugging Face Hub.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>repo_id</strong>     (<em>'str'</em>)    </li>
-<li><strong>organization</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>token</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>  <br />
-    Hugging Face authentication token to download private models.</li>
-<li><strong>private</strong>     (<em>'bool | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>safe_serialization</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>commit_message</strong>     (<em>'str'</em>)     – defaults to <code>Add new SentenceTransformer model.</code>    </li>
-<li><strong>local_model_path</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>exist_ok</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
-<li><strong>replace_model_card</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
-<li><strong>train_datasets</strong>     (<em>'list[str] | None'</em>)     – defaults to <code>None</code>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>set_adapter</summary>
-<p>Sets a specific adapter by forcing the model to use a that adapter and disable the other adapters.</p>
-<p>Args:     <em>args:         Positional arguments to pass to the underlying AutoModel <code>set_adapter</code> function. More information can be found in the transformers documentation         https://huggingface.co/docs/transformers/main/en/peft#transformers.integrations.PeftAdapterMixin.set_adapter     </em>*kwargs:         Keyword arguments to pass to the underlying AutoModel <code>set_adapter</code> function. More information can be found in the transformers documentation         https://huggingface.co/docs/transformers/main/en/peft#transformers.integrations.PeftAdapterMixin.set_adapter</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>args</strong>    </li>
-<li><strong>kwargs</strong>    </li>
-</ul>
-</details>
-<details class="- note">
 <summary>set_extra_state</summary>
 <p>Set extra state contained in the loaded <code>state_dict</code>.</p>
 <p>This function is called from :func:<code>load_state_dict</code> to handle any extra state found within the <code>state_dict</code>. Implement this function and a corresponding :func:<code>get_extra_state</code> for your module if you need to store extra state within its <code>state_dict</code>.  Args:     state (dict): Extra state from the <code>state_dict</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>state</strong>     (<em>Any</em>)    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>set_pooling_include_prompt</summary>
-<p>Sets the <code>include_prompt</code> attribute in the pooling layer in the model, if there is one.</p>
-<p>This is useful for INSTRUCTOR models, as the prompt should be excluded from the pooling strategy for these models.  Args:     include_prompt (bool): Whether to include the prompt in the pooling layer.  Returns:     None</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>include_prompt</strong>     (<em>'bool'</em>)    </li>
 </ul>
 </details>
 <details class="- note">
@@ -2050,34 +1681,6 @@
 <p>See :meth:<code>torch.Tensor.share_memory_</code>.</p>
 </details>
 <details class="- note">
-<summary>skiplist_mask</summary>
-<p>Create a mask for the set of input_ids that are in the skiplist.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>input_ids</strong>     (<em>'torch.Tensor'</em>)    </li>
-<li><strong>skiplist</strong>     (<em>'list[int]'</em>)    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>smart_batching_collate</summary>
-<p>Transforms a batch from a SmartBatchingDataset to a batch of tensors for the model Here, batch is a list of InputExample instances: [InputExample(...), ...]</p>
-<p>Args:     batch: a batch from a SmartBatchingDataset  Returns:     a batch of tensors for the model</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>batch</strong>     (<em>'list[InputExample]'</em>)    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>start_multi_process_pool</summary>
-<p>Starts a multi-process pool to process the encoding with several independent processes. This method is recommended if you want to encode on multiple GPUs or CPUs. It is advised to start only one process per GPU. This method works together with encode_multi_process and stop_multi_process_pool.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>target_devices</strong>     (<em>'list[str]'</em>)     – defaults to <code>None</code>    </li>
-</ul>
-<p><strong>Returns</strong></p>
-<p><em>dict</em>:     A dictionary with the target processes, an input queue, and an output queue.</p>
-</details>
-<details class="- note">
 <summary>state_dict</summary>
 <p>Return a dictionary containing references to the whole state of the module.</p>
 <p>Both parameters and persistent buffers (e.g. running averages) are included. Keys are corresponding parameter and buffer names. Parameters and buffers set to <code>None</code> are not included.  .. note::     The returned object is a shallow copy. It contains references     to the module's parameters and buffers.  .. warning::     Currently <code>state_dict()</code> also accepts positional arguments for     <code>destination</code>, <code>prefix</code> and <code>keep_vars</code> in order. However,     this is being deprecated and keyword arguments will be enforced in     future releases.  .. warning::     Please avoid the use of argument <code>destination</code> as it is not     designed for end-users.  Args:     destination (dict, optional): If provided, the state of module will         be updated into the dict and the same object is returned.         Otherwise, an <code>OrderedDict</code> will be created and returned.         Default: <code>None</code>.     prefix (str, optional): a prefix added to parameter and buffer         names to compose the keys in state_dict. Default: <code>''</code>.     keep_vars (bool, optional): by default the :class:<code>~torch.Tensor</code> s         returned in the state dict are detached from autograd. If it's         set to <code>True</code>, detaching will not be performed.         Default: <code>False</code>.  Returns:     dict:         a dictionary containing a whole state of the module  Example::      &gt;&gt;&gt; # xdoctest: +SKIP("undefined vars")     &gt;&gt;&gt; module.state_dict().keys()     ['bias', 'weight']</p>
@@ -2087,14 +1690,6 @@
 <li><strong>destination</strong>     – defaults to <code>None</code>    </li>
 <li><strong>prefix</strong>     – defaults to ``    </li>
 <li><strong>keep_vars</strong>     – defaults to <code>False</code>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>stop_multi_process_pool</summary>
-<p>Stops all processes started with start_multi_process_pool.</p>
-<p>Args:     pool (Dict[str, object]): A dictionary containing the input queue, output queue, and process list.  Returns:     None</p>
-<ul>
-<li><strong>pool</strong>     (<em>"dict[Literal['input', 'output', 'processes'], Any]"</em>)    </li>
 </ul>
 </details>
 <details class="- note">
@@ -2113,20 +1708,8 @@
 <p>Args:     device (:class:<code>torch.device</code>): The desired device of the parameters         and buffers in this module.     recurse (bool): Whether parameters and buffers of submodules should         be recursively moved to the specified device.  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>device</strong>     (<em>Union[int, str, torch.device, NoneType]</em>)  <br />
-    Device (like "cuda", "cpu", "mps", "npu") that should be used for computation. If None, checks if a GPU can be used.</li>
+<li><strong>device</strong>     (<em>Union[int, str, torch.device, NoneType]</em>)    </li>
 <li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>tokenize</summary>
-<p>Tokenizes the input texts.</p>
-<p>Args:     texts (Union[list[str], list[dict], list[tuple[str, str]]]): A list of texts to be tokenized.     is_query (bool): Flag to indicate if the texts are queries. Defaults to True.     pad_document (bool): Flag to indicate if documents should be padded to max length. Defaults to False.  Returns:     dict[str, torch.Tensor]: A dictionary of tensors with the tokenized texts, including "input_ids",         "attention_mask", and optionally "token_type_ids".</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>texts</strong>     (<em>'list[str] | list[dict] | list[tuple[str, str]]'</em>)    </li>
-<li><strong>is_query</strong>     (<em>'bool'</em>)     – defaults to <code>True</code>    </li>
-<li><strong>pad_document</strong>     (<em>'bool'</em>)     – defaults to <code>False</code>    </li>
 </ul>
 </details>
 <details class="- note">
@@ -2136,16 +1719,6 @@
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>mode</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>truncate_sentence_embeddings</summary>
-<p>In this context, :meth:<code>SentenceTransformer.encode &lt;sentence_transformers.SentenceTransformer.encode&gt;</code> outputs sentence embeddings truncated at dimension <code>truncate_dim</code>.</p>
-<p>This may be useful when you are using the same model for different applications where different dimensions are needed.  Args:     truncate_dim (int, optional): The dimension to truncate sentence embeddings to. <code>None</code> does no truncation.  Example:     ::          from sentence_transformers import SentenceTransformer          model = SentenceTransformer("all-mpnet-base-v2")          with model.truncate_sentence_embeddings(truncate_dim=16):             embeddings_truncated = model.encode(["hello there", "hiya"])         assert embeddings_truncated.shape[-1] == 16</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>truncate_dim</strong>     (<em>'int | None'</em>)  <br />
-    The dimension to truncate sentence embeddings to. <code>None</code> does no truncation. Truncation is only applicable during inference when :meth:<code>SentenceTransformer.encode</code> is called.</li>
 </ul>
 </details>
 <details class="- note">
@@ -2163,8 +1736,7 @@
 <p>This also makes associated parameters and buffers different objects. So it should be called before constructing optimizer if the module will live on XPU while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>  <br />
-    Device (like "cuda", "cpu", "mps", "npu") that should be used for computation. If None, checks if a GPU can be used.</li>
+<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code>    </li>
 </ul>
 </details>
 <details class="- note">
