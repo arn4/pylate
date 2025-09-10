@@ -630,8 +630,6 @@
       
         
       
-        
-      
     
     
       
@@ -648,7 +646,7 @@
         
   
   
-    <a href="../../indexes/PLAID/" class="md-nav__link">
+    <a href="../../indexes/Voyager/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -681,8 +679,6 @@
       
         
       
-        
-      
     
     
       
@@ -699,7 +695,7 @@
         
   
   
-    <a href="../../losses/CachedContrastive/" class="md-nav__link">
+    <a href="../../losses/Contrastive/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1027,14 +1023,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -1150,7 +1138,7 @@
 <p>ColBERT retriever.</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>index</strong> (<em>'Voyager | PLAID'</em>)</li>
+<li><strong>index</strong> (<em><a href="../../indexes/Voyager">indexes.Voyager</a></em>)</li>
 </ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <div class="language-python highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">retrieve</span>
@@ -1160,8 +1148,12 @@
 <span class="o">...</span>     <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
 <span class="o">...</span> <span class="p">)</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">documents_ids</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;document_id_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">documents</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;This is the content of document </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">documents_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+<span class="o">...</span>     <span class="s2">&quot;fruits are healthy.&quot;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="s2">&quot;fruits are good for health.&quot;</span><span class="p">,</span>
+<span class="o">...</span> <span class="p">]</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">documents_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
 <span class="o">...</span>     <span class="n">sentences</span><span class="o">=</span><span class="n">documents</span><span class="p">,</span>
@@ -1169,12 +1161,12 @@
 <span class="o">...</span>     <span class="n">is_query</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="o">...</span> <span class="p">)</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">index</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">PLAID</span><span class="p">(</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">index</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">Voyager</span><span class="p">(</span>
 <span class="o">...</span>     <span class="n">index_folder</span><span class="o">=</span><span class="s2">&quot;test_indexes&quot;</span><span class="p">,</span>
 <span class="o">...</span>     <span class="n">index_name</span><span class="o">=</span><span class="s2">&quot;colbert&quot;</span><span class="p">,</span>
 <span class="o">...</span>     <span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">embedding_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
 <span class="o">...</span> <span class="p">)</span>
-<span class="err">✅</span> <span class="n">Index</span> <span class="k">with</span> <span class="n">FastPlaid</span> <span class="n">backend</span><span class="o">.</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">index</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">add_documents</span><span class="p">(</span>
 <span class="o">...</span>     <span class="n">documents_ids</span><span class="o">=</span><span class="n">documents_ids</span><span class="p">,</span>
@@ -1212,13 +1204,6 @@
 
 <span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
-<span class="o">...</span>     <span class="n">queries_embeddings</span><span class="o">=</span><span class="n">queries_embeddings</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
-<span class="o">...</span>     <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;document_id_10&quot;</span><span class="p">],</span>
-<span class="o">...</span> <span class="p">)</span>
 </code></pre></div>
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
 <details class="- note">
@@ -1226,12 +1211,11 @@
 <p>Retrieve documents for a list of queries.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>queries_embeddings</strong>     (<em>'list[list | np.ndarray | torch.Tensor]'</em>)    </li>
-<li><strong>k</strong>     (<em>'int'</em>)     – defaults to <code>10</code>    </li>
-<li><strong>k_token</strong>     (<em>'int'</em>)     – defaults to <code>100</code>    </li>
-<li><strong>device</strong>     (<em>'str | None'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>batch_size</strong>     (<em>'int'</em>)     – defaults to <code>50</code>    </li>
-<li><strong>subset</strong>     (<em>'list[list[str]] | list[str] | None'</em>)     – defaults to <code>None</code>    </li>
+<li><strong>queries_embeddings</strong>     (<em>list[list | numpy.ndarray | torch.Tensor]</em>)</li>
+<li><strong>k</strong>     (<em>int</em>)     – defaults to <code>10</code></li>
+<li><strong>k_token</strong>     (<em>int</em>)     – defaults to <code>100</code></li>
+<li><strong>device</strong>     (<em>str | None</em>)     – defaults to <code>None</code></li>
+<li><strong>batch_size</strong>     (<em>int</em>)     – defaults to <code>50</code></li>
 </ul>
 </details>
 

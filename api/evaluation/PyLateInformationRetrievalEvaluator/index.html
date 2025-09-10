@@ -872,8 +872,6 @@
       
         
       
-        
-      
     
     
       
@@ -890,7 +888,7 @@
         
   
   
-    <a href="../../indexes/PLAID/" class="md-nav__link">
+    <a href="../../indexes/Voyager/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -923,8 +921,6 @@
       
         
       
-        
-      
     
     
       
@@ -941,7 +937,7 @@
         
   
   
-    <a href="../../losses/CachedContrastive/" class="md-nav__link">
+    <a href="../../losses/Contrastive/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1174,14 +1170,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -1362,7 +1350,7 @@
 <ul>
 <li>
 <p><strong>description</strong></p>
-<p>Returns a human-readable description of the evaluator: BinaryClassificationEvaluator -&gt; Binary Classification  1. Replace "CE" prefix with "CrossEncoder" 2. Remove "Evaluator" from the class name 3. Add a space before every capital letter</p>
+<p>Returns a human-readable description of the evaluator: BinaryClassificationEvaluator -&gt; Binary Classification  1. Remove "Evaluator" from the class name 2. Add a space before every capital letter</p>
 </li>
 </ul>
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
@@ -1372,12 +1360,12 @@
 <p>Args:     model: the model to evaluate     output_path: path where predictions and metrics are written         to     epoch: the epoch where the evaluation takes place. This is         used for the file prefixes. If this is -1, then we         assume evaluation on test data.     steps: the steps in the current epoch at time of the         evaluation. This is used for the file prefixes. If this         is -1, then we assume evaluation at the end of the         epoch.  Returns:     Either a score for the evaluation with a higher score     indicating a better result, or a dictionary with scores. If     the latter is chosen, then <code>evaluator.primary_metric</code> must     be defined</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>model</strong>     (<em>'SentenceTransformer'</em>)    </li>
-<li><strong>output_path</strong>     (<em>'str'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>epoch</strong>     (<em>'int'</em>)     – defaults to <code>-1</code>    </li>
-<li><strong>steps</strong>     (<em>'int'</em>)     – defaults to <code>-1</code>    </li>
-<li><strong>args</strong>    </li>
-<li><strong>kwargs</strong>    </li>
+<li><strong>model</strong>     (<em>'SentenceTransformer'</em>)</li>
+<li><strong>output_path</strong>     (<em>'str'</em>)     – defaults to <code>None</code></li>
+<li><strong>epoch</strong>     (<em>'int'</em>)     – defaults to <code>-1</code></li>
+<li><strong>steps</strong>     (<em>'int'</em>)     – defaults to <code>-1</code></li>
+<li><strong>args</strong></li>
+<li><strong>kwargs</strong></li>
 </ul>
 </details>
 <details class="- note">
@@ -1388,10 +1376,6 @@
 </details>
 <details class="- note">
 <summary>compute_metrics</summary>
-</details>
-<details class="- note">
-<summary>get_config_dict</summary>
-<p>Return a dictionary with all meaningful configuration values of the evaluator to store in the model card.</p>
 </details>
 <details class="- note">
 <summary>output_scores</summary>

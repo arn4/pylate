@@ -45,15 +45,7 @@
          <lastmod>2025-09-10</lastmod>
     </url>
     <url>
-         <loc>https://lightonai.github.io/pylate/api/indexes/PLAID/</loc>
-         <lastmod>2025-09-10</lastmod>
-    </url>
-    <url>
          <loc>https://lightonai.github.io/pylate/api/indexes/Voyager/</loc>
-         <lastmod>2025-09-10</lastmod>
-    </url>
-    <url>
-         <loc>https://lightonai.github.io/pylate/api/losses/CachedContrastive/</loc>
          <lastmod>2025-09-10</lastmod>
     </url>
     <url>
@@ -105,23 +97,7 @@
          <lastmod>2025-09-10</lastmod>
     </url>
     <url>
-         <loc>https://lightonai.github.io/pylate/api/utils/all-gather-with-gradients/</loc>
-         <lastmod>2025-09-10</lastmod>
-    </url>
-    <url>
-         <loc>https://lightonai.github.io/pylate/api/utils/all-gather/</loc>
-         <lastmod>2025-09-10</lastmod>
-    </url>
-    <url>
          <loc>https://lightonai.github.io/pylate/api/utils/convert-to-tensor/</loc>
-         <lastmod>2025-09-10</lastmod>
-    </url>
-    <url>
-         <loc>https://lightonai.github.io/pylate/api/utils/get-rank/</loc>
-         <lastmod>2025-09-10</lastmod>
-    </url>
-    <url>
-         <loc>https://lightonai.github.io/pylate/api/utils/get-world-size/</loc>
          <lastmod>2025-09-10</lastmod>
     </url>
     <url>

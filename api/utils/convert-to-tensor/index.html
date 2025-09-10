@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://lightonai.github.io/pylate/api/utils/convert-to-tensor/">
       
       
-        <link rel="prev" href="../all-gather/">
+        <link rel="prev" href="../KDProcessing/">
       
       
-        <link rel="next" href="../get-rank/">
+        <link rel="next" href="../iter-batch/">
       
       
       <link rel="icon" href="../../../img/favicon.ico">
@@ -630,8 +630,6 @@
       
         
       
-        
-      
     
     
       
@@ -648,7 +646,7 @@
         
   
   
-    <a href="../../indexes/PLAID/" class="md-nav__link">
+    <a href="../../indexes/Voyager/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -681,8 +679,6 @@
       
         
       
-        
-      
     
     
       
@@ -699,7 +695,7 @@
         
   
   
-    <a href="../../losses/CachedContrastive/" class="md-nav__link">
+    <a href="../../losses/Contrastive/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -934,14 +930,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -1008,48 +996,6 @@
   
   <span class="md-ellipsis">
     KDProcessing
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../all-gather-with-gradients/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    all_gather_with_gradients
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../all-gather/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    all_gather
   </span>
   
 
@@ -1133,48 +1079,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../get-rank/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    get_rank
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../get-world-size/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    get_world_size
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1280,7 +1184,7 @@
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><strong>x</strong> (<em>'torch.Tensor | np.ndarray | list[torch.Tensor | np.ndarray | list | float]'</em>)</p>
+<p><strong>x</strong> (<em>torch.Tensor | numpy.ndarray | list[torch.Tensor | numpy.ndarray | list | float]</em>)</p>
 <p>The input data. It can be a torch tensor, a numpy array, or a list of torch tensors, numpy arrays, or lists.</p>
 </li>
 </ul>

@@ -630,8 +630,6 @@
       
         
       
-        
-      
     
     
       
@@ -648,7 +646,7 @@
         
   
   
-    <a href="../../indexes/PLAID/" class="md-nav__link">
+    <a href="../../indexes/Voyager/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -678,8 +676,6 @@
   
     
     
-      
-        
       
         
       
@@ -717,27 +713,6 @@
             losses
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../CachedContrastive/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    CachedContrastive
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1069,14 +1044,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -1193,19 +1160,19 @@
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><strong>model</strong> (<em>'ColBERT'</em>)</p>
+<p><strong>model</strong> (<em><a href="../../models/ColBERT">models.ColBERT</a></em>)</p>
 <p>SentenceTransformer model.</p>
 </li>
 <li>
-<p><strong>score_metric</strong> (<em>'Callable'</em>) – defaults to <code>&lt;function colbert_kd_scores at 0x107ce4fe0&gt;</code></p>
+<p><strong>score_metric</strong> (<em>Callable</em>) – defaults to <code>&lt;function colbert_kd_scores at 0x7fe82073a3e0&gt;</code></p>
 <p>Function that returns a score between two sequences of embeddings.</p>
 </li>
 <li>
-<p><strong>size_average</strong> (<em>'bool'</em>) – defaults to <code>True</code></p>
+<p><strong>size_average</strong> (<em>bool</em>) – defaults to <code>True</code></p>
 <p>Average by the size of the mini-batch or perform sum.</p>
 </li>
 <li>
-<p><strong>normalize_scores</strong> (<em>'bool'</em>) – defaults to <code>True</code></p>
+<p><strong>normalize_scores</strong> (<em>bool</em>) – defaults to <code>True</code></p>
 </li>
 </ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
@@ -1242,8 +1209,8 @@
 <p>Call self as a function.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>args</strong>    </li>
-<li><strong>kwargs</strong>    </li>
+<li><strong>args</strong></li>
+<li><strong>kwargs</strong></li>
 </ul>
 </details>
 <details class="- note">
@@ -1252,8 +1219,8 @@
 <p>The module can be accessed as an attribute using the given name.  Args:     name (str): name of the child module. The child module can be         accessed from this module using the given name     module (Module): child module to be added to the module.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>name</strong>     (<em>str</em>)    </li>
-<li><strong>module</strong>     (<em>Optional[ForwardRef('Module')]</em>)    </li>
+<li><strong>name</strong>     (<em>str</em>)</li>
+<li><strong>module</strong>     (<em>Optional[ForwardRef('Module')]</em>)</li>
 </ul>
 </details>
 <details class="- note">
@@ -1262,7 +1229,7 @@
 <p>Typical use includes initializing the parameters of a model (see also :ref:<code>nn-init-doc</code>).  Args:     fn (:class:<code>Module</code> -&gt; None): function to be applied to each submodule  Returns:     Module: self  Example::      &gt;&gt;&gt; @torch.no_grad()     &gt;&gt;&gt; def init_weights(m):     &gt;&gt;&gt;     print(m)     &gt;&gt;&gt;     if type(m) == nn.Linear:     &gt;&gt;&gt;         m.weight.fill_(1.0)     &gt;&gt;&gt;         print(m.weight)     &gt;&gt;&gt; net = nn.Sequential(nn.Linear(2, 2), nn.Linear(2, 2))     &gt;&gt;&gt; net.apply(init_weights)     Linear(in_features=2, out_features=2, bias=True)     Parameter containing:     tensor([[1., 1.],             [1., 1.]], requires_grad=True)     Linear(in_features=2, out_features=2, bias=True)     Parameter containing:     tensor([[1., 1.],             [1., 1.]], requires_grad=True)     Sequential(       (0): Linear(in_features=2, out_features=2, bias=True)       (1): Linear(in_features=2, out_features=2, bias=True)     )</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>fn</strong>     (<em>Callable[[ForwardRef('Module')], NoneType]</em>)    </li>
+<li><strong>fn</strong>     (<em>Callable[[ForwardRef('Module')], NoneType]</em>)</li>
 </ul>
 </details>
 <details class="- note">
@@ -1276,7 +1243,7 @@
 <p>Args:     recurse (bool): if True, then yields buffers of this module         and all submodules. Otherwise, yields only buffers that         are direct members of this module.  Yields:     torch.Tensor: module buffer  Example::      &gt;&gt;&gt; # xdoctest: +SKIP("undefined vars")     &gt;&gt;&gt; for buf in model.buffers():     &gt;&gt;&gt;     print(type(buf), buf.size())     <class 'torch.Tensor'> (20L,)     <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
+<li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1290,8 +1257,8 @@
 <p>This Module's <code>__call__</code> method is compiled and all arguments are passed as-is to :func:<code>torch.compile</code>.  See :func:<code>torch.compile</code> for details on the arguments for this function.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>args</strong>    </li>
-<li><strong>kwargs</strong>    </li>
+<li><strong>args</strong></li>
+<li><strong>kwargs</strong></li>
 </ul>
 </details>
 <details class="- note">
@@ -1302,10 +1269,10 @@
 <details class="- note">
 <summary>cuda</summary>
 <p>Move all model parameters and buffers to the GPU.</p>
-<p>This also makes associated parameters and buffers different objects. So it should be called before constructing the optimizer if the module will live on GPU while being optimized.  .. note::     This method modifies the module in-place.  Args:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
+<p>This also makes associated parameters and buffers different objects. So it should be called before constructing optimizer if the module will live on GPU while being optimized.  .. note::     This method modifies the module in-place.  Args:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>device</strong>     (<em>Union[torch.device, int, NoneType]</em>)     – defaults to <code>None</code>    </li>
+<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1316,11 +1283,11 @@
 <details class="- note">
 <summary>eval</summary>
 <p>Set the module in evaluation mode.</p>
-<p>This has an effect only on certain modules. See the documentation of particular modules for details of their behaviors in training/evaluation mode, i.e. whether they are affected, e.g. :class:<code>Dropout</code>, :class:<code>BatchNorm</code>, etc.  This is equivalent with :meth:<code>self.train(False) &lt;torch.nn.Module.train&gt;</code>.  See :ref:<code>locally-disable-grad-doc</code> for a comparison between <code>.eval()</code> and several similar mechanisms that may be confused with it.  Returns:     Module: self</p>
+<p>This has any effect only on certain modules. See documentations of particular modules for details of their behaviors in training/evaluation mode, if they are affected, e.g. :class:<code>Dropout</code>, :class:<code>BatchNorm</code>, etc.  This is equivalent with :meth:<code>self.train(False) &lt;torch.nn.Module.train&gt;</code>.  See :ref:<code>locally-disable-grad-doc</code> for a comparison between <code>.eval()</code> and several similar mechanisms that may be confused with it.  Returns:     Module: self</p>
 </details>
 <details class="- note">
 <summary>extra_repr</summary>
-<p>Return the extra representation of the module.</p>
+<p>Set the extra representation of the module.</p>
 <p>To print customized extra information, you should re-implement this method in your own modules. Both single-line and multi-line strings are acceptable.</p>
 </details>
 <details class="- note">
@@ -1333,8 +1300,8 @@
 <p>Computes the distillation loss with respect to SentenceTransformer.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>sentence_features</strong>     (<em>'Iterable[dict[str, torch.Tensor]]'</em>)    </li>
-<li><strong>labels</strong>     (<em>'torch.Tensor'</em>)    </li>
+<li><strong>sentence_features</strong>     (<em>Iterable[dict[str, torch.Tensor]]</em>)</li>
+<li><strong>labels</strong>     (<em>torch.Tensor</em>)</li>
 </ul>
 </details>
 <details class="- note">
@@ -1343,13 +1310,13 @@
 <p>See the docstring for <code>get_submodule</code> for a more detailed explanation of this method's functionality as well as how to correctly specify <code>target</code>.  Args:     target: The fully-qualified string name of the buffer         to look for. (See <code>get_submodule</code> for how to specify a         fully-qualified string.)  Returns:     torch.Tensor: The buffer referenced by <code>target</code>  Raises:     AttributeError: If the target string references an invalid         path or resolves to something that is not a         buffer</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>target</strong>     (<em>str</em>)    </li>
+<li><strong>target</strong>     (<em>str</em>)</li>
 </ul>
 </details>
 <details class="- note">
 <summary>get_extra_state</summary>
 <p>Return any extra state to include in the module's state_dict.</p>
-<p>Implement this and a corresponding :func:<code>set_extra_state</code> for your module if you need to store extra state. This function is called when building the module's <code>state_dict()</code>.  Note that extra state should be picklable to ensure working serialization of the state_dict. We only provide backwards compatibility guarantees for serializing Tensors; other objects may break backwards compatibility if their serialized pickled form changes.  Returns:     object: Any extra state to store in the module's state_dict</p>
+<p>Implement this and a corresponding :func:<code>set_extra_state</code> for your module if you need to store extra state. This function is called when building the module's <code>state_dict()</code>.  Note that extra state should be picklable to ensure working serialization of the state_dict. We only provide provide backwards compatibility guarantees for serializing Tensors; other objects may break backwards compatibility if their serialized pickled form changes.  Returns:     object: Any extra state to store in the module's state_dict</p>
 </details>
 <details class="- note">
 <summary>get_parameter</summary>
@@ -1357,16 +1324,16 @@
 <p>See the docstring for <code>get_submodule</code> for a more detailed explanation of this method's functionality as well as how to correctly specify <code>target</code>.  Args:     target: The fully-qualified string name of the Parameter         to look for. (See <code>get_submodule</code> for how to specify a         fully-qualified string.)  Returns:     torch.nn.Parameter: The Parameter referenced by <code>target</code>  Raises:     AttributeError: If the target string references an invalid         path or resolves to something that is not an         <code>nn.Parameter</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>target</strong>     (<em>str</em>)    </li>
+<li><strong>target</strong>     (<em>str</em>)</li>
 </ul>
 </details>
 <details class="- note">
 <summary>get_submodule</summary>
 <p>Return the submodule given by <code>target</code> if it exists, otherwise throw an error.</p>
-<p>For example, let's say you have an <code>nn.Module</code> <code>A</code> that looks like this:  .. code-block:: text      A(         (net_b): Module(             (net_c): Module(                 (conv): Conv2d(16, 33, kernel_size=(3, 3), stride=(2, 2))             )             (linear): Linear(in_features=100, out_features=200, bias=True)         )     )  (The diagram shows an <code>nn.Module</code> <code>A</code>. <code>A</code> which has a nested submodule <code>net_b</code>, which itself has two submodules <code>net_c</code> and <code>linear</code>. <code>net_c</code> then has a submodule <code>conv</code>.)  To check whether or not we have the <code>linear</code> submodule, we would call <code>get_submodule("net_b.linear")</code>. To check whether we have the <code>conv</code> submodule, we would call <code>get_submodule("net_b.net_c.conv")</code>.  The runtime of <code>get_submodule</code> is bounded by the degree of module nesting in <code>target</code>. A query against <code>named_modules</code> achieves the same result, but it is O(N) in the number of transitive modules. So, for a simple check to see if some submodule exists, <code>get_submodule</code> should always be used.  Args:     target: The fully-qualified string name of the submodule         to look for. (See above example for how to specify a         fully-qualified string.)  Returns:     torch.nn.Module: The submodule referenced by <code>target</code>  Raises:     AttributeError: If at any point along the path resulting from         the target string the (sub)path resolves to a non-existent         attribute name or an object that is not an instance of <code>nn.Module</code>.</p>
+<p>For example, let's say you have an <code>nn.Module</code> <code>A</code> that looks like this:  .. code-block:: text      A(         (net_b): Module(             (net_c): Module(                 (conv): Conv2d(16, 33, kernel_size=(3, 3), stride=(2, 2))             )             (linear): Linear(in_features=100, out_features=200, bias=True)         )     )  (The diagram shows an <code>nn.Module</code> <code>A</code>. <code>A</code> has a nested submodule <code>net_b</code>, which itself has two submodules <code>net_c</code> and <code>linear</code>. <code>net_c</code> then has a submodule <code>conv</code>.)  To check whether or not we have the <code>linear</code> submodule, we would call <code>get_submodule("net_b.linear")</code>. To check whether we have the <code>conv</code> submodule, we would call <code>get_submodule("net_b.net_c.conv")</code>.  The runtime of <code>get_submodule</code> is bounded by the degree of module nesting in <code>target</code>. A query against <code>named_modules</code> achieves the same result, but it is O(N) in the number of transitive modules. So, for a simple check to see if some submodule exists, <code>get_submodule</code> should always be used.  Args:     target: The fully-qualified string name of the submodule         to look for. (See above example for how to specify a         fully-qualified string.)  Returns:     torch.nn.Module: The submodule referenced by <code>target</code>  Raises:     AttributeError: If the target string references an invalid         path or resolves to something that is not an         <code>nn.Module</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>target</strong>     (<em>str</em>)    </li>
+<li><strong>target</strong>     (<em>str</em>)</li>
 </ul>
 </details>
 <details class="- note">
@@ -1377,21 +1344,21 @@
 <details class="- note">
 <summary>ipu</summary>
 <p>Move all model parameters and buffers to the IPU.</p>
-<p>This also makes associated parameters and buffers different objects. So it should be called before constructing the optimizer if the module will live on IPU while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
+<p>This also makes associated parameters and buffers different objects. So it should be called before constructing optimizer if the module will live on IPU while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>device</strong>     (<em>Union[torch.device, int, NoneType]</em>)     – defaults to <code>None</code>    </li>
+<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code></li>
 </ul>
 </details>
 <details class="- note">
 <summary>load_state_dict</summary>
 <p>Copy parameters and buffers from :attr:<code>state_dict</code> into this module and its descendants.</p>
-<p>If :attr:<code>strict</code> is <code>True</code>, then the keys of :attr:<code>state_dict</code> must exactly match the keys returned by this module's :meth:<code>~torch.nn.Module.state_dict</code> function.  .. warning::     If :attr:<code>assign</code> is <code>True</code> the optimizer must be created after     the call to :attr:<code>load_state_dict</code> unless     :func:<code>~torch.__future__.get_swap_module_params_on_conversion</code> is <code>True</code>.  Args:     state_dict (dict): a dict containing parameters and         persistent buffers.     strict (bool, optional): whether to strictly enforce that the keys         in :attr:<code>state_dict</code> match the keys returned by this module's         :meth:<code>~torch.nn.Module.state_dict</code> function. Default: <code>True</code>     assign (bool, optional): When set to <code>False</code>, the properties of the tensors         in the current module are preserved whereas setting it to <code>True</code> preserves         properties of the Tensors in the state dict. The only         exception is the <code>requires_grad</code> field of :class:<code>~torch.nn.Parameter</code>         for which the value from the module is preserved. Default: <code>False</code>  Returns:     <code>NamedTuple</code> with <code>missing_keys</code> and <code>unexpected_keys</code> fields:         * <code>missing_keys</code> is a list of str containing any keys that are expected             by this module but missing from the provided <code>state_dict</code>.         * <code>unexpected_keys</code> is a list of str containing the keys that are not             expected by this module but present in the provided <code>state_dict</code>.  Note:     If a parameter or buffer is registered as <code>None</code> and its corresponding key     exists in :attr:<code>state_dict</code>, :meth:<code>load_state_dict</code> will raise a     <code>RuntimeError</code>.</p>
+<p>If :attr:<code>strict</code> is <code>True</code>, then the keys of :attr:<code>state_dict</code> must exactly match the keys returned by this module's :meth:<code>~torch.nn.Module.state_dict</code> function.  .. warning::     If :attr:<code>assign</code> is <code>True</code> the optimizer must be created after     the call to :attr:<code>load_state_dict</code> unless     :func:<code>~torch.__future__.get_swap_module_params_on_conversion</code> is <code>True</code>.  Args:     state_dict (dict): a dict containing parameters and         persistent buffers.     strict (bool, optional): whether to strictly enforce that the keys         in :attr:<code>state_dict</code> match the keys returned by this module's         :meth:<code>~torch.nn.Module.state_dict</code> function. Default: <code>True</code>     assign (bool, optional): When <code>False</code>, the properties of the tensors         in the current module are preserved while when <code>True</code>, the         properties of the Tensors in the state dict are preserved. The only         exception is the <code>requires_grad</code> field of :class:<code>~torch.nn.Parameter</code>s         for which the value from the module is preserved.         Default: <code>False</code>  Returns:     <code>NamedTuple</code> with <code>missing_keys</code> and <code>unexpected_keys</code> fields:         * <strong>missing_keys</strong> is a list of str containing the missing keys         * <strong>unexpected_keys</strong> is a list of str containing the unexpected keys  Note:     If a parameter or buffer is registered as <code>None</code> and its corresponding key     exists in :attr:<code>state_dict</code>, :meth:<code>load_state_dict</code> will raise a     <code>RuntimeError</code>.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>state_dict</strong>     (<em>collections.abc.Mapping[str, typing.Any]</em>)    </li>
-<li><strong>strict</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
-<li><strong>assign</strong>     (<em>bool</em>)     – defaults to <code>False</code>    </li>
+<li><strong>state_dict</strong>     (<em>Mapping[str, Any]</em>)</li>
+<li><strong>strict</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
+<li><strong>assign</strong>     (<em>bool</em>)     – defaults to <code>False</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1400,23 +1367,14 @@
 <p>Yields:     Module: a module in the network  Note:     Duplicate modules are returned only once. In the following     example, <code>l</code> will be returned only once.  Example::      &gt;&gt;&gt; l = nn.Linear(2, 2)     &gt;&gt;&gt; net = nn.Sequential(l, l)     &gt;&gt;&gt; for idx, m in enumerate(net.modules()):     ...     print(idx, '-&gt;', m)      0 -&gt; Sequential(       (0): Linear(in_features=2, out_features=2, bias=True)       (1): Linear(in_features=2, out_features=2, bias=True)     )     1 -&gt; Linear(in_features=2, out_features=2, bias=True)</p>
 </details>
 <details class="- note">
-<summary>mtia</summary>
-<p>Move all model parameters and buffers to the MTIA.</p>
-<p>This also makes associated parameters and buffers different objects. So it should be called before constructing the optimizer if the module will live on MTIA while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>device</strong>     (<em>Union[torch.device, int, NoneType]</em>)     – defaults to <code>None</code>    </li>
-</ul>
-</details>
-<details class="- note">
 <summary>named_buffers</summary>
 <p>Return an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.</p>
 <p>Args:     prefix (str): prefix to prepend to all buffer names.     recurse (bool, optional): if True, then yields buffers of this module         and all submodules. Otherwise, yields only buffers that         are direct members of this module. Defaults to True.     remove_duplicate (bool, optional): whether to remove the duplicated buffers in the result. Defaults to True.  Yields:     (str, torch.Tensor): Tuple containing the name and buffer  Example::      &gt;&gt;&gt; # xdoctest: +SKIP("undefined vars")     &gt;&gt;&gt; for name, buf in self.named_buffers():     &gt;&gt;&gt;     if name in ['running_var']:     &gt;&gt;&gt;         print(buf.size())</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>prefix</strong>     (<em>str</em>)     – defaults to ``    </li>
-<li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
-<li><strong>remove_duplicate</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
+<li><strong>prefix</strong>     (<em>str</em>)     – defaults to ``</li>
+<li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
+<li><strong>remove_duplicate</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1430,9 +1388,9 @@
 <p>Args:     memo: a memo to store the set of modules already added to the result     prefix: a prefix that will be added to the name of the module     remove_duplicate: whether to remove the duplicated module instances in the result         or not  Yields:     (str, Module): Tuple of name and module  Note:     Duplicate modules are returned only once. In the following     example, <code>l</code> will be returned only once.  Example::      &gt;&gt;&gt; l = nn.Linear(2, 2)     &gt;&gt;&gt; net = nn.Sequential(l, l)     &gt;&gt;&gt; for idx, m in enumerate(net.named_modules()):     ...     print(idx, '-&gt;', m)      0 -&gt; ('', Sequential(       (0): Linear(in_features=2, out_features=2, bias=True)       (1): Linear(in_features=2, out_features=2, bias=True)     ))     1 -&gt; ('0', Linear(in_features=2, out_features=2, bias=True))</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>memo</strong>     (<em>Optional[set['Module']]</em>)     – defaults to <code>None</code>    </li>
-<li><strong>prefix</strong>     (<em>str</em>)     – defaults to ``    </li>
-<li><strong>remove_duplicate</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
+<li><strong>memo</strong>     (<em>Optional[Set[ForwardRef('Module')]]</em>)     – defaults to <code>None</code></li>
+<li><strong>prefix</strong>     (<em>str</em>)     – defaults to ``</li>
+<li><strong>remove_duplicate</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1441,9 +1399,9 @@
 <p>Args:     prefix (str): prefix to prepend to all parameter names.     recurse (bool): if True, then yields parameters of this module         and all submodules. Otherwise, yields only parameters that         are direct members of this module.     remove_duplicate (bool, optional): whether to remove the duplicated         parameters in the result. Defaults to True.  Yields:     (str, Parameter): Tuple containing the name and parameter  Example::      &gt;&gt;&gt; # xdoctest: +SKIP("undefined vars")     &gt;&gt;&gt; for name, param in self.named_parameters():     &gt;&gt;&gt;     if name in ['bias']:     &gt;&gt;&gt;         print(param.size())</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>prefix</strong>     (<em>str</em>)     – defaults to ``    </li>
-<li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
-<li><strong>remove_duplicate</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
+<li><strong>prefix</strong>     (<em>str</em>)     – defaults to ``</li>
+<li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
+<li><strong>remove_duplicate</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1452,7 +1410,7 @@
 <p>This is typically passed to an optimizer.  Args:     recurse (bool): if True, then yields parameters of this module         and all submodules. Otherwise, yields only parameters that         are direct members of this module.  Yields:     Parameter: module parameter  Example::      &gt;&gt;&gt; # xdoctest: +SKIP("undefined vars")     &gt;&gt;&gt; for param in model.parameters():     &gt;&gt;&gt;     print(type(param), param.size())     <class 'torch.Tensor'> (20L,)     <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
+<li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1461,79 +1419,70 @@
 <p>This function is deprecated in favor of :meth:<code>~torch.nn.Module.register_full_backward_hook</code> and the behavior of this function will change in future versions.  Returns:     :class:<code>torch.utils.hooks.RemovableHandle</code>:         a handle that can be used to remove the added hook by calling         <code>handle.remove()</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>hook</strong>     (<em>Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]</em>)    </li>
+<li><strong>hook</strong>     (<em>Callable[[ForwardRef('Module'), Union[Tuple[torch.Tensor, ...], torch.Tensor], Union[Tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, Tuple[torch.Tensor, ...], torch.Tensor]]</em>)</li>
 </ul>
 </details>
 <details class="- note">
 <summary>register_buffer</summary>
 <p>Add a buffer to the module.</p>
-<p>This is typically used to register a buffer that should not be considered a model parameter. For example, BatchNorm's <code>running_mean</code> is not a parameter, but is part of the module's state. Buffers, by default, are persistent and will be saved alongside parameters. This behavior can be changed by setting :attr:<code>persistent</code> to <code>False</code>. The only difference between a persistent buffer and a non-persistent buffer is that the latter will not be a part of this module's :attr:<code>state_dict</code>.  Buffers can be accessed as attributes using given names.  Args:     name (str): name of the buffer. The buffer can be accessed         from this module using the given name     tensor (Tensor or None): buffer to be registered. If <code>None</code>, then operations         that run on buffers, such as :attr:<code>cuda</code>, are ignored. If <code>None</code>,         the buffer is <strong>not</strong> included in the module's :attr:<code>state_dict</code>.     persistent (bool): whether the buffer is part of this module's         :attr:<code>state_dict</code>.  Example::      &gt;&gt;&gt; # xdoctest: +SKIP("undefined vars")     &gt;&gt;&gt; self.register_buffer('running_mean', torch.zeros(num_features))</p>
+<p>This is typically used to register a buffer that should not to be considered a model parameter. For example, BatchNorm's <code>running_mean</code> is not a parameter, but is part of the module's state. Buffers, by default, are persistent and will be saved alongside parameters. This behavior can be changed by setting :attr:<code>persistent</code> to <code>False</code>. The only difference between a persistent buffer and a non-persistent buffer is that the latter will not be a part of this module's :attr:<code>state_dict</code>.  Buffers can be accessed as attributes using given names.  Args:     name (str): name of the buffer. The buffer can be accessed         from this module using the given name     tensor (Tensor or None): buffer to be registered. If <code>None</code>, then operations         that run on buffers, such as :attr:<code>cuda</code>, are ignored. If <code>None</code>,         the buffer is <strong>not</strong> included in the module's :attr:<code>state_dict</code>.     persistent (bool): whether the buffer is part of this module's         :attr:<code>state_dict</code>.  Example::      &gt;&gt;&gt; # xdoctest: +SKIP("undefined vars")     &gt;&gt;&gt; self.register_buffer('running_mean', torch.zeros(num_features))</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>name</strong>     (<em>str</em>)    </li>
-<li><strong>tensor</strong>     (<em>Optional[torch.Tensor]</em>)    </li>
-<li><strong>persistent</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
+<li><strong>name</strong>     (<em>str</em>)</li>
+<li><strong>tensor</strong>     (<em>Optional[torch.Tensor]</em>)</li>
+<li><strong>persistent</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
 </ul>
 </details>
 <details class="- note">
 <summary>register_forward_hook</summary>
 <p>Register a forward hook on the module.</p>
-<p>The hook will be called every time after :func:<code>forward</code> has computed an output.  If <code>with_kwargs</code> is <code>False</code> or not specified, the input contains only the positional arguments given to the module. Keyword arguments won't be passed to the hooks and only to the <code>forward</code>. The hook can modify the output. It can modify the input inplace but it will not have effect on forward since this is called after :func:<code>forward</code> is called. The hook should have the following signature::      hook(module, args, output) -&gt; None or modified output  If <code>with_kwargs</code> is <code>True</code>, the forward hook will be passed the <code>kwargs</code> given to the forward function and be expected to return the output possibly modified. The hook should have the following signature::      hook(module, args, kwargs, output) -&gt; None or modified output  Args:     hook (Callable): The user defined hook to be registered.     prepend (bool): If <code>True</code>, the provided <code>hook</code> will be fired         before all existing <code>forward</code> hooks on this         :class:<code>torch.nn.Module</code>. Otherwise, the provided         <code>hook</code> will be fired after all existing <code>forward</code> hooks on         this :class:<code>torch.nn.Module</code>. Note that global         <code>forward</code> hooks registered with         :func:<code>register_module_forward_hook</code> will fire before all hooks         registered by this method.         Default: <code>False</code>     with_kwargs (bool): If <code>True</code>, the <code>hook</code> will be passed the         kwargs given to the forward function.         Default: <code>False</code>     always_call (bool): If <code>True</code> the <code>hook</code> will be run regardless of         whether an exception is raised while calling the Module.         Default: <code>False</code>  Returns:     :class:<code>torch.utils.hooks.RemovableHandle</code>:         a handle that can be used to remove the added hook by calling         <code>handle.remove()</code></p>
+<p>The hook will be called every time after :func:<code>forward</code> has computed an output.  If <code>with_kwargs</code> is <code>False</code> or not specified, the input contains only the positional arguments given to the module. Keyword arguments won't be passed to the hooks and only to the <code>forward</code>. The hook can modify the output. It can modify the input inplace but it will not have effect on forward since this is called after :func:<code>forward</code> is called. The hook should have the following signature::      hook(module, args, output) -&gt; None or modified output  If <code>with_kwargs</code> is <code>True</code>, the forward hook will be passed the <code>kwargs</code> given to the forward function and be expected to return the output possibly modified. The hook should have the following signature::      hook(module, args, kwargs, output) -&gt; None or modified output  Args:     hook (Callable): The user defined hook to be registered.     prepend (bool): If <code>True</code>, the provided <code>hook</code> will be fired         before all existing <code>forward</code> hooks on this         :class:<code>torch.nn.modules.Module</code>. Otherwise, the provided         <code>hook</code> will be fired after all existing <code>forward</code> hooks on         this :class:<code>torch.nn.modules.Module</code>. Note that global         <code>forward</code> hooks registered with         :func:<code>register_module_forward_hook</code> will fire before all hooks         registered by this method.         Default: <code>False</code>     with_kwargs (bool): If <code>True</code>, the <code>hook</code> will be passed the         kwargs given to the forward function.         Default: <code>False</code>     always_call (bool): If <code>True</code> the <code>hook</code> will be run regardless of         whether an exception is raised while calling the Module.         Default: <code>False</code>  Returns:     :class:<code>torch.utils.hooks.RemovableHandle</code>:         a handle that can be used to remove the added hook by calling         <code>handle.remove()</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>hook</strong>     (<em>Union[Callable[[~T, tuple[Any, ...], Any], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any], Any], Optional[Any]]]</em>)    </li>
-<li><strong>prepend</strong>     (<em>bool</em>)     – defaults to <code>False</code>    </li>
-<li><strong>with_kwargs</strong>     (<em>bool</em>)     – defaults to <code>False</code>    </li>
-<li><strong>always_call</strong>     (<em>bool</em>)     – defaults to <code>False</code>    </li>
+<li><strong>hook</strong>     (<em>Union[Callable[[~T, Tuple[Any, ...], Any], Optional[Any]], Callable[[~T, Tuple[Any, ...], Dict[str, Any], Any], Optional[Any]]]</em>)</li>
+<li><strong>prepend</strong>     (<em>bool</em>)     – defaults to <code>False</code></li>
+<li><strong>with_kwargs</strong>     (<em>bool</em>)     – defaults to <code>False</code></li>
+<li><strong>always_call</strong>     (<em>bool</em>)     – defaults to <code>False</code></li>
 </ul>
 </details>
 <details class="- note">
 <summary>register_forward_pre_hook</summary>
 <p>Register a forward pre-hook on the module.</p>
-<p>The hook will be called every time before :func:<code>forward</code> is invoked.  If <code>with_kwargs</code> is false or not specified, the input contains only the positional arguments given to the module. Keyword arguments won't be passed to the hooks and only to the <code>forward</code>. The hook can modify the input. User can either return a tuple or a single modified value in the hook. We will wrap the value into a tuple if a single value is returned (unless that value is already a tuple). The hook should have the following signature::      hook(module, args) -&gt; None or modified input  If <code>with_kwargs</code> is true, the forward pre-hook will be passed the kwargs given to the forward function. And if the hook modifies the input, both the args and kwargs should be returned. The hook should have the following signature::      hook(module, args, kwargs) -&gt; None or a tuple of modified input and kwargs  Args:     hook (Callable): The user defined hook to be registered.     prepend (bool): If true, the provided <code>hook</code> will be fired before         all existing <code>forward_pre</code> hooks on this         :class:<code>torch.nn.Module</code>. Otherwise, the provided         <code>hook</code> will be fired after all existing <code>forward_pre</code> hooks         on this :class:<code>torch.nn.Module</code>. Note that global         <code>forward_pre</code> hooks registered with         :func:<code>register_module_forward_pre_hook</code> will fire before all         hooks registered by this method.         Default: <code>False</code>     with_kwargs (bool): If true, the <code>hook</code> will be passed the kwargs         given to the forward function.         Default: <code>False</code>  Returns:     :class:<code>torch.utils.hooks.RemovableHandle</code>:         a handle that can be used to remove the added hook by calling         <code>handle.remove()</code></p>
+<p>The hook will be called every time before :func:<code>forward</code> is invoked.  If <code>with_kwargs</code> is false or not specified, the input contains only the positional arguments given to the module. Keyword arguments won't be passed to the hooks and only to the <code>forward</code>. The hook can modify the input. User can either return a tuple or a single modified value in the hook. We will wrap the value into a tuple if a single value is returned (unless that value is already a tuple). The hook should have the following signature::      hook(module, args) -&gt; None or modified input  If <code>with_kwargs</code> is true, the forward pre-hook will be passed the kwargs given to the forward function. And if the hook modifies the input, both the args and kwargs should be returned. The hook should have the following signature::      hook(module, args, kwargs) -&gt; None or a tuple of modified input and kwargs  Args:     hook (Callable): The user defined hook to be registered.     prepend (bool): If true, the provided <code>hook</code> will be fired before         all existing <code>forward_pre</code> hooks on this         :class:<code>torch.nn.modules.Module</code>. Otherwise, the provided         <code>hook</code> will be fired after all existing <code>forward_pre</code> hooks         on this :class:<code>torch.nn.modules.Module</code>. Note that global         <code>forward_pre</code> hooks registered with         :func:<code>register_module_forward_pre_hook</code> will fire before all         hooks registered by this method.         Default: <code>False</code>     with_kwargs (bool): If true, the <code>hook</code> will be passed the kwargs         given to the forward function.         Default: <code>False</code>  Returns:     :class:<code>torch.utils.hooks.RemovableHandle</code>:         a handle that can be used to remove the added hook by calling         <code>handle.remove()</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>hook</strong>     (<em>Union[Callable[[~T, tuple[Any, ...]], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any]], Optional[tuple[Any, dict[str, Any]]]]]</em>)    </li>
-<li><strong>prepend</strong>     (<em>bool</em>)     – defaults to <code>False</code>    </li>
-<li><strong>with_kwargs</strong>     (<em>bool</em>)     – defaults to <code>False</code>    </li>
+<li><strong>hook</strong>     (<em>Union[Callable[[~T, Tuple[Any, ...]], Optional[Any]], Callable[[~T, Tuple[Any, ...], Dict[str, Any]], Optional[Tuple[Any, Dict[str, Any]]]]]</em>)</li>
+<li><strong>prepend</strong>     (<em>bool</em>)     – defaults to <code>False</code></li>
+<li><strong>with_kwargs</strong>     (<em>bool</em>)     – defaults to <code>False</code></li>
 </ul>
 </details>
 <details class="- note">
 <summary>register_full_backward_hook</summary>
 <p>Register a backward hook on the module.</p>
-<p>The hook will be called every time the gradients with respect to a module are computed, and its firing rules are as follows:      1. Ordinarily, the hook fires when the gradients are computed with respect to the module inputs.     2. If none of the module inputs require gradients, the hook will fire when the gradients are computed        with respect to module outputs.     3. If none of the module outputs require gradients, then the hooks will not fire.  The hook should have the following signature::      hook(module, grad_input, grad_output) -&gt; tuple(Tensor) or None  The :attr:<code>grad_input</code> and :attr:<code>grad_output</code> are tuples that contain the gradients with respect to the inputs and outputs respectively. The hook should not modify its arguments, but it can optionally return a new gradient with respect to the input that will be used in place of :attr:<code>grad_input</code> in subsequent computations. :attr:<code>grad_input</code> will only correspond to the inputs given as positional arguments and all kwarg arguments are ignored. Entries in :attr:<code>grad_input</code> and :attr:<code>grad_output</code> will be <code>None</code> for all non-Tensor arguments.  For technical reasons, when this hook is applied to a Module, its forward function will receive a view of each Tensor passed to the Module. Similarly the caller will receive a view of each Tensor returned by the Module's forward function.  .. warning ::     Modifying inputs or outputs inplace is not allowed when using backward hooks and     will raise an error.  Args:     hook (Callable): The user-defined hook to be registered.     prepend (bool): If true, the provided <code>hook</code> will be fired before         all existing <code>backward</code> hooks on this         :class:<code>torch.nn.Module</code>. Otherwise, the provided         <code>hook</code> will be fired after all existing <code>backward</code> hooks on         this :class:<code>torch.nn.Module</code>. Note that global         <code>backward</code> hooks registered with         :func:<code>register_module_full_backward_hook</code> will fire before         all hooks registered by this method.  Returns:     :class:<code>torch.utils.hooks.RemovableHandle</code>:         a handle that can be used to remove the added hook by calling         <code>handle.remove()</code></p>
+<p>The hook will be called every time the gradients with respect to a module are computed, i.e. the hook will execute if and only if the gradients with respect to module outputs are computed. The hook should have the following signature::      hook(module, grad_input, grad_output) -&gt; tuple(Tensor) or None  The :attr:<code>grad_input</code> and :attr:<code>grad_output</code> are tuples that contain the gradients with respect to the inputs and outputs respectively. The hook should not modify its arguments, but it can optionally return a new gradient with respect to the input that will be used in place of :attr:<code>grad_input</code> in subsequent computations. :attr:<code>grad_input</code> will only correspond to the inputs given as positional arguments and all kwarg arguments are ignored. Entries in :attr:<code>grad_input</code> and :attr:<code>grad_output</code> will be <code>None</code> for all non-Tensor arguments.  For technical reasons, when this hook is applied to a Module, its forward function will receive a view of each Tensor passed to the Module. Similarly the caller will receive a view of each Tensor returned by the Module's forward function.  .. warning ::     Modifying inputs or outputs inplace is not allowed when using backward hooks and     will raise an error.  Args:     hook (Callable): The user-defined hook to be registered.     prepend (bool): If true, the provided <code>hook</code> will be fired before         all existing <code>backward</code> hooks on this         :class:<code>torch.nn.modules.Module</code>. Otherwise, the provided         <code>hook</code> will be fired after all existing <code>backward</code> hooks on         this :class:<code>torch.nn.modules.Module</code>. Note that global         <code>backward</code> hooks registered with         :func:<code>register_module_full_backward_hook</code> will fire before         all hooks registered by this method.  Returns:     :class:<code>torch.utils.hooks.RemovableHandle</code>:         a handle that can be used to remove the added hook by calling         <code>handle.remove()</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>hook</strong>     (<em>Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]</em>)    </li>
-<li><strong>prepend</strong>     (<em>bool</em>)     – defaults to <code>False</code>    </li>
+<li><strong>hook</strong>     (<em>Callable[[ForwardRef('Module'), Union[Tuple[torch.Tensor, ...], torch.Tensor], Union[Tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, Tuple[torch.Tensor, ...], torch.Tensor]]</em>)</li>
+<li><strong>prepend</strong>     (<em>bool</em>)     – defaults to <code>False</code></li>
 </ul>
 </details>
 <details class="- note">
 <summary>register_full_backward_pre_hook</summary>
 <p>Register a backward pre-hook on the module.</p>
-<p>The hook will be called every time the gradients for the module are computed. The hook should have the following signature::      hook(module, grad_output) -&gt; tuple[Tensor] or None  The :attr:<code>grad_output</code> is a tuple. The hook should not modify its arguments, but it can optionally return a new gradient with respect to the output that will be used in place of :attr:<code>grad_output</code> in subsequent computations. Entries in :attr:<code>grad_output</code> will be <code>None</code> for all non-Tensor arguments.  For technical reasons, when this hook is applied to a Module, its forward function will receive a view of each Tensor passed to the Module. Similarly the caller will receive a view of each Tensor returned by the Module's forward function.  .. warning ::     Modifying inputs inplace is not allowed when using backward hooks and     will raise an error.  Args:     hook (Callable): The user-defined hook to be registered.     prepend (bool): If true, the provided <code>hook</code> will be fired before         all existing <code>backward_pre</code> hooks on this         :class:<code>torch.nn.Module</code>. Otherwise, the provided         <code>hook</code> will be fired after all existing <code>backward_pre</code> hooks         on this :class:<code>torch.nn.Module</code>. Note that global         <code>backward_pre</code> hooks registered with         :func:<code>register_module_full_backward_pre_hook</code> will fire before         all hooks registered by this method.  Returns:     :class:<code>torch.utils.hooks.RemovableHandle</code>:         a handle that can be used to remove the added hook by calling         <code>handle.remove()</code></p>
+<p>The hook will be called every time the gradients for the module are computed. The hook should have the following signature::      hook(module, grad_output) -&gt; tuple[Tensor] or None  The :attr:<code>grad_output</code> is a tuple. The hook should not modify its arguments, but it can optionally return a new gradient with respect to the output that will be used in place of :attr:<code>grad_output</code> in subsequent computations. Entries in :attr:<code>grad_output</code> will be <code>None</code> for all non-Tensor arguments.  For technical reasons, when this hook is applied to a Module, its forward function will receive a view of each Tensor passed to the Module. Similarly the caller will receive a view of each Tensor returned by the Module's forward function.  .. warning ::     Modifying inputs inplace is not allowed when using backward hooks and     will raise an error.  Args:     hook (Callable): The user-defined hook to be registered.     prepend (bool): If true, the provided <code>hook</code> will be fired before         all existing <code>backward_pre</code> hooks on this         :class:<code>torch.nn.modules.Module</code>. Otherwise, the provided         <code>hook</code> will be fired after all existing <code>backward_pre</code> hooks         on this :class:<code>torch.nn.modules.Module</code>. Note that global         <code>backward_pre</code> hooks registered with         :func:<code>register_module_full_backward_pre_hook</code> will fire before         all hooks registered by this method.  Returns:     :class:<code>torch.utils.hooks.RemovableHandle</code>:         a handle that can be used to remove the added hook by calling         <code>handle.remove()</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>hook</strong>     (<em>Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]</em>)    </li>
-<li><strong>prepend</strong>     (<em>bool</em>)     – defaults to <code>False</code>    </li>
+<li><strong>hook</strong>     (<em>Callable[[ForwardRef('Module'), Union[Tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, Tuple[torch.Tensor, ...], torch.Tensor]]</em>)</li>
+<li><strong>prepend</strong>     (<em>bool</em>)     – defaults to <code>False</code></li>
 </ul>
 </details>
 <details class="- note">
 <summary>register_load_state_dict_post_hook</summary>
-<p>Register a post-hook to be run after module's :meth:<code>~nn.Module.load_state_dict</code> is called.</p>
+<p>Register a post hook to be run after module's <code>load_state_dict</code> is called.</p>
 <p>It should have the following signature::     hook(module, incompatible_keys) -&gt; None  The <code>module</code> argument is the current module that this hook is registered on, and the <code>incompatible_keys</code> argument is a <code>NamedTuple</code> consisting of attributes <code>missing_keys</code> and <code>unexpected_keys</code>. <code>missing_keys</code> is a <code>list</code> of <code>str</code> containing the missing keys and <code>unexpected_keys</code> is a <code>list</code> of <code>str</code> containing the unexpected keys.  The given incompatible_keys can be modified inplace if needed.  Note that the checks performed when calling :func:<code>load_state_dict</code> with <code>strict=True</code> are affected by modifications the hook makes to <code>missing_keys</code> or <code>unexpected_keys</code>, as expected. Additions to either set of keys will result in an error being thrown when <code>strict=True</code>, and clearing out both missing and unexpected keys will avoid an error.  Returns:     :class:<code>torch.utils.hooks.RemovableHandle</code>:         a handle that can be used to remove the added hook by calling         <code>handle.remove()</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>hook</strong>    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>register_load_state_dict_pre_hook</summary>
-<p>Register a pre-hook to be run before module's :meth:<code>~nn.Module.load_state_dict</code> is called.</p>
-<p>It should have the following signature::     hook(module, state_dict, prefix, local_metadata, strict, missing_keys, unexpected_keys, error_msgs) -&gt; None  # noqa: B950  Arguments:     hook (Callable): Callable hook that will be invoked before         loading the state dict.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>hook</strong>    </li>
+<li><strong>hook</strong></li>
 </ul>
 </details>
 <details class="- note">
@@ -1541,8 +1490,8 @@
 <p>Alias for :func:<code>add_module</code>.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>name</strong>     (<em>str</em>)    </li>
-<li><strong>module</strong>     (<em>Optional[ForwardRef('Module')]</em>)    </li>
+<li><strong>name</strong>     (<em>str</em>)</li>
+<li><strong>module</strong>     (<em>Optional[ForwardRef('Module')]</em>)</li>
 </ul>
 </details>
 <details class="- note">
@@ -1551,26 +1500,17 @@
 <p>The parameter can be accessed as an attribute using given name.  Args:     name (str): name of the parameter. The parameter can be accessed         from this module using the given name     param (Parameter or None): parameter to be added to the module. If         <code>None</code>, then operations that run on parameters, such as :attr:<code>cuda</code>,         are ignored. If <code>None</code>, the parameter is <strong>not</strong> included in the         module's :attr:<code>state_dict</code>.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>name</strong>     (<em>str</em>)    </li>
-<li><strong>param</strong>     (<em>Optional[torch.nn.parameter.Parameter]</em>)    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>register_state_dict_post_hook</summary>
-<p>Register a post-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</p>
-<p>It should have the following signature::     hook(module, state_dict, prefix, local_metadata) -&gt; None  The registered hooks can modify the <code>state_dict</code> inplace.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>hook</strong>    </li>
+<li><strong>name</strong>     (<em>str</em>)</li>
+<li><strong>param</strong>     (<em>Optional[torch.nn.parameter.Parameter]</em>)</li>
 </ul>
 </details>
 <details class="- note">
 <summary>register_state_dict_pre_hook</summary>
 <p>Register a pre-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</p>
-<p>It should have the following signature::     hook(module, prefix, keep_vars) -&gt; None  The registered hooks can be used to perform pre-processing before the <code>state_dict</code> call is made.</p>
+<p>These hooks will be called with arguments: <code>self</code>, <code>prefix</code>, and <code>keep_vars</code> before calling <code>state_dict</code> on <code>self</code>. The registered hooks can be used to perform pre-processing before the <code>state_dict</code> call is made.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>hook</strong>    </li>
+<li><strong>hook</strong></li>
 </ul>
 </details>
 <details class="- note">
@@ -1579,7 +1519,7 @@
 <p>This method sets the parameters' :attr:<code>requires_grad</code> attributes in-place.  This method is helpful for freezing part of the module for finetuning or training parts of a model individually (e.g., GAN training).  See :ref:<code>locally-disable-grad-doc</code> for a comparison between <code>.requires_grad_()</code> and several similar mechanisms that may be confused with it.  Args:     requires_grad (bool): whether autograd should record operations on                           parameters in this module. Default: <code>True</code>.  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>requires_grad</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
+<li><strong>requires_grad</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1588,18 +1528,7 @@
 <p>This function is called from :func:<code>load_state_dict</code> to handle any extra state found within the <code>state_dict</code>. Implement this function and a corresponding :func:<code>get_extra_state</code> for your module if you need to store extra state within its <code>state_dict</code>.  Args:     state (dict): Extra state from the <code>state_dict</code></p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>state</strong>     (<em>Any</em>)    </li>
-</ul>
-</details>
-<details class="- note">
-<summary>set_submodule</summary>
-<p>Set the submodule given by <code>target</code> if it exists, otherwise throw an error.</p>
-<p>.. note::     If <code>strict</code> is set to <code>False</code> (default), the method will replace an existing submodule     or create a new submodule if the parent module exists. If <code>strict</code> is set to <code>True</code>,     the method will only attempt to replace an existing submodule and throw an error if     the submodule does not exist.  For example, let's say you have an <code>nn.Module</code> <code>A</code> that looks like this:  .. code-block:: text      A(         (net_b): Module(             (net_c): Module(                 (conv): Conv2d(3, 3, 3)             )             (linear): Linear(3, 3)         )     )  (The diagram shows an <code>nn.Module</code> <code>A</code>. <code>A</code> has a nested submodule <code>net_b</code>, which itself has two submodules <code>net_c</code> and <code>linear</code>. <code>net_c</code> then has a submodule <code>conv</code>.)  To override the <code>Conv2d</code> with a new submodule <code>Linear</code>, you could call <code>set_submodule("net_b.net_c.conv", nn.Linear(1, 1))</code> where <code>strict</code> could be <code>True</code> or <code>False</code>  To add a new submodule <code>Conv2d</code> to the existing <code>net_b</code> module, you would call <code>set_submodule("net_b.conv", nn.Conv2d(1, 1, 1))</code>.  In the above if you set <code>strict=True</code> and call <code>set_submodule("net_b.conv", nn.Conv2d(1, 1, 1), strict=True)</code>, an AttributeError will be raised because <code>net_b</code> does not have a submodule named <code>conv</code>.  Args:     target: The fully-qualified string name of the submodule         to look for. (See above example for how to specify a         fully-qualified string.)     module: The module to set the submodule to.     strict: If <code>False</code>, the method will replace an existing submodule         or create a new submodule if the parent module exists. If <code>True</code>,         the method will only attempt to replace an existing submodule and throw an error         if the submodule doesn't already exist.  Raises:     ValueError: If the <code>target</code> string is empty or if <code>module</code> is not an instance of <code>nn.Module</code>.     AttributeError: If at any point along the path resulting from         the <code>target</code> string the (sub)path resolves to a non-existent         attribute name or an object that is not an instance of <code>nn.Module</code>.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>target</strong>     (<em>str</em>)    </li>
-<li><strong>module</strong>     (<em>'Module'</em>)    </li>
-<li><strong>strict</strong>     (<em>bool</em>)     – defaults to <code>False</code>    </li>
+<li><strong>state</strong>     (<em>Any</em>)</li>
 </ul>
 </details>
 <details class="- note">
@@ -1612,10 +1541,10 @@
 <p>Both parameters and persistent buffers (e.g. running averages) are included. Keys are corresponding parameter and buffer names. Parameters and buffers set to <code>None</code> are not included.  .. note::     The returned object is a shallow copy. It contains references     to the module's parameters and buffers.  .. warning::     Currently <code>state_dict()</code> also accepts positional arguments for     <code>destination</code>, <code>prefix</code> and <code>keep_vars</code> in order. However,     this is being deprecated and keyword arguments will be enforced in     future releases.  .. warning::     Please avoid the use of argument <code>destination</code> as it is not     designed for end-users.  Args:     destination (dict, optional): If provided, the state of module will         be updated into the dict and the same object is returned.         Otherwise, an <code>OrderedDict</code> will be created and returned.         Default: <code>None</code>.     prefix (str, optional): a prefix added to parameter and buffer         names to compose the keys in state_dict. Default: <code>''</code>.     keep_vars (bool, optional): by default the :class:<code>~torch.Tensor</code> s         returned in the state dict are detached from autograd. If it's         set to <code>True</code>, detaching will not be performed.         Default: <code>False</code>.  Returns:     dict:         a dictionary containing a whole state of the module  Example::      &gt;&gt;&gt; # xdoctest: +SKIP("undefined vars")     &gt;&gt;&gt; module.state_dict().keys()     ['bias', 'weight']</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>args</strong>    </li>
-<li><strong>destination</strong>     – defaults to <code>None</code>    </li>
-<li><strong>prefix</strong>     – defaults to ``    </li>
-<li><strong>keep_vars</strong>     – defaults to <code>False</code>    </li>
+<li><strong>args</strong></li>
+<li><strong>destination</strong>     – defaults to <code>None</code></li>
+<li><strong>prefix</strong>     – defaults to ``</li>
+<li><strong>keep_vars</strong>     – defaults to <code>False</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1624,8 +1553,8 @@
 <p>This can be called as  .. function:: to(device=None, dtype=None, non_blocking=False)    :noindex:  .. function:: to(dtype, non_blocking=False)    :noindex:  .. function:: to(tensor, non_blocking=False)    :noindex:  .. function:: to(memory_format=torch.channels_last)    :noindex:  Its signature is similar to :meth:<code>torch.Tensor.to</code>, but only accepts floating point or complex :attr:<code>dtype</code>\ s. In addition, this method will only cast the floating point or complex parameters and buffers to :attr:<code>dtype</code> (if given). The integral parameters and buffers will be moved :attr:<code>device</code>, if that is given, but with dtypes unchanged. When :attr:<code>non_blocking</code> is set, it tries to convert/move asynchronously with respect to the host if possible, e.g., moving CPU Tensors with pinned memory to CUDA devices.  See below for examples.  .. note::     This method modifies the module in-place.  Args:     device (:class:<code>torch.device</code>): the desired device of the parameters         and buffers in this module     dtype (:class:<code>torch.dtype</code>): the desired floating point or complex dtype of         the parameters and buffers in this module     tensor (torch.Tensor): Tensor whose dtype and device are the desired         dtype and device for all parameters and buffers in this module     memory_format (:class:<code>torch.memory_format</code>): the desired memory         format for 4D parameters and buffers in this module (keyword         only argument)  Returns:     Module: self  Examples::      &gt;&gt;&gt; # xdoctest: +IGNORE_WANT("non-deterministic")     &gt;&gt;&gt; linear = nn.Linear(2, 2)     &gt;&gt;&gt; linear.weight     Parameter containing:     tensor([[ 0.1913, -0.3420],             [-0.5113, -0.2325]])     &gt;&gt;&gt; linear.to(torch.double)     Linear(in_features=2, out_features=2, bias=True)     &gt;&gt;&gt; linear.weight     Parameter containing:     tensor([[ 0.1913, -0.3420],             [-0.5113, -0.2325]], dtype=torch.float64)     &gt;&gt;&gt; # xdoctest: +REQUIRES(env:TORCH_DOCTEST_CUDA1)     &gt;&gt;&gt; gpu1 = torch.device("cuda:1")     &gt;&gt;&gt; linear.to(gpu1, dtype=torch.half, non_blocking=True)     Linear(in_features=2, out_features=2, bias=True)     &gt;&gt;&gt; linear.weight     Parameter containing:     tensor([[ 0.1914, -0.3420],             [-0.5112, -0.2324]], dtype=torch.float16, device='cuda:1')     &gt;&gt;&gt; cpu = torch.device("cpu")     &gt;&gt;&gt; linear.to(cpu)     Linear(in_features=2, out_features=2, bias=True)     &gt;&gt;&gt; linear.weight     Parameter containing:     tensor([[ 0.1914, -0.3420],             [-0.5112, -0.2324]], dtype=torch.float16)      &gt;&gt;&gt; linear = nn.Linear(2, 2, bias=None).to(torch.cdouble)     &gt;&gt;&gt; linear.weight     Parameter containing:     tensor([[ 0.3741+0.j,  0.2382+0.j],             [ 0.5593+0.j, -0.4443+0.j]], dtype=torch.complex128)     &gt;&gt;&gt; linear(torch.ones(3, 2, dtype=torch.cdouble))     tensor([[0.6122+0.j, 0.1150+0.j],             [0.6122+0.j, 0.1150+0.j],             [0.6122+0.j, 0.1150+0.j]], dtype=torch.complex128)</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>args</strong>    </li>
-<li><strong>kwargs</strong>    </li>
+<li><strong>args</strong></li>
+<li><strong>kwargs</strong></li>
 </ul>
 </details>
 <details class="- note">
@@ -1634,17 +1563,17 @@
 <p>Args:     device (:class:<code>torch.device</code>): The desired device of the parameters         and buffers in this module.     recurse (bool): Whether parameters and buffers of submodules should         be recursively moved to the specified device.  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>device</strong>     (<em>Union[int, str, torch.device, NoneType]</em>)    </li>
-<li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
+<li><strong>device</strong>     (<em>Union[int, str, torch.device, NoneType]</em>)</li>
+<li><strong>recurse</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
 </ul>
 </details>
 <details class="- note">
 <summary>train</summary>
 <p>Set the module in training mode.</p>
-<p>This has an effect only on certain modules. See the documentation of particular modules for details of their behaviors in training/evaluation mode, i.e., whether they are affected, e.g. :class:<code>Dropout</code>, :class:<code>BatchNorm</code>, etc.  Args:     mode (bool): whether to set training mode (<code>True</code>) or evaluation                  mode (<code>False</code>). Default: <code>True</code>.  Returns:     Module: self</p>
+<p>This has any effect only on certain modules. See documentations of particular modules for details of their behaviors in training/evaluation mode, if they are affected, e.g. :class:<code>Dropout</code>, :class:<code>BatchNorm</code>, etc.  Args:     mode (bool): whether to set training mode (<code>True</code>) or evaluation                  mode (<code>False</code>). Default: <code>True</code>.  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>mode</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
+<li><strong>mode</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1653,7 +1582,7 @@
 <p>.. note::     This method modifies the module in-place.  Args:     dst_type (type or string): the desired type  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>dst_type</strong>     (<em>Union[torch.dtype, str]</em>)    </li>
+<li><strong>dst_type</strong>     (<em>Union[torch.dtype, str]</em>)</li>
 </ul>
 </details>
 <details class="- note">
@@ -1662,7 +1591,7 @@
 <p>This also makes associated parameters and buffers different objects. So it should be called before constructing optimizer if the module will live on XPU while being optimized.  .. note::     This method modifies the module in-place.  Arguments:     device (int, optional): if specified, all parameters will be         copied to that device  Returns:     Module: self</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>device</strong>     (<em>Union[torch.device, int, NoneType]</em>)     – defaults to <code>None</code>    </li>
+<li><strong>device</strong>     (<em>Union[int, torch.device, NoneType]</em>)     – defaults to <code>None</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1671,7 +1600,7 @@
 <p>See similar function under :class:<code>torch.optim.Optimizer</code> for more context.  Args:     set_to_none (bool): instead of setting to zero, set the grads to None.         See :meth:<code>torch.optim.Optimizer.zero_grad</code> for details.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>set_to_none</strong>     (<em>bool</em>)     – defaults to <code>True</code>    </li>
+<li><strong>set_to_none</strong>     (<em>bool</em>)     – defaults to <code>True</code></li>
 </ul>
 </details>
 

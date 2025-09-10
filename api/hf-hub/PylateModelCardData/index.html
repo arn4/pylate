@@ -18,7 +18,7 @@
         <link rel="prev" href="../../evaluation/load-custom-dataset/">
       
       
-        <link rel="next" href="../../indexes/PLAID/">
+        <link rel="next" href="../../indexes/Voyager/">
       
       
       <link rel="icon" href="../../../img/favicon.ico">
@@ -725,8 +725,6 @@
       
         
       
-        
-      
     
     
       
@@ -743,7 +741,7 @@
         
   
   
-    <a href="../../indexes/PLAID/" class="md-nav__link">
+    <a href="../../indexes/Voyager/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -776,8 +774,6 @@
       
         
       
-        
-      
     
     
       
@@ -794,7 +790,7 @@
         
   
   
-    <a href="../../losses/CachedContrastive/" class="md-nav__link">
+    <a href="../../losses/Contrastive/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1027,14 +1023,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -1228,9 +1216,9 @@
 <p>Given a dataset, compute the following: * Dataset Size * Dataset Columns * Dataset Stats     - Strings: min, mean, max word count/token length     - Integers: Counter() instance     - Floats: min, mean, max range     - List: number of elements or min, mean, max number of elements * 3 Example samples * Loss function name     - Loss function config</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>dataset</strong>     (<em>'Dataset | IterableDataset | None'</em>)    </li>
-<li><strong>dataset_info</strong>     (<em>'dict[str, Any]'</em>)    </li>
-<li><strong>loss</strong>     (<em>'dict[str, nn.Module] | nn.Module | None'</em>)    </li>
+<li><strong>dataset</strong>     (<em>'Dataset | IterableDataset | None'</em>)</li>
+<li><strong>dataset_info</strong>     (<em>'dict[str, Any]'</em>)</li>
+<li><strong>loss</strong>     (<em>'dict[str, nn.Module] | nn.Module | None'</em>)</li>
 </ul>
 </details>
 <details class="- note">
@@ -1249,15 +1237,12 @@
 <p>Get value for a given metadata key.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>key</strong>     (<em>str</em>)    </li>
-<li><strong>default</strong>     (<em>Any</em>)     – defaults to <code>None</code>    </li>
+<li><strong>key</strong>     (<em>str</em>)</li>
+<li><strong>default</strong>     (<em>Any</em>)     – defaults to <code>None</code></li>
 </ul>
 </details>
 <details class="- note">
 <summary>get_codecarbon_data</summary>
-</details>
-<details class="- note">
-<summary>get_model_specific_metadata</summary>
 </details>
 <details class="- note">
 <summary>infer_datasets</summary>
@@ -1267,8 +1252,8 @@
 <p>Pop value for a given metadata key.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>key</strong>     (<em>str</em>)    </li>
-<li><strong>default</strong>     (<em>Any</em>)     – defaults to <code>None</code>    </li>
+<li><strong>key</strong>     (<em>str</em>)</li>
+<li><strong>default</strong>     (<em>Any</em>)     – defaults to <code>None</code></li>
 </ul>
 </details>
 <details class="- note">
@@ -1300,11 +1285,6 @@
 </details>
 <details class="- note">
 <summary>set_widget_examples</summary>
-<p>A function to create widget examples from a dataset. For now, set_widget_examples is not compatible with our transform/map operations, so we make it a no-op until it is fixed</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li><strong>dataset</strong>     (<em>'Dataset | DatasetDict'</em>)    </li>
-</ul>
 </details>
 <details class="- note">
 <summary>to_dict</summary>
@@ -1317,11 +1297,8 @@
 <p>Args:     line_break (str, <em>optional</em>):         The line break to use when dumping to yaml.  Returns:     <code>str</code>: CardData represented as a YAML block.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>line_break</strong>     – defaults to <code>None</code>    </li>
+<li><strong>line_break</strong>     – defaults to <code>None</code></li>
 </ul>
-</details>
-<details class="- note">
-<summary>tokenize</summary>
 </details>
 <details class="- note">
 <summary>try_to_set_base_model</summary>

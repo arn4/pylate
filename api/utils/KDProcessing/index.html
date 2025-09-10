@@ -18,7 +18,7 @@
         <link rel="prev" href="../ColBERTCollator/">
       
       
-        <link rel="next" href="../all-gather-with-gradients/">
+        <link rel="next" href="../convert-to-tensor/">
       
       
       <link rel="icon" href="../../../img/favicon.ico">
@@ -630,8 +630,6 @@
       
         
       
-        
-      
     
     
       
@@ -648,7 +646,7 @@
         
   
   
-    <a href="../../indexes/PLAID/" class="md-nav__link">
+    <a href="../../indexes/Voyager/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -681,8 +679,6 @@
       
         
       
-        
-      
     
     
       
@@ -699,7 +695,7 @@
         
   
   
-    <a href="../../losses/CachedContrastive/" class="md-nav__link">
+    <a href="../../losses/Contrastive/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -934,14 +930,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -1091,95 +1079,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../all-gather-with-gradients/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    all_gather_with_gradients
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../all-gather/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    all_gather
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../convert-to-tensor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     convert_to_tensor
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../get-rank/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    get_rank
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../get-world-size/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    get_world_size
   </span>
   
 
@@ -1298,19 +1202,19 @@
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><strong>queries</strong> (<em>'datasets.Dataset | datasets.DatasetDict'</em>)</p>
+<p><strong>queries</strong> (<em>datasets.arrow_dataset.Dataset | datasets.dataset_dict.DatasetDict</em>)</p>
 <p>Queries dataset.</p>
 </li>
 <li>
-<p><strong>documents</strong> (<em>'datasets.Dataset | datasets.DatasetDict'</em>)</p>
+<p><strong>documents</strong> (<em>datasets.arrow_dataset.Dataset | datasets.dataset_dict.DatasetDict</em>)</p>
 <p>Documents dataset.</p>
 </li>
 <li>
-<p><strong>split</strong> (<em>'str'</em>) – defaults to <code>train</code></p>
+<p><strong>split</strong> (<em>str</em>) – defaults to <code>train</code></p>
 <p>Split to use for the queries and documents datasets. Used only if the queries and documents are of type <code>datasets.DatasetDict</code>.</p>
 </li>
 <li>
-<p><strong>n_ways</strong> (<em>'int'</em>) – defaults to <code>32</code></p>
+<p><strong>n_ways</strong> (<em>int</em>) – defaults to <code>32</code></p>
 <p>Number of scores to keep for the distillation.</p>
 </li>
 </ul>
@@ -1353,7 +1257,7 @@
 <p>Process a single example.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>example</strong>     (<em>'dict'</em>)    </li>
+<li><strong>example</strong>     (<em>dict</em>)</li>
 </ul>
 </details>
 <details class="- note">
@@ -1361,7 +1265,7 @@
 <p>Update the input dataset with the queries and documents.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>examples</strong>     (<em>'dict'</em>)    </li>
+<li><strong>examples</strong>     (<em>dict</em>)</li>
 </ul>
 </details>
 

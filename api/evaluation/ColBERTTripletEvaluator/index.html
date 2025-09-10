@@ -881,8 +881,6 @@
       
         
       
-        
-      
     
     
       
@@ -899,7 +897,7 @@
         
   
   
-    <a href="../../indexes/PLAID/" class="md-nav__link">
+    <a href="../../indexes/Voyager/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -932,8 +930,6 @@
       
         
       
-        
-      
     
     
       
@@ -950,7 +946,7 @@
         
   
   
-    <a href="../../losses/CachedContrastive/" class="md-nav__link">
+    <a href="../../losses/Contrastive/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1183,14 +1179,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -1316,35 +1304,35 @@
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><strong>anchors</strong> (<em>'list[str]'</em>)</p>
+<p><strong>anchors</strong> (<em>list[str]</em>)</p>
 <p>Sentences to check similarity to. (e.g. a query)</p>
 </li>
 <li>
-<p><strong>positives</strong> (<em>'list[str]'</em>)</p>
+<p><strong>positives</strong> (<em>list[str]</em>)</p>
 <p>List of positive sentences</p>
 </li>
 <li>
-<p><strong>negatives</strong> (<em>'list[str]'</em>)</p>
+<p><strong>negatives</strong> (<em>list[str]</em>)</p>
 <p>List of negative sentences</p>
 </li>
 <li>
-<p><strong>name</strong> (<em>'str'</em>) – defaults to ``</p>
+<p><strong>name</strong> (<em>str</em>) – defaults to ``</p>
 <p>Name for the output.</p>
 </li>
 <li>
-<p><strong>batch_size</strong> (<em>'int'</em>) – defaults to <code>32</code></p>
+<p><strong>batch_size</strong> (<em>int</em>) – defaults to <code>32</code></p>
 <p>Batch size used to compute embeddings.</p>
 </li>
 <li>
-<p><strong>show_progress_bar</strong> (<em>'bool'</em>) – defaults to <code>False</code></p>
+<p><strong>show_progress_bar</strong> (<em>bool</em>) – defaults to <code>False</code></p>
 <p>If true, prints a progress bar.</p>
 </li>
 <li>
-<p><strong>write_csv</strong> (<em>'bool'</em>) – defaults to <code>True</code></p>
+<p><strong>write_csv</strong> (<em>bool</em>) – defaults to <code>True</code></p>
 <p>Wether or not to write results to a CSV file.</p>
 </li>
 <li>
-<p><strong>truncate_dim</strong> (<em>'int | None'</em>) – defaults to <code>None</code></p>
+<p><strong>truncate_dim</strong> (<em>int | None</em>) – defaults to <code>None</code></p>
 <p>The dimension to truncate sentence embeddings to. If None, do not truncate.</p>
 </li>
 </ul>
@@ -1352,7 +1340,7 @@
 <ul>
 <li>
 <p><strong>description</strong></p>
-<p>Returns a human-readable description of the evaluator: BinaryClassificationEvaluator -&gt; Binary Classification  1. Replace "CE" prefix with "CrossEncoder" 2. Remove "Evaluator" from the class name 3. Add a space before every capital letter</p>
+<p>Returns a human-readable description of the evaluator: BinaryClassificationEvaluator -&gt; Binary Classification  1. Remove "Evaluator" from the class name 2. Add a space before every capital letter</p>
 </li>
 </ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
@@ -1403,18 +1391,14 @@
 <p>Evaluate the model on the triplet dataset. Measure the scoring between the anchor and the positive with every other positive and negative samples using HITS@K.</p>
 <p><strong>Parameters</strong></p>
 <ul>
-<li><strong>model</strong>     (<em>'ColBERT'</em>)    </li>
-<li><strong>output_path</strong>     (<em>'str'</em>)     – defaults to <code>None</code>    </li>
-<li><strong>epoch</strong>     (<em>'int'</em>)     – defaults to <code>-1</code>    </li>
-<li><strong>steps</strong>     (<em>'int'</em>)     – defaults to <code>-1</code>    </li>
+<li><strong>model</strong>     (<em>pylate.models.colbert.ColBERT</em>)</li>
+<li><strong>output_path</strong>     (<em>str</em>)     – defaults to <code>None</code></li>
+<li><strong>epoch</strong>     (<em>int</em>)     – defaults to <code>-1</code></li>
+<li><strong>steps</strong>     (<em>int</em>)     – defaults to <code>-1</code></li>
 </ul>
 </details>
 <details class="- note">
 <summary>from_input_examples</summary>
-</details>
-<details class="- note">
-<summary>get_config_dict</summary>
-<p>Return a dictionary with all meaningful configuration values of the evaluator to store in the model card.</p>
 </details>
 <details class="- note">
 <summary>prefix_name_to_metrics</summary>
