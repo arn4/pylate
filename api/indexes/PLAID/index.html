@@ -729,6 +729,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
       Methods
@@ -1126,6 +1135,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
       Methods
@@ -1150,7 +1168,8 @@
 
 
 <h1 id="plaid">PLAID<a class="headerlink" href="#plaid" title="Permanent link">&para;</a></h1>
-<p>PLAID index. The PLAID index is the most scalable type of index for multi-vector search and leverage PQ-IVF as well as custom kernel for decompression.</p>
+<p>PLAID index with choice between fast-plaid (Rust-based) and Stanford NLP backends.</p>
+<p>This class provides a unified interface for PLAID indexing that can use either: - FastPlaid: High-performance Rust-based implementation (default) - Stanford PLAID: Original Stanford NLP implementation (deprecated)</p>
 <h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -1166,49 +1185,105 @@
 <p>Whether to override the collection if it already exists.</p>
 </li>
 <li>
-<p><strong>embedding_size</strong> (<em>'int'</em>) – defaults to <code>128</code></p>
-<p>The number of dimensions of the embeddings.</p>
+<p><strong>use_fast</strong> (<em>'bool'</em>) – defaults to <code>True</code></p>
+<p>If True (default), use fast-plaid backend. If False, use Stanford PLAID backend.</p>
 </li>
 <li>
-<p><strong>nbits</strong> (<em>'int'</em>) – defaults to <code>2</code></p>
-<p>The number of bits to use for the quantization.</p>
-</li>
-<li>
-<p><strong>nranks</strong> (<em>'int'</em>) – defaults to <code>1</code></p>
+<p><strong>nbits</strong> (<em>'int'</em>) – defaults to <code>4</code></p>
+<p>The number of bits to use for product quantization. Lower values mean more compression and potentially faster searches but can reduce accuracy.</p>
 </li>
 <li>
 <p><strong>kmeans_niters</strong> (<em>'int'</em>) – defaults to <code>4</code></p>
-<p>The number of iterations to use for the k-means clustering.</p>
+<p>The number of iterations for the K-means algorithm used during index creation. This influences the quality of the initial centroid assignments.</p>
 </li>
 <li>
-<p><strong>index_bsize</strong> (<em>'int'</em>) – defaults to <code>1</code></p>
+<p><strong>max_points_per_centroid</strong> (<em>'int'</em>) – defaults to <code>256</code></p>
+<p>The maximum number of points (token embeddings) that can be assigned to a single centroid during K-means. This helps in balancing the clusters.</p>
 </li>
 <li>
-<p><strong>ndocs</strong> (<em>'int'</em>) – defaults to <code>8192</code></p>
-<p>The number of candidate documents</p>
+<p><strong>n_ivf_probe</strong> (<em>'int'</em>) – defaults to <code>8</code></p>
+<p>The number of inverted file list "probes" to perform during the search. This parameter controls the number of clusters to search within the index for each query. Higher values improve recall but increase search time.</p>
 </li>
 <li>
-<p><strong>centroid_score_threshold</strong> (<em>'float'</em>) – defaults to <code>0.35</code></p>
-<p>The threshold scores for centroid pruning.</p>
+<p><strong>n_full_scores</strong> (<em>'int'</em>) – defaults to <code>8192</code></p>
+<p>The number of candidate documents for which full (re-ranked) scores are computed. This is a crucial parameter for accuracy; higher values lead to more accurate results but increase computation.</p>
 </li>
 <li>
-<p><strong>ncells</strong> (<em>'int'</em>) – defaults to <code>8</code></p>
-<p>The number of cells to consider for search.</p>
+<p><strong>n_samples_kmeans</strong> (<em>'int | None'</em>) – defaults to <code>None</code></p>
+<p>The number of samples to use for K-means clustering. If None, it defaults to a value based on the number of documents. This parameter can be adjusted to balance between speed, memory usage and clustering quality.</p>
 </li>
 <li>
-<p><strong>search_batch_size</strong> (<em>'int'</em>) – defaults to <code>262144</code></p>
-<p>The batch size to use when searching.</p>
+<p><strong>batch_size</strong> (<em>'int'</em>) – defaults to <code>262144</code></p>
+<p>The internal batch size used for processing queries. A larger batch size might improve throughput on powerful GPUs but can consume more memory.</p>
+</li>
+<li>
+<p><strong>show_progress</strong> (<em>'bool'</em>) – defaults to <code>True</code></p>
+<p>If set to True, a progress bar will be displayed during search operations.</p>
+</li>
+<li>
+<p><strong>device</strong> (<em>'str | list[str] | None'</em>) – defaults to <code>None</code></p>
+<p>Specifies the device(s) to use for computation. If None (default) and CUDA is available, it defaults to "cuda". If CUDA is not available, it defaults to "cpu". Can be a single device string (e.g., "cuda:0" or "cpu"). Can be a list of device strings (e.g., ["cuda:0", "cuda:1"]).</p>
+</li>
+<li>
+<p><strong>kwargs</strong></p>
 </li>
 </ul>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">models</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">index</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">PLAID</span><span class="p">(</span>
+<span class="o">...</span>    <span class="n">index_folder</span><span class="o">=</span><span class="s2">&quot;test_index&quot;</span><span class="p">,</span>
+<span class="o">...</span>    <span class="n">index_name</span><span class="o">=</span><span class="s2">&quot;plaid_colbert&quot;</span><span class="p">,</span>
+<span class="o">...</span>    <span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="o">...</span> <span class="p">)</span>
+<span class="err">✅</span> <span class="n">Index</span> <span class="k">with</span> <span class="n">FastPlaid</span> <span class="n">backend</span><span class="o">.</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span>
+<span class="o">...</span>    <span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;lightonai/GTE-ModernColBERT-v1&quot;</span><span class="p">,</span>
+<span class="o">...</span> <span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">documents_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">([</span>
+<span class="o">...</span>    <span class="s2">&quot;Document content here...&quot;</span><span class="p">,</span>
+<span class="o">...</span>    <span class="s2">&quot;Another document...&quot;</span><span class="p">,</span>
+<span class="o">...</span> <span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">is_query</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">index</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">add_documents</span><span class="p">(</span>
+<span class="o">...</span>    <span class="n">documents_ids</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">documents_embeddings</span><span class="p">)),</span>
+<span class="o">...</span>    <span class="n">documents_embeddings</span><span class="o">=</span><span class="n">documents_embeddings</span>
+<span class="o">...</span> <span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">queries_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+<span class="o">...</span>     <span class="p">[</span><span class="s2">&quot;search query&quot;</span><span class="p">,</span> <span class="s2">&quot;hello world&quot;</span><span class="p">],</span>
+<span class="o">...</span>     <span class="n">is_query</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="o">...</span> <span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span>
+<span class="o">...</span>     <span class="n">queries_embeddings</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="o">...</span> <span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">index</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">add_documents</span><span class="p">(</span>
+<span class="o">...</span>    <span class="n">documents_ids</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">documents_embeddings</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">documents_embeddings</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">),</span>
+<span class="o">...</span>    <span class="n">documents_embeddings</span><span class="o">=</span><span class="n">documents_embeddings</span>
+<span class="o">...</span> <span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span>
+<span class="o">...</span>     <span class="n">queries_embeddings</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">k</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+<span class="o">...</span> <span class="p">)</span>
+</code></pre></div>
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
 <details class="- note">
 <summary><strong>call</strong></summary>
-<p>Query the index for the nearest neighbors of the queries embeddings.</p>
+<p>Query the index for the nearest neighbors of the query embeddings.</p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li><strong>queries_embeddings</strong>     (<em>'np.ndarray | torch.Tensor'</em>)    </li>
 <li><strong>k</strong>     (<em>'int'</em>)     – defaults to <code>10</code>    </li>
+<li><strong>subset</strong>     (<em>'list[list[str]] | list[str] | None'</em>)     – defaults to <code>None</code>    </li>
 </ul>
+<p><strong>Returns</strong></p>
+<p><em>list[list[dict[str, str | float]]]</em>:     List of lists containing dictionaries with 'id' and 'score' keys.</p>
 </details>
 <details class="- note">
 <summary>add_documents</summary>
@@ -1217,11 +1292,16 @@
 <ul>
 <li><strong>documents_ids</strong>     (<em>'str | list[str]'</em>)    </li>
 <li><strong>documents_embeddings</strong>     (<em>'list[np.ndarray | torch.Tensor]'</em>)    </li>
-<li><strong>batch_size</strong>     (<em>'int'</em>)     – defaults to <code>2000</code>    </li>
+<li><strong>kwargs</strong>    </li>
 </ul>
 </details>
 <details class="- note">
 <summary>get_documents_embeddings</summary>
+<p>Get document embeddings by their IDs.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><strong>document_ids</strong>     (<em>'list[list[str]]'</em>)    </li>
+</ul>
 </details>
 <details class="- note">
 <summary>remove_documents</summary>

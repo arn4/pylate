@@ -538,7 +538,7 @@
           <li class="md-nav__item">
   <a href="#contrastive-training" class="md-nav__link">
     <span class="md-ellipsis">
-      Contrastive training
+      Contrastive Training
     </span>
   </a>
   
@@ -547,16 +547,7 @@
           <li class="md-nav__item">
   <a href="#knowledge-distillation" class="md-nav__link">
     <span class="md-ellipsis">
-      Knowledge distillation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nanobeir-evaluator" class="md-nav__link">
-    <span class="md-ellipsis">
-      NanoBEIR evaluator
+      Knowledge Distillation
     </span>
   </a>
   
@@ -577,18 +568,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#retrieve" class="md-nav__link">
+  <a href="#retrieval" class="md-nav__link">
     <span class="md-ellipsis">
-      Retrieve
+      Retrieval
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#rerank" class="md-nav__link">
+  <a href="#reranking" class="md-nav__link">
     <span class="md-ellipsis">
-      Rerank
+      Reranking
     </span>
   </a>
   
@@ -641,7 +632,7 @@
   <p>Flexible Training and Retrieval for Late Interaction Models</p>
 </div>
 
-<p align="center"><img width=500 src="img/logo.png"/></p>
+<p align="center"><img width=500 src="https://raw.githubusercontent.com/lightonai/pylate/refs/heads/main/docs/img/logo.png"/></p>
 
 <div align="center">
   <!-- Documentation -->
@@ -650,10 +641,12 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="license"></a>
 </div>
 
+<p>&nbsp;</p>
 <p align="justify">
 PyLate is a library built on top of Sentence Transformers, designed to simplify and optimize fine-tuning, inference, and retrieval with state-of-the-art ColBERT models. It enables easy fine-tuning on both single and multiple GPUs, providing flexibility for various hardware setups. PyLate also streamlines document retrieval and allows you to load a wide range of models, enabling you to construct ColBERT models from most pre-trained language models.
 </p>
 
+<p>&nbsp;</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>You can install PyLate using pip:</p>
 <div class="language-bash highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pylate
@@ -663,8 +656,9 @@ PyLate is a library built on top of Sentence Transformers, designed to simplify 
 </code></pre></div>
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
 <p>The complete documentation is available <a href="https://lightonai.github.io/pylate/">here</a>, which includes in-depth guides, examples, and API references.</p>
+<p>&nbsp;</p>
 <h2 id="training">Training<a class="headerlink" href="#training" title="Permanent link">&para;</a></h2>
-<h3 id="contrastive-training">Contrastive training<a class="headerlink" href="#contrastive-training" title="Permanent link">&para;</a></h3>
+<h3 id="contrastive-training">Contrastive Training<a class="headerlink" href="#contrastive-training" title="Permanent link">&para;</a></h3>
 <p>Here’s a simple example of training a ColBERT model on the MS MARCO dataset triplet dataset using PyLate. This script demonstrates training with contrastive loss and evaluating the model on a held-out eval set:</p>
 <div class="language-python highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
@@ -748,7 +742,8 @@ PyLate is a library built on top of Sentence Transformers, designed to simplify 
 <p>Finally, if you are in a multi-GPU setting, you can gather all the elements from the different GPUs to create even bigger batch sizes by setting <code>gather_across_devices</code> to <code>True</code> (for both <code>Contrastive</code> and <code>CachedContrastive</code> losses):</p>
 <div class="language-python highlight"><pre><span></span><code><span class="n">train_loss</span> <span class="o">=</span> <span class="n">losses</span><span class="o">.</span><span class="n">Contrastive</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">gather_across_devices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="knowledge-distillation">Knowledge distillation<a class="headerlink" href="#knowledge-distillation" title="Permanent link">&para;</a></h3>
+<p>&nbsp;</p>
+<h3 id="knowledge-distillation">Knowledge Distillation<a class="headerlink" href="#knowledge-distillation" title="Permanent link">&para;</a></h3>
 <p>To get the best performance when training a ColBERT model, you should use knowledge distillation to train the model using the scores of a strong teacher model.
 Here's a simple example of how to train a model using knowledge distillation in PyLate on MS MARCO:</p>
 <div class="language-python highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -821,10 +816,11 @@ Here's a simple example of how to train a model using knowledge distillation in 
 <span class="c1"># Start the training process</span>
 <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="nanobeir-evaluator">NanoBEIR evaluator<a class="headerlink" href="#nanobeir-evaluator" title="Permanent link">&para;</a></h3>
+<h4 id="nanobeir-evaluator">NanoBEIR evaluator<a class="headerlink" href="#nanobeir-evaluator" title="Permanent link">&para;</a></h4>
 <p>If you are training an English retrieval model, you can use <a href="https://huggingface.co/collections/zeta-alpha-ai/nanobeir-66e1a0af21dfd93e620cd9f6">NanoBEIR evaluator</a>, which allows to run small version of BEIR to get quick validation results.</p>
 <div class="language-python highlight"><pre><span></span><code><span class="n">evaluator</span><span class="o">=</span><span class="n">evaluation</span><span class="o">.</span><span class="n">NanoBEIREvaluator</span><span class="p">(),</span>
 </code></pre></div>
+<p>&nbsp;</p>
 <h2 id="datasets">Datasets<a class="headerlink" href="#datasets" title="Permanent link">&para;</a></h2>
 <p>PyLate supports Hugging Face <a href="https://huggingface.co/docs/datasets/en/index">Datasets</a>, enabling seamless triplet / knowledge distillation based training. For contrastive training, you can use any of the existing sentence transformers triplet datasets. Below is an example of creating a custom triplet dataset for training:</p>
 <div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
@@ -908,8 +904,9 @@ Here's a simple example of how to train a model using knowledge distillation in 
 
 <span class="n">queries</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">mapping</span><span class="o">=</span><span class="n">queries</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="retrieve">Retrieve<a class="headerlink" href="#retrieve" title="Permanent link">&para;</a></h2>
-<p>PyLate allows easy retrieval of top documents for a given query set using the trained ColBERT model and <a href="https://arxiv.org/abs/2205.09707">PLAID</a> index, simply load the model and init the index:</p>
+<p>&nbsp;</p>
+<h2 id="retrieval">Retrieval<a class="headerlink" href="#retrieval" title="Permanent link">&para;</a></h2>
+<p>PyLate provides an efficient index with <a href="https://github.com/lightonai/fast-plaid">FastPLAID</a>. Simply load a ColBERT model and initialize the index to perform retrieval.</p>
 <div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">retrieve</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ColBERT</span><span class="p">(</span>
@@ -978,18 +975,21 @@ Here's a simple example of how to train a model using knowledge distillation in 
     <span class="p">],</span>
 <span class="p">]</span>
 </code></pre></div>
-<h2 id="rerank">Rerank<a class="headerlink" href="#rerank" title="Permanent link">&para;</a></h2>
-<p>If you only want to use the ColBERT model to perform reranking on top of your first-stage retrieval pipeline without building an index, you can simply use rank function and pass the queries and documents to rerank:</p>
+<p>&nbsp;</p>
+<h2 id="reranking">Reranking<a class="headerlink" href="#reranking" title="Permanent link">&para;</a></h2>
+<p>If you want to use the ColBERT model to perform reranking on top of your first-stage retrieval pipeline without building an index, you can simply use <code>rank.rerank</code> function which takes the queries and documents embeddings along with the documents ids to rerank them:</p>
 <div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pylate</span><span class="w"> </span><span class="kn">import</span> <span class="n">rank</span>
 
 <span class="n">queries</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;query A&quot;</span><span class="p">,</span>
     <span class="s2">&quot;query B&quot;</span><span class="p">,</span>
 <span class="p">]</span>
+
 <span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="s2">&quot;document A&quot;</span><span class="p">,</span> <span class="s2">&quot;document B&quot;</span><span class="p">],</span>
     <span class="p">[</span><span class="s2">&quot;document 1&quot;</span><span class="p">,</span> <span class="s2">&quot;document C&quot;</span><span class="p">,</span> <span class="s2">&quot;document B&quot;</span><span class="p">],</span>
 <span class="p">]</span>
+
 <span class="n">documents_ids</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
@@ -999,6 +999,7 @@ Here's a simple example of how to train a model using knowledge distillation in 
     <span class="n">queries</span><span class="p">,</span>
     <span class="n">is_query</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
+
 <span class="n">documents_embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">documents</span><span class="p">,</span>
     <span class="n">is_query</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -1010,6 +1011,7 @@ Here's a simple example of how to train a model using knowledge distillation in 
     <span class="n">documents_embeddings</span><span class="o">=</span><span class="n">documents_embeddings</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
+<p>&nbsp;</p>
 <h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
 <p>We welcome contributions! To get started:</p>
 <ol>
