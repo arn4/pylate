@@ -6,6 +6,7 @@ import os
 import shutil
 
 import pandas as pd
+import torch
 from datasets import load_dataset
 from sentence_transformers import (
     SentenceTransformerTrainer,
@@ -14,6 +15,55 @@ from sentence_transformers import (
 from sentence_transformers.training_args import BatchSamplers
 
 from pylate import evaluation, losses, models, utils
+from pylate.scores import XTRScores, colbert_scores
+
+
+class _DummyModel:
+    do_query_expansion = False
+
+
+def _chunk_embeddings(embeddings: torch.Tensor, sizes: list[int]) -> list[torch.Tensor]:
+    chunks = []
+    start = 0
+    for size in sizes:
+        end = start + size
+        chunks.append(embeddings[start:end])
+        start = end
+    return chunks
+
+
+def _build_reps_and_masks(
+    batch_size: int = 4,
+    qt: int = 3,
+    dt: int = 3,
+    h: int = 4,
+    chunk_sizes: list[int] | None = None,
+) -> tuple[list[list[torch.Tensor]], list[torch.Tensor]]:
+    if chunk_sizes is None:
+        chunk_sizes = [2, 2]
+
+    anchor = torch.arange(batch_size * qt * h, dtype=torch.float32).view(
+        batch_size, qt, h
+    )
+    positive = torch.arange(batch_size * dt * h, dtype=torch.float32).view(
+        batch_size, dt, h
+    )
+    negative = torch.arange(batch_size * dt * h, dtype=torch.float32).view(
+        batch_size, dt, h
+    ) * 0.5
+
+    reps = [
+        _chunk_embeddings(anchor, chunk_sizes),
+        _chunk_embeddings(positive, chunk_sizes),
+        _chunk_embeddings(negative, chunk_sizes),
+    ]
+
+    masks = [
+        torch.ones(batch_size, qt),
+        torch.ones(batch_size, dt),
+        torch.ones(batch_size, dt),
+    ]
+    return reps, masks
 
 
 def test_contrastive_training() -> None:
@@ -90,3 +140,43 @@ def test_contrastive_training() -> None:
 
     if os.path.exists(path="tests/cached_contrastive"):
         shutil.rmtree("tests/cached_contrastive")
+
+
+def test_score_mini_batch_size_consistency_non_full_batch() -> None:
+    reps, masks = _build_reps_and_masks()
+
+    loss_small = losses.CachedContrastive(
+        model=_DummyModel(),
+        score_metric=colbert_scores,
+        mini_batch_size=2,
+        score_mini_batch_size=1,
+    ).calculate_loss(reps, masks)
+
+    loss_large = losses.CachedContrastive(
+        model=_DummyModel(),
+        score_metric=colbert_scores,
+        mini_batch_size=2,
+        score_mini_batch_size=4,
+    ).calculate_loss(reps, masks)
+
+    assert torch.allclose(loss_small, loss_large, atol=1e-6, rtol=0)
+
+
+def test_score_mini_batch_size_consistency_full_batch() -> None:
+    reps, masks = _build_reps_and_masks()
+
+    loss_small = losses.CachedContrastive(
+        model=_DummyModel(),
+        score_metric=XTRScores(k=4),
+        mini_batch_size=2,
+        score_mini_batch_size=1,
+    ).calculate_loss(reps, masks)
+
+    loss_large = losses.CachedContrastive(
+        model=_DummyModel(),
+        score_metric=XTRScores(k=4),
+        mini_batch_size=2,
+        score_mini_batch_size=4,
+    ).calculate_loss(reps, masks)
+
+    assert torch.allclose(loss_small, loss_large, atol=1e-6, rtol=0)
