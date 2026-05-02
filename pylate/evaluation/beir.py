@@ -34,7 +34,7 @@ def add_duplicates(queries: list[str], scores: list[list[dict]]) -> list:
     return duplicated_scores
 
 
-def load_beir(dataset_name: str, split: str = "test") -> tuple[list, list, dict]:
+def load_beir(dataset_name: str, split: str = "test", out_dir="./evaluation_datasets/") -> tuple[list, list, dict]:
     """Load BEIR dataset.
 
     Parameters
@@ -43,6 +43,8 @@ def load_beir(dataset_name: str, split: str = "test") -> tuple[list, list, dict]
         Name of the beir dataset.
     split
         Split to load.
+    out_dir
+        Output directory to download the dataset.
 
     Examples
     --------
@@ -68,7 +70,7 @@ def load_beir(dataset_name: str, split: str = "test") -> tuple[list, list, dict]
 
     data_path = util.download_and_unzip(
         url=f"https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/{dataset_name}.zip",
-        out_dir="./evaluation_datasets/",
+        out_dir=out_dir,
     )
 
     documents, queries, qrels = GenericDataLoader(data_folder=data_path).load(
