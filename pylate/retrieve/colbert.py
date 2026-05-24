@@ -5,7 +5,7 @@ import logging
 import numpy as np
 import torch
 
-from ..indexes import PLAID, Base
+from ..indexes import PLAID, Base, WARP
 from ..rank import RerankResult, rerank
 from ..utils import iter_batch
 
@@ -129,7 +129,7 @@ class ColBERT:
 
         """
         # PLAID handles reranking internally and returns RerankResult directly
-        if isinstance(self.index, PLAID):
+        if isinstance(self.index, PLAID) or isinstance(self.index, WARP):
             return self.index(
                 queries_embeddings=queries_embeddings,
                 k=k,

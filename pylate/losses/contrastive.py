@@ -83,7 +83,8 @@ class Contrastive(nn.Module):
         Average by the size of the mini-batch.
     gather_across_devices
         Whether to gather the embeddings across devices to have more in batch negatives. We recommend making sure the sampling across GPUs use the same dataset in case of multi-dataset training to make sure the negatives are plausible.
-
+    score_mini_batch_size
+        Chunk size for the score calculation step. You can keep this small to avoid OOM on large batch sizes, especially if your score metric creates large intermediate tensors (e.g. xtr_scores). Defaults is None (a.k.a. equal to the mini_batch_size).
     Examples
     --------
     >>> from pylate import models, losses
@@ -120,6 +121,7 @@ class Contrastive(nn.Module):
         size_average: bool = True,
         gather_across_devices: bool = False,
         temperature: float = 1.0,
+        score_mini_batch_size: int | None = None,
     ) -> None:
         super(Contrastive, self).__init__()
         self.score_metric = score_metric
@@ -127,6 +129,7 @@ class Contrastive(nn.Module):
         self.size_average = size_average
         self.gather_across_devices = gather_across_devices
         self.temperature = temperature
+        self.score_mini_batch_size = score_mini_batch_size 
 
     def forward(
         self,
@@ -186,12 +189,18 @@ class Contrastive(nn.Module):
             # Score metrics like xtr_scores require all documents simultaneously for global
             # top-k. Stack groups into (Q, N, Dt, H) and call once.
             N = len(embeddings) - 1
-            scores = self.score_metric(
-                embeddings[0],
-                torch.stack(embeddings[1:], dim=1),
-                queries_mask=masks[0] if not do_query_expansion else None,
-                documents_mask=torch.stack(masks[1:], dim=1),
-            )
+            step = self.score_mini_batch_size or batch_size
+            scores = []
+            for begin in range(0, batch_size, step):
+                end = min(begin + step, batch_size)
+                scores_chunk = self.score_metric(
+                    embeddings[0][begin:end],
+                    torch.stack(embeddings[1:], dim=1),
+                    queries_mask=masks[0][begin:end] if not do_query_expansion else None,
+                    documents_mask=torch.stack(masks[1:], dim=1),
+                )
+                scores.append(scores_chunk)
+            scores = torch.cat(scores, dim=0)
             # Positive for query i is at column i*N (docs are interleaved per query)
             labels = torch.arange(batch_size, device=embeddings[0].device) * N
             if self.gather_across_devices:
